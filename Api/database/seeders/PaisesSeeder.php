@@ -1,7 +1,7 @@
 <?php
-
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
-use App\Models\Inscricao\paises;
+use App\Models\Candidato\paises;
 
 class PaisesSeeder extends Seeder
 {

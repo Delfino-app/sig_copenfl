@@ -1,7 +1,7 @@
 <?php
-
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
-use App\Models\Inscricao\municipios;
+use App\Models\Candidato\municipios;
 
 class MunicipioSeeder extends Seeder
 {

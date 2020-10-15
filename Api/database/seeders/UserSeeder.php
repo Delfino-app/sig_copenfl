@@ -1,10 +1,13 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use App\Models\User;
 
-
-class UsuarioSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +17,9 @@ class UsuarioSeeder extends Seeder
     public function run()
     {
         $dados = [
-        	'name' => "User",
+        	'name' => Str::random(10),
         	'email' => "app@gmail.com",
-        	'password' => bcrypt("1234")
+        	'password' => Hash::make("password")
         ];
         if(User::where('email','=',$dados['email'])->count()){
         	$usuario = User::where('email','=',$dados['email'])->first();
