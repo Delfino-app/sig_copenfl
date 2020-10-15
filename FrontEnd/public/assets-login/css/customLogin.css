@@ -1,0 +1,35 @@
+.input-login{
+
+	padding:5px;
+	font-size:16px;
+}
+
+.btn-login{
+
+	padding:10px;
+	font-size:18px;
+}
+/*=======================Login===========================*/
+.right-content{
+	
+	/*background: linear-gradient(to left, #1dd1a1 0%, #6ab04c 100%) !important;*/
+	background-color: #f7f7f7 !important;
+}
+.frmLogin{
+
+	background-color:white;
+	padding: 20px;
+	border-radius: 3px;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1) !important;
+}
+.frmLogin .form-group{
+	margin-top: 10px;
+}
+.text-copy{
+
+	font-size:12px !important;
+}
+.frmLogin .btn{
+	background-color: #2fab8e !important;
+	border-color: #2fab8e !important;
+}

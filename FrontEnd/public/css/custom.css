@@ -1,0 +1,150 @@
+
+/*==================Asisde===========*/
+/*.navbar-brand{
+
+	color: white !important;
+}*/
+.btn-search{
+
+	background:#2fab8e !important;
+	color: #f7f7f7 !important;
+}
+.notify-count{
+
+	background:#2fab8e !important;
+	color: #f7f7f7 !important;
+}
+.nav-aside{
+
+	background:#2fab8e !important;
+	padding-top: unset !important;
+	margin-top: 20px;
+}
+.sidebar .nav>li>a {
+    padding: 7px 20px;
+    line-height: 20px;
+    color: white;
+    /* display: block; */
+    text-decoration: none;
+}
+.sidebar-minify-btn{
+
+	background-color: white !important;
+	color:#444 !important;
+}
+.sidebar-minify-btn i.ion-ios-arrow-back{
+
+	color: #444 !important;
+}
+/*==================DashBoard==============*/
+.content{
+
+	margin-top: 30px !important;
+}
+.btn-scroll-to-top{
+
+	background-color: #2fab8e !important;
+}
+.btn-action{
+
+	padding:8px 5px;
+}
+.content-card-licenca{
+
+	background-color:white;
+	padding:20px 10px;
+}
+.img-card-licenca{
+
+	border-radius:50%;
+}
+
+.list-info-card-licenca{
+
+	list-style-type:none;
+	margin-left:-20px;
+	margin-top:5px;
+}
+.list-info-card-licenca li{
+
+	padding-bottom:10px;
+	font-size:16px;
+	color:#1c1c1c;
+}
+
+.nav-tabs li a.nav-link{
+
+	font-size:16px;
+	color:#1c1c1c;
+}
+
+/*.nav.nav-tabs .nav-item .nav-link.active{
+
+	font-size:16px;
+	color:white !important;
+	background-color:#222 !important;
+}*/
+
+/*====================Licencas==================*/
+
+.btn-destaque{
+
+	background-color: #2fab8e;
+	color: #f7f7f7;
+	border-color: #2fab8e;
+	transition: color .3s; 
+}
+.btn-destaque:hover{
+
+	color:white;
+	background-color: #2fab8e;
+	border-color: #2fab8e;
+}
+
+/*================Licencas Add ====================*/
+.sw-main.sw-theme-default .step-anchor>li.active>a .number {
+    background: #2fab8e;
+    color: #fff;
+}
+.sw-main.sw-theme-default .step-anchor>li.done>a .number:before {
+    content: '\f00c';
+    background: #2fab8e !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #fff;
+    font-family: Font Awesome\ 5 Free,Font Awesome\ 5 Pro,FontAwesome!important;
+    font-weight: 900;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-border-radius: 40px;
+    border-radius: 40px;
+}
+.sw-btn-next:hover{
+
+	background-color: #2fab8e !important;
+	border-color: #2fab8e !important;
+	color: white;
+}
+
+.ficha-container{
+
+	overflow-y:auto;
+}
+
+.ficha-top-content{
+
+	padding-top:50px;
+}
+.ficha-heade-top{
+
+	text-align:center;
+	padding-top:10px;
+}
+.ficha-heade-img{
+
+	border:1px solid #444;
+}
