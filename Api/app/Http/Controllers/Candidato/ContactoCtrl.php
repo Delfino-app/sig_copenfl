@@ -17,7 +17,16 @@ class ContactoCtrl extends Controller
      */
     public function index()
     {
-        //
+        if(isset(contactos::all()[0]))
+            return response()->json([
+                'status' => "Ok",
+                "contactos" => contactos::all()
+            ], 200);
+        else
+            return response()->json([
+                    'status' => "Info",
+                    "message" => "Nenhum registo de candidato encontrado"
+            ], 200);
     }
 
     /**
@@ -42,7 +51,7 @@ class ContactoCtrl extends Controller
             $contacto->tipo = $request->tipo_contacto;
             if($contacto->save() and $contacto->wasChanged()){
                 return response()->json([
-                    'status' => "Info",
+                    'status' => "Ok",
                     "message" => "Contacto criado com sucesso"
                 ], 200);
             }
@@ -101,7 +110,7 @@ class ContactoCtrl extends Controller
             $contacto->tipo = $request->tipo_contacto;
             if($contacto->save() and $contacto->wasChanged()){
                 return response()->json([
-                    'status' => "Info",
+                    'status' => "Ok",
                     "message" => "Contacto actualizado com sucesso"
                 ], 200);
             }

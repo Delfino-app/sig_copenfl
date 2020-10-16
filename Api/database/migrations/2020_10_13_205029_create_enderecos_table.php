@@ -17,8 +17,8 @@ class CreateEnderecosTable extends Migration
             $table->id();
             $table->enum("tipo",['Residencia', 'Trabalho']);
             $table->string("bairro");
-            $table->string("rua");
-            $table->string("casa");
+            $table->string("rua")->nullable();
+            $table->string("casa")->nullable();
             $table->foreignId('municipio_id')->references('id')->on('municipios')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('candidato_id')->references('id')->on('candidatos')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
