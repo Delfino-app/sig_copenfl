@@ -18,6 +18,9 @@
 					    <a class="nav-link" data-toggle="tab" href="#documentos">Documentos</a>
 					  </li>
 					  <li class="nav-item">
+					    <a class="nav-link" data-toggle="tab" href="#pagamentos">Pagamentos</a>
+					  </li>
+					  <li class="nav-item">
 					    <a class="nav-link" data-toggle="tab" href="#recibo">Recibo de Inscrição</a>
 					  </li>
 					</ul>
@@ -28,6 +31,9 @@
 					  	<div style="border:1px solid #444">
 					  		
 					  	</div>
+					  </div>
+					  <div class="tab-pane container" id="pagamentos">
+					  		@include('licenca.fichaPagamentos')
 					  </div>
 					  <div class="tab-pane container" id="documentos">
 					  		@include('licenca.fichaDocumentos')
