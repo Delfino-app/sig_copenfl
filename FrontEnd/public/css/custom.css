@@ -169,6 +169,39 @@
 .doc-not-add{
 	background-color:var(--dark) !important;
 }
+/*==================Ficha=========================*/
+.btn-next-previus-ficha{
+
+	background-color: var(--dark);
+	color:white;
+	border-radius: unset;
+	transition: background-color .3s;
+}
+.btn-next-previus-ficha:hover{
+
+	background-color: var(--distaque);
+	color:white;
+}
+.btn-next-ficha{
+
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+.btn-previus-ficha{
+
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+.ficha-preview-dados-container{
+
+	background-color: var(--semiWhite);
+	margin-top:20px;
+	padding:20px;
+}
+.ficha-text-container{
+
+	font-size:12px;
+}
 
 /*====================Licencas==================*/
 

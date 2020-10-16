@@ -28,9 +28,7 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 					  <div class="tab-pane active container" id="ficha">
-					  	<div style="border:1px solid #444">
-					  		
-					  	</div>
+					  		@include('licenca.fichaPreview')
 					  </div>
 					  <div class="tab-pane container" id="pagamentos">
 					  		@include('licenca.fichaPagamentos')
