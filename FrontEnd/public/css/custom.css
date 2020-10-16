@@ -162,6 +162,9 @@
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1) !important;
 	margin-right:10px;
 }
+.doc-not-add{
+	background-color:var(--dark) !important;
+}
 
 /*====================Licencas==================*/
 
