@@ -37,7 +37,7 @@
             </div>
             <div class="float-right text-center">
                 <span style="font-size:13px;text-align:center;">Funcionário e carimbo</span><br>
-                <small style="text-align:center;font-size:14px;">
+                <small style="text-align:center;font-size:13px;">
                     <b>Delfino Torres</b>
                 <small>
             </div>

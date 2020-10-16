@@ -30,10 +30,10 @@
 					  	</div>
 					  </div>
 					  <div class="tab-pane container" id="documentos">
-						  <h1>Documentos</h1>
+					  		@include('licenca.fichaDocumentos')
 					  </div>
 					  <div class="tab-pane container" id="recibo">
-						@include('licenca.fichaReciboAmostra')
+							@include('licenca.fichaReciboAmostra')
 					  </div>
 					</div>
 				</div>

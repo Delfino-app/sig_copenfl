@@ -69,7 +69,7 @@
 
 	border-radius:50%;
 }
-/*======================Ver=================*/
+/*======================Ver Detalhes Licença=================*/
 .list-info-card-licenca{
 
 	list-style-type:none;
@@ -110,8 +110,57 @@
 .fotter_ver-container{
 
 	margin-top: 20px;
-	padding:20px;
+	padding:20px 5px;
 	border-top: 1px solid var(--textColor);
+}
+/*======================Ver Detalhes Licença Documentos=================*/
+.doc-carregados-container{
+	background-color: var(--semiWhite);
+	padding:10px;
+	min-height:320px;
+}
+
+.doc-em-falta-container{
+	background-color: var(--semiWhite);
+	padding:10px;
+	min-height:320px;
+}
+.semi-text-title{
+	font-size:13px;	
+}
+.title-doc-em-falta{
+	margin-top:120px;
+	font-size:13px;
+}
+.doc-container{
+
+	padding:20px 10px;
+}
+.content-doc-list-container{
+	padding:unset !important;
+	margin-top:-8px;
+}
+.content-doc-list{
+
+	background-color:var(--bcgWhite);
+	border-radius:3px;
+	transition:box-shadow .3s;
+	cursor: pointer;
+}
+.content-doc-list:hover{
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1) !important;
+}
+.doc-list-title{
+	padding:10px;
+	font-size: 13px;
+}
+.doc-list-number{
+	background-color: var(--distaque);
+	color:var(--bcgWhite);
+	border-radius: 50%;
+	padding:5px 10px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1) !important;
+	margin-right:10px;
 }
 
 /*====================Licencas==================*/
