@@ -23,18 +23,18 @@
 								<b>Conselho Provincial de Luanda</b>
 							</p>
 							<p class="heade-top-data">
-								Recibo de inscrição Provisório Nº <span>{{$licenca->id}}</span>/{{date('Y')}}
+								Recibo de inscrição Provisório Nº <span>12</span>/{{date('Y')}}
 							</p>
 						</div>
 						<div style="margin-top:-20px;padding-top:20px">
 							<p class="recibo-info">
 						   		Nome:
 						   		<span style="font-size:13px">
-						   			<b>{{$licenca->nome}}</b>
+						   			<b>Adão de Almeida</b>
 						   		</span>
 						   		<br>
 						   		Luanda <span style="font-size:13px">
-						   			<b>{{$licenca->data_registro}}</b>
+						   			<b>{{date('d:m:Y')}}</b>
 						   		</span>
 					   		</p>
 						</div>
@@ -52,7 +52,7 @@
 							<div class="float-right text-center">
 								<span style="font-size:13px;text-align:center;">Funcionário e carimbo</span><br>
 								<small style="text-align:center;font-size:14px;">
-									<b>{{Auth::user()->name}}</b>
+									<b>Delfino Torres</b>
 								<small>
 							</div>
 						</div>

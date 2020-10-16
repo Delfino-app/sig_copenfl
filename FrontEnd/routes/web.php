@@ -28,3 +28,7 @@ Route::get('/licencas', function () {
 Route::get('/licencas/nova', function () {
     return view('licenca.nova');
 });
+
+Route::get('/licencas/ver', function () {
+    return view('licenca.ver');
+});

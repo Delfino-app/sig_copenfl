@@ -1,4 +1,15 @@
+:root{
 
+    --primary :#222326;/**/
+    --bcgWhite : #ffffff;
+    --dark : #343a40;
+    --azul : #0d1c39;
+    --semiWhite: #f7f7f7;
+    --secundary:#444;
+    --distaque:#2fab8e;
+    --titleP: #ccc;
+    --textColor:#ccc;
+}
 /*==================Asisde===========*/
 /*.navbar-brand{
 
@@ -6,17 +17,17 @@
 }*/
 .btn-search{
 
-	background:#2fab8e !important;
-	color: #f7f7f7 !important;
+	background: var(--distaque) !important;
+	color:  var(--semiWhite) !important;
 }
 .notify-count{
 
-	background:#2fab8e !important;
-	color: #f7f7f7 !important;
+	background: var(--distaque) !important;
+	color:  var(--semiWhite) !important;
 }
 .nav-aside{
 
-	background:#2fab8e !important;
+	background: var(--distaque) !important;
 	padding-top: unset !important;
 	margin-top: 20px;
 }
@@ -58,7 +69,7 @@
 
 	border-radius:50%;
 }
-
+/*======================Ver=================*/
 .list-info-card-licenca{
 
 	list-style-type:none;
@@ -72,18 +83,36 @@
 	color:#1c1c1c;
 }
 
+.nav-tabs{
+
+	background-color: white;
+	border-bottom: 1px solid var(--textColor);
+}
 .nav-tabs li a.nav-link{
 
-	font-size:16px;
+	font-size:14px;
 	color:#1c1c1c;
+	border-radius: unset;
+	transition: background-color .3s;
 }
+.nav-tabs li a.nav-link:hover{
 
-/*.nav.nav-tabs .nav-item .nav-link.active{
-
-	font-size:16px;
 	color:white !important;
 	background-color:#222 !important;
-}*/
+}
+
+.nav.nav-tabs .nav-item .nav-link.active{
+
+	font-size:14px;
+	color:white !important;
+	background-color:#222 !important;
+}
+.fotter_ver-container{
+
+	margin-top: 20px;
+	padding:20px;
+	border-top: 1px solid var(--textColor);
+}
 
 /*====================Licencas==================*/
 

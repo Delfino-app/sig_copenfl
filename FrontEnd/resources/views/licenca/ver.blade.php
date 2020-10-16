@@ -1,7 +1,7 @@
 @extends('layout.template')
 
 @section('titulo','Licença')
-
+<link rel="stylesheet" href="{{asset('css/recibo.css')}}" type="text/css">
 @section('conteudo')
 	<div id="content" class="content" style="margin-top:40px;">
 		<div class="row">
@@ -15,10 +15,10 @@
 					    </a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" data-toggle="tab" href="#menu1">Fotos</a>
+					    <a class="nav-link" data-toggle="tab" href="#documentos">Documentos</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" data-toggle="tab" href="#menu2">Documentos</a>
+					    <a class="nav-link" data-toggle="tab" href="#recibo">Recibo de Inscrição</a>
 					  </li>
 					</ul>
 
@@ -26,11 +26,15 @@
 					<div class="tab-content">
 					  <div class="tab-pane active container" id="ficha">
 					  	<div style="border:1px solid #444">
-					  		@include('licenca.ficha')
+					  		
 					  	</div>
 					  </div>
-					  <div class="tab-pane container" id="menu1">...</div>
-					  <div class="tab-pane container" id="menu2">...</div>
+					  <div class="tab-pane container" id="documentos">
+						  <h1>Documentos</h1>
+					  </div>
+					  <div class="tab-pane container" id="recibo">
+						@include('licenca.fichaReciboAmostra')
+					  </div>
 					</div>
 				</div>
 			</div>

@@ -9,13 +9,13 @@
 						<p class="ficha-heade-top">
 							<b>
 								ORDENFA<br>
-								ORDEM DOS ENFERMEIROS DE ANGOLA
+								ORDEM DE ENFERMAGEM DE ANGOLA
 							</b><br>
 							<span class="decreto">
 								Decreto Presidencial nº 179/10
 							</span>
 							<br>
-							<b>CONSELHO PROVINCIAL DA ORDEM DOS ENFERMEIROS DE LUANDA</b>
+							<b>CONSELHO PROVINCIAL DA ORDEM DE ENFERMAGEM DE LUANDA</b>
 						</p>
 						<p class="heade-top-data">
 							Ficha de inscrição Nº <span>1</span>/{{date('Y')}}
