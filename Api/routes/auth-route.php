@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'middleware' => 'api',
     'namespace' => 'App\Http\Controllers\Auth',
-    'prefix' => 'v1/auth'
 ], function ($router) {
     
     Route::post('login', 'AuthController@login');
@@ -26,9 +25,9 @@ Route::group([
 });
 
 Route::group([
-    // 'middleware' => ['auth:api'],
+    'middleware' => ['auth:api'],
     'namespace' => 'App\Http\Controllers\Auth',
-    'prefix' => 'v1/user'
+    'prefix' => 'user'
 ], function ($router) {
     Route::get('index', 'UserCtrl@index');
     Route::post('store', 'UserCtrl@store');

@@ -24,17 +24,32 @@ status code 200
 </pre>
 
 <pre>
-
-## inscricão
+# Refresh Token
+POST URL
+"http://localhost:8000/api/v1/auth/refresh"
 
 POST URL
-"http://localhost:8000/api/v1/inscricao/store"
+"http://localhost:8000/api/v1/auth/logout"
 
 REQUEST HEADER
 "accept" : "application/json"
 "Content-Type" : "application/json"
-REQUEST BODY
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6OTAwMFwvdWVuZ2lcL2F.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
+</pre>
 
+<pre>
+
+## inscricão de candidato
+
+POST URL
+"http://localhost:8000/api/v1/candidato/store"
+
+REQUEST HEADER
+"accept" : "application/json"
+"Content-Type" : "application/json"
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6OTAwMFwvdWVuZ2lcL2F.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
+
+REQUEST BODY
 {
     "apply_about" : "", // pode ser: Licenca ou Carteira
     "personal_datail" : {
@@ -86,4 +101,23 @@ status code
 200 // Ok ou Info
 401 // Sem permissão ou token expirado
 
+</pre>
+
+<pre>
+# Lista de Candidatos
+GET URL
+"http://localhost:8000/api/v1/candidato/index"
+
+REQUEST HEADER
+"accept" : "application/json"
+"Content-Type" : "application/json"
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6OTAwMFwvdWVuZ2lcL2F.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
+
+# Update de Candidatos
+PUT URL
+"http://localhost:8000/api/v1/candidato/update/{candidato_id}"
+
+# Destroy de Candidatos
+DELETE URL
+"http://localhost:8000/api/v1/candidato/destroy/{candidato_id}"
 </pre>
