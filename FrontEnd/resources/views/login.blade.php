@@ -49,16 +49,16 @@
 						  <strong>{{$mensagem['info']}}</strong> {{$mensagem['sms']}}
 						</div>
 					@endif
-					<form action="" method="Post" class="margin-bottom-0 frmLogin">
+					<form action="" method="Post" id="frmLogin" class="margin-bottom-0 frmLogin">
                         <small>Insira seus dados de acesso</small>
 						{{ csrf_field() }}
 						<div class="form-group m-b-15">
 							<label>Email</label>
-							<input type="text" class="form-control form-control-lg input-login" name="email_login" placeholder="Email" required />
+							<input type="text" class="form-control form-control-lg input-login" name="email_login" id="email_login" placeholder="Email" required />
 						</div>
 						<div class="form-group m-b-15">
 							<label>Senha</label>
-							<input type="password" class="form-control form-control-lg input-login" name="senha_login" placeholder="Senha" required />
+							<input type="password" class="form-control form-control-lg input-login" name="senha_login" id="senha_login" placeholder="Senha" required />
 						</div>
 						<div class="login-buttons">
 							<button type="submit" class="btn btn-success btn-block btn-login">
@@ -84,5 +84,6 @@
 	<!-- Fim page container -->
 	<script src="{{asset('assets-login/js/app.min.js')}}"></script>
 	<script src="{{asset('assets-login/js/theme/apple.min.js')}}"></script>
+	<script src="{{asset('js/login/index.js')}}" type="module"></script>
 </body>
 </html>
