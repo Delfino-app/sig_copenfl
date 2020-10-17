@@ -53,20 +53,11 @@ class EnderecoCtrl extends Controller
             $endereco->casa = $request->casa;
             $endereco->tipo = $request->tipo_endereco;
             if($endereco->save() and $endereco->wasChanged()){
-                return response()->json([
-                    'status' => "Ok",
-                    "message" => "Endereço criado com sucesso"
-                ], 200);
+                return true;
             }
-            return response()->json([
-                'status' => "Info",
-                "message" => "Não foi possível criar o endereço"
-            ], 200);
+            return false;
         }
-        return response()->json([
-            'status' => "Info",
-            "message" => "O Endereço não pode ser criado sem candidato associado"
-        ], 200);
+        return false;
     }
 
     /**

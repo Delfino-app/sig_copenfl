@@ -26,7 +26,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['auth:api'],
+    // 'middleware' => ['auth:api'],
     'namespace' => 'App\Http\Controllers\Auth',
     'prefix' => 'v1/user'
 ], function ($router) {

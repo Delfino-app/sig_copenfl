@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Candidato;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cadidato\candidatos;
+use App\Http\Controllers\Candidato\ContactoCtrl;
+use App\Http\Controllers\Candidato\EnderecoCtrl;
+use Illuminate\Support\Str;
 
 class CandidatoCtrl extends Controller
 {
@@ -21,7 +24,7 @@ class CandidatoCtrl extends Controller
         if(isset(candidatos::all()[0]))
             return response()->json([
                 'status' => "Ok",
-                "candidatos" => candidatos::all()
+                "candidatos" => candidatos::with('endereco')->with('contacto')->with("licenca")->with("carteira")->get()
             ], 200);
         return response()->json([
                 'status' => "Info",
@@ -56,6 +59,56 @@ class CandidatoCtrl extends Controller
         $candidato->estado_civil = $request->estado_civil;
         $candidato->naturalidade = $request->naturalidade;
         if($candidato->save() and $candidato->wasChanged()){
+            // info about work  contact and address
+            if($request->work_info and $request->work_info->contact){
+                $candidato->contacto()->create([
+                        "telefone" => $request->work_info->contact->telefone,
+                        "email" => $request->work_info->contact->email,
+                        'caixa_postal' => $request->work_info->contact->caixa_postal,
+                        'fax' => $request->work_info->contact->fax,
+                        'tipo' => "Trabalho", 
+                ]);
+            }
+            if($request->work_info and $request->work_info->address){
+                $candidato->contacto()->create([
+                        "municipio" => $request->work_info->address->municipio,
+                        "bairro" => $request->work_info->address->bairro,
+                        'rua' => $request->work_info->address->rua,
+                        'casa' => $request->work_info->address->casa,
+                        'tipo' => "Trabalho", 
+                ]);
+            }
+            // info about personal  contact and address
+            if($request->personal_datail and $request->personal_datail->contact){
+                $candidato->contacto()->create([
+                        "telefone" => $request->personal_datail->contact->telefone,
+                        "email" => $request->personal_datail->contact->email,
+                        'caixa_postal' => $request->personal_datail->contact->caixa_postal,
+                        'fax' => $request->personal_datail->contact->fax,
+                        'tipo' => "Residencia", 
+                ]);
+            }
+            if($request->personal_datail and $request->personal_datail->address){
+                $candidato->contacto()->create([
+                        "municipio" => $request->personal_datail->address->municipio,
+                        "bairro" => $request->personal_datail->address->bairro,
+                        'rua' => $request->personal_datail->address->rua,
+                        'casa' => $request->personal_datail->address->casa,
+                        'tipo' => "Residencia", 
+                ]);
+            } 
+            // info about nurse licence and Wallet
+            if($request->tipo_inscricao === "Carteira"){
+                $candidato->carteira()->create([
+                    "numero" => "C".Str::random(10),
+                    "estado" => "Inscrito",
+                ]);
+            }else if($request->tipo_inscricao === "Licenca"){
+                $candidato->licenca()->create([
+                    "numero" => "L".Str::random(10),
+                    "estado" => "Inscrito",
+                ]);
+            }
             return response()->json([
                 'status' => "Ok",
                 "message" => "Candidato cadastrado com sucesso"
@@ -116,10 +169,12 @@ class CandidatoCtrl extends Controller
         $candidato->estado_civil = $request->estado_civil;
         $candidato->naturalidade = $request->naturalidade;
         if($candidato->save() and $candidato->wasChanged()){
-            return response()->json([
-                'status' => "Ok",
-                "message" => "Dados do candidato actualizados com sucesso"
-            ], 200);
+            
+                return response()->json([
+                    'status' => "Ok",
+                    "message" => "Dados do candidato actualizados com sucesso"
+                ], 200);
+            //candidatos::find($candidato->id)->delete();
         }
         return response()->json([
             'status' => "Info",

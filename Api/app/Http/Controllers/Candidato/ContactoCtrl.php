@@ -50,20 +50,11 @@ class ContactoCtrl extends Controller
             $contacto->email = $request->email;
             $contacto->tipo = $request->tipo_contacto;
             if($contacto->save() and $contacto->wasChanged()){
-                return response()->json([
-                    'status' => "Ok",
-                    "message" => "Contacto criado com sucesso"
-                ], 200);
+                return true;
             }
-            return response()->json([
-                'status' => "Info",
-                "message" => "Não foi possível criar O contacto"
-            ], 200);
+            return false;
         }
-        return response()->json([
-            'status' => "Info",
-            "message" => "O contacto não pode ser criado sem candidato associado"
-        ], 200);
+        return false;
     }
 
     /**
