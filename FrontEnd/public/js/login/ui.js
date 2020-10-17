@@ -2,9 +2,10 @@ export default{
 
     getDefaultElements(){
 
-        this.login_email = document.querySelector("#email_login").value;
-        this.login_senha = document.querySelector("#senha_login").value;
+        this.login_email = document.getElementById("email_login");
+        this.login_senha = document.getElementById("senha_login");
         this.frmLogin = document.getElementById("frmLogin");
+        this.displayLoginInfo = document.getElementById("displayLoginInfo");
     },
     actionDefaultElements(){
 

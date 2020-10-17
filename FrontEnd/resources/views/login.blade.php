@@ -44,12 +44,8 @@
 				<!-- end login-header -->
 				<!-- begin login-content -->
 				<div class="login-content">
-                    @if(isset($mensagem))
-						<div class="alert alert-danger">
-						  <strong>{{$mensagem['info']}}</strong> {{$mensagem['sms']}}
-						</div>
-					@endif
-					<form action="" method="Post" id="frmLogin" class="margin-bottom-0 frmLogin">
+					<div id="displayLoginInfo"></div>                    
+					<form method="Post" id="frmLogin" class="margin-bottom-0 frmLogin">
                         <small>Insira seus dados de acesso</small>
 						{{ csrf_field() }}
 						<div class="form-group m-b-15">
