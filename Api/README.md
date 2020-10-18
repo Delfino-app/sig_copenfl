@@ -87,6 +87,15 @@ REQUEST BODY
             "rua" : "", // campo de preenchimento opcional
             "casa" : "" // campo de preenchimento opcional
         }
+    },
+    "academic_detail" : {
+        "tipo_escola" : "", // pode ser Privada ou Publica
+        "escola" : "", // nome da escola
+        "nivel" : "", // pode ser Fundamental, Medio ou Superior
+        "ano_frequencia" : "", // ano/anos de frequencia escolar
+        "ano_termino" : "", // ano que conclui, caso tenha
+        "ano_inicio" : "", // ano que inicio a estudar
+        "estado" : "" // pode ser Estudando ou Concluido
     }
 }
 
