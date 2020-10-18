@@ -16,7 +16,8 @@ class CreateInscricaoCarteirasTable extends Migration
         Schema::create('inscricao_carteiras', function (Blueprint $table) {
             $table->id();
             $table->enum("estado",['Inscrito', 'Analise','Analisado','Aprovado',"Invalido"]);
-            $table->integer("numero");
+            $table->string("numero");
+            $table->integer("sequencia");
             $table->foreignId('candidato_id')->references('id')->on('candidatos')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

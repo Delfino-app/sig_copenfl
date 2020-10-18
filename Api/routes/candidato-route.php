@@ -19,7 +19,7 @@ Route::group([
     'namespace' => 'App\Http\Controllers\Candidato',
 ], function ($router) { 
     Route::get('index', 'CandidatoCtrl@index');
-    Route::post('store', 'CandidatoCtrl@store');
+    Route::post('store', 'CandidatoCtrl@store')->middleware("role:Presidente");
     Route::put('update/{id}', 'CandidatoCtrl@update');
 Route::delete('destroy/{id}', 'CandidatoCtrl@destroy');
 });

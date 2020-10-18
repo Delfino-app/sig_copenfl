@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Inscricao\inscricao_licencas;
 use App\Models\Inscricao\inscricao_carteiras;
-use App\Models\Cadidato\enderecos;
-use App\Models\Cadidato\contactos;
+use App\Models\Candidato\enderecos;
+use App\Models\Candidato\contactos;
 class candidatos extends Model
 {
     use HasFactory;
 
-    public function lecenca(){
+    public function licenca(){
         return $this->hasMany(inscricao_licencas::class,"candidato_id");
     }
     public function carteira(){
