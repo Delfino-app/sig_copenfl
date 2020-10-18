@@ -1,4 +1,5 @@
 import ui from "./ui.js";
+import requests from "../api/requests.js"
 export default{
 
     start(){
@@ -14,40 +15,24 @@ export default{
         
         const dados = {
             email : this.login_email.value,
-            senha : this.login_senha.value
+            password : this.login_senha.value
         }
 
         const formData = new FormData();
 
         formData.append("email",dados.email);
-        formData.append("password",dados.senha);
+        formData.append("password",dados.password);
 
-       const makeLogin = await this.post("http://localhost:8000/api/v1/auth/login",formData);
+       const makeLogin = await requests.login(dados);
 
-       if(makeLogin.error != undefined){
-
-            console.log("Erro");
-
+        if(makeLogin.error != undefined){
             this.displayLoginInfo.innerHTML = `
                 <div class="alert alert-danger">
                     <strong>Erro</strong> Dados de acesso incorretos
                 </div>
             `;
-       }
+        }
 
        console.log(makeLogin);
-    },
-    async post(url, data) {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            "accept" : "application/json",
-            "Content-Type" : "application/json"
-          },
-          body:data
-        });
-    
-        const resData = await response.json();
-        return resData;
-      }
+    }
 }
