@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Candidato;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Cadidato\candidatos;
+use App\Models\Candidato\candidatos;
 use App\Http\Controllers\Candidato\ContactoCtrl;
 use App\Http\Controllers\Candidato\EnderecoCtrl;
+
+use App\Models\Inscricao\inscricao_licencas as licenca;
+use App\Models\Inscricao\inscricao_carteiras as carteira;
 use Illuminate\Support\Str;
 
 class CandidatoCtrl extends Controller
@@ -40,73 +43,88 @@ class CandidatoCtrl extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "nome" => "required",
-            "pai" => "required",
-            "mae" => "required",
-            "nacionalidae" => "required",
-            "data_nascimento" => "required",
-            "estado_civil" => "required",
-            "genero" => "required",
-            "naturalidade" => "required",
+            "personal_datail.nome" => "required",
+            "personal_datail.pai" => "required",
+            "personal_datail.mae" => "required",
+            "personal_datail.nacionalidade" => "required",
+            "personal_datail.data_nascimento" => "required",
+            "personal_datail.estado_civil" => "required",
+            "personal_datail.genero" => "required",
+            "personal_datail.naturalidade" => "required",
         ]);
 
         $candidato = new candidatos;
-        $candidato->nome = $request->nome;
-        $candidato->pai = $request->pai;
-        $candidato->mae = $request->mae;
-        $candidato->nacionalidade = $request->nacionalidade;
-        $candidato->data_nascimento = $request->data_nascimento;
-        $candidato->estado_civil = $request->estado_civil;
-        $candidato->naturalidade = $request->naturalidade;
-        if($candidato->save() and $candidato->wasChanged()){
+        $personal_datail = (object) $request->personal_datail;
+        $candidato->nome = $personal_datail->nome;
+        $candidato->pai = $personal_datail->pai;
+        $candidato->mae = $personal_datail->mae;
+        $candidato->nacionalidade = $personal_datail->nacionalidade;
+        $candidato->data_nascimento = $personal_datail->data_nascimento;
+        $candidato->estado_civil = $personal_datail->estado_civil;
+        $candidato->naturalidade = $personal_datail->naturalidade;
+        if($candidato->save()){
             // info about work  contact and address
-            if($request->work_info and $request->work_info->contact){
+            $work_info = (object) $request->work_info;
+            if( isset($work_info) and isset($work_info->contact)){
+                $work_info_contact = (object) $work_info->contact;
                 $candidato->contacto()->create([
-                        "telefone" => $request->work_info->contact->telefone,
-                        "email" => $request->work_info->contact->email,
-                        'caixa_postal' => $request->work_info->contact->caixa_postal,
-                        'fax' => $request->work_info->contact->fax,
+                        "telefone" => $work_info_contact->telefone,
+                        "email" => $work_info_contact->email,
+                        'caixa_postal' => $work_info_contact->caixa_postal,
+                        'fax' => $work_info_contact->fax,
                         'tipo' => "Trabalho", 
                 ]);
             }
-            if($request->work_info and $request->work_info->address){
-                $candidato->contacto()->create([
-                        "municipio" => $request->work_info->address->municipio,
-                        "bairro" => $request->work_info->address->bairro,
-                        'rua' => $request->work_info->address->rua,
-                        'casa' => $request->work_info->address->casa,
+            if(isset($work_info) and isset($work_info->address)){
+                $work_info_adderess =  (object) $work_info->address;
+                $candidato->endereco()->create([
+                        "municipio_id" => $work_info_adderess->municipio,
+                        "bairro" => $work_info_adderess->bairro,
+                        'rua' => $work_info_adderess->rua,
+                        'casa' => $work_info_adderess->casa,
                         'tipo' => "Trabalho", 
                 ]);
             }
             // info about personal  contact and address
-            if($request->personal_datail and $request->personal_datail->contact){
+            if(isset($personal_datail->contact)){
+                $personal_datail_contact = (object) $personal_datail->contact;
                 $candidato->contacto()->create([
-                        "telefone" => $request->personal_datail->contact->telefone,
-                        "email" => $request->personal_datail->contact->email,
-                        'caixa_postal' => $request->personal_datail->contact->caixa_postal,
-                        'fax' => $request->personal_datail->contact->fax,
+                        "telefone" => $personal_datail_contact->telefone,
+                        "email" => $personal_datail_contact->email,
+                        'caixa_postal' => $personal_datail_contact->caixa_postal,
+                        'fax' => $personal_datail_contact->fax,
                         'tipo' => "Residencia", 
                 ]);
             }
-            if($request->personal_datail and $request->personal_datail->address){
-                $candidato->contacto()->create([
-                        "municipio" => $request->personal_datail->address->municipio,
-                        "bairro" => $request->personal_datail->address->bairro,
-                        'rua' => $request->personal_datail->address->rua,
-                        'casa' => $request->personal_datail->address->casa,
+            if( isset($personal_datail->address)){
+                $personal_datail_address = (object) $personal_datail->address;
+                $candidato->endereco()->create([
+                        "municipio_id" => $personal_datail_address->municipio,
+                        "bairro" => $personal_datail_address->bairro,
+                        'rua' => $personal_datail_address->rua,
+                        'casa' => $personal_datail_address->casa,
                         'tipo' => "Residencia", 
                 ]);
             } 
             // info about nurse licence and Wallet
-            if($request->tipo_inscricao === "Carteira"){
+            $sequencia = 0;
+            if($request->apply_about === "Carteira"){
+                $table_sequence = carteira::get()->last();
+                if(isset($table_sequence->sequencia))
+                    $sequencia = 1 + $table_sequence->sequencia;
                 $candidato->carteira()->create([
-                    "numero" => "C".Str::random(10),
+                    "numero" => "C".Str::random(5),
                     "estado" => "Inscrito",
+                    "sequencia" => $sequencia,
                 ]);
-            }else if($request->tipo_inscricao === "Licenca"){
+            }else if($request->apply_about === "Licenca"){
+                $table_sequence = licenca::get()->last();
+                if(isset($table_sequence->sequencia))
+                    $sequencia = 1 + $table_sequence->sequencia;
                 $candidato->licenca()->create([
-                    "numero" => "L".Str::random(10),
+                    "numero" => "L".Str::random(4),
                     "estado" => "Inscrito",
+                    "sequencia" => $sequencia,
                 ]);
             }
             return response()->json([

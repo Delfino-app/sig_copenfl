@@ -16,10 +16,10 @@ class CreateEnderecosTable extends Migration
         Schema::create('enderecos', function (Blueprint $table) {
             $table->id();
             $table->enum("tipo",['Residencia', 'Trabalho']);
-            $table->string("bairro");
+            $table->string("bairro")->nullable();
             $table->string("rua")->nullable();
             $table->string("casa")->nullable();
-            $table->foreignId('municipio_id')->references('id')->on('municipios')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('municipio_id')->nullable();
             $table->foreignId('candidato_id')->references('id')->on('candidatos')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

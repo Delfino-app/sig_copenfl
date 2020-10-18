@@ -53,14 +53,14 @@ REQUEST BODY
 {
     "apply_about" : "", // pode ser: Licenca ou Carteira
     "personal_datail" : {
-       "nome" : "", // campo de preenchimento obrigatório
+        "nome" : "", // campo de preenchimento obrigatório
         "pai" : "", // campo de preenchimento obrigatório
         "mae" : "", // campo de preenchimento obrigatório
-        "nacionalidae" : "", // campo de preenchimento obrigatório
+        "nacionalidade_id" : "", // campo de preenchimento obrigatório
         "data_nascimento" : "", // campo de preenchimento obrigatório
         "estado_civil" : "", // campo de preenchimento obrigatório
         "genero" : "", // campo de preenchimento obrigatório
-        "naturalidade" : "", // campo de preenchimento obrigatório
+        "naturalidade_id" : "", // campo de preenchimento obrigatório
         "contact" : {
             "telefone" : "", // campo de preenchimento obrigatório
             "email" : "", // campo de preenchimento obrigatório
@@ -68,7 +68,7 @@ REQUEST BODY
             "fax" : "" // campo de preenchimento opcional
         },
         "address" : {
-            "munucipio" : "", // campo de preenchimento obrigatório
+            "municipio_id" : "", // campo de preenchimento obrigatório
             "bairro" : "", // campo de preenchimento obrigatório
             "rua" : "", // campo de preenchimento obrigatório
             "casa" : "" // campo de preenchimento opcional
@@ -82,7 +82,7 @@ REQUEST BODY
             "fax" : ""   // campo de preenchimento opcional
        },
        "address" : {
-            "munucipio" : "", // campo de preenchimento opcional
+            "municipio_id" : "", // campo de preenchimento opcional
             "bairro" : "", // campo de preenchimento opcional
             "rua" : "", // campo de preenchimento opcional
             "casa" : "" // campo de preenchimento opcional

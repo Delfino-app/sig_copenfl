@@ -10,7 +10,7 @@ class inscricao_carteiras extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['numero', 'candidato_id', 'estado'];
+    protected $fillable = ['numero', 'sequencia', 'estado'];
 
     public function candidato(){
         return $this->belongsTo(candidatos::class,"candidato_id");
