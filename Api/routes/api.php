@@ -29,10 +29,22 @@ Route::group([
             "municipios" => App\Models\Candidato\municipios::all()
             ]);
     });
+    Route::get('municipios/{provincia_id}', function($provincia_id){
+        return response()->json([
+            "status" => "Ok",
+            "municipios" => App\Models\Candidato\municipios::where("provincia_id","=", $provincia_id)->get()
+            ]);
+    });
     Route::get('provincias', function(){
         return response()->json([
             "status" => "Ok",
             "provincias" => App\Models\Candidato\provincias::all()
+            ]);
+    });
+    Route::get('provincias/{pais_id}', function($pais_id){
+        return response()->json([
+            "status" => "Ok",
+            "provincias" => App\Models\Candidato\provincias::where("pais_id","=", $pais_id)->get()
             ]);
     });
     Route::get('paises', function(){

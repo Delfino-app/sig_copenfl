@@ -159,4 +159,7 @@ GET URL
 
 GET URL for province, country and county
 "http://localhost:8000/api/v1/asset/paises-provincias-municipios"
+
+"http://localhost:8000/api/v1/asset/provincias/{pais_id}"
+"http://localhost:8000/api/v1/asset/municipios/{provincia_id}"
 </pre>
