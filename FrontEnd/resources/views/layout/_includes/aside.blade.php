@@ -10,7 +10,7 @@
 						<i class="fa fa-user"></i>
 					</div>
 					<div class="info">
-						Delfino
+						{{$name}}
 						<small>Recepcionista</small>
 					</div>
 				</a>
@@ -21,7 +21,7 @@
 		<ul class="nav bg-dark nav-aside">
 			<li class="nav-header">Navegação</li>
 			<li class="">
-				<a href="#">
+				<a href="{{route('home')}}">
 				    <i class="ion-ios-pulse"></i>
 				    <span>Dashboard</span>
 			    </a>
@@ -34,7 +34,7 @@
 				</a>
 				<ul class="sub-menu">
 					<li>
-						<a href="#">
+						<a href="{{route('licenca.lista')}}">
 							Licença
 						</a>
 					</li>
