@@ -42,7 +42,7 @@ export default{
           method: 'POST',
           headers: {
             "accept" : "application/json",
-            "Content-Type" : "application/json"
+            "Content-Type" : "multipart/form-data"
           },
           body:data
         });
