@@ -46,11 +46,11 @@ class CandidatoCtrl extends Controller
             "personal_datail.nome" => "required",
             "personal_datail.pai" => "required",
             "personal_datail.mae" => "required",
-            "personal_datail.nacionalidade" => "required",
+            "personal_datail.nacionalidade_id" => "required",
             "personal_datail.data_nascimento" => "required",
             "personal_datail.estado_civil" => "required",
             "personal_datail.genero" => "required",
-            "personal_datail.naturalidade" => "required",
+            "personal_datail.naturalidade_id" => "required",
         ]);
 
         $candidato = new candidatos;
@@ -58,10 +58,10 @@ class CandidatoCtrl extends Controller
         $candidato->nome = $personal_datail->nome;
         $candidato->pai = $personal_datail->pai;
         $candidato->mae = $personal_datail->mae;
-        $candidato->nacionalidade = $personal_datail->nacionalidade;
+        $candidato->nacionalidade = $personal_datail->nacionalidade_id;
         $candidato->data_nascimento = $personal_datail->data_nascimento;
         $candidato->estado_civil = $personal_datail->estado_civil;
-        $candidato->naturalidade = $personal_datail->naturalidade;
+        $candidato->naturalidade = $personal_datail->naturalidade_id;
         if($candidato->save()){
             // info about work  contact and address
             $work_info = (object) $request->work_info;
@@ -78,7 +78,7 @@ class CandidatoCtrl extends Controller
             if(isset($work_info) and isset($work_info->address)){
                 $work_info_adderess =  (object) $work_info->address;
                 $candidato->endereco()->create([
-                        "municipio_id" => $work_info_adderess->municipio,
+                        "municipio_id" => $work_info_adderess->municipio_id,
                         "bairro" => $work_info_adderess->bairro,
                         'rua' => $work_info_adderess->rua,
                         'casa' => $work_info_adderess->casa,
@@ -99,7 +99,7 @@ class CandidatoCtrl extends Controller
             if( isset($personal_datail->address)){
                 $personal_datail_address = (object) $personal_datail->address;
                 $candidato->endereco()->create([
-                        "municipio_id" => $personal_datail_address->municipio,
+                        "municipio_id" => $personal_datail_address->municipio_id,
                         "bairro" => $personal_datail_address->bairro,
                         'rua' => $personal_datail_address->rua,
                         'casa' => $personal_datail_address->casa,
@@ -173,11 +173,11 @@ class CandidatoCtrl extends Controller
             "personal_datail.nome" => "required",
             "personal_datail.pai" => "required",
             "personal_datail.mae" => "required",
-            "personal_datail.nacionalidade" => "required",
+            "personal_datail.nacionalidade_id" => "required",
             "personal_datail.data_nascimento" => "required",
             "personal_datail.estado_civil" => "required",
             "personal_datail.genero" => "required",
-            "personal_datail.naturalidade" => "required",
+            "personal_datail.naturalidade_id" => "required",
         ]);
 
         $candidato = candidatos::find($id);
@@ -185,10 +185,10 @@ class CandidatoCtrl extends Controller
         $candidato->nome = $personal_datail->nome;
         $candidato->pai = $personal_datail->pai;
         $candidato->mae = $personal_datail->mae;
-        $candidato->nacionalidade = $personal_datail->nacionalidade;
+        $candidato->nacionalidade = $personal_datail->nacionalidade_id;
         $candidato->data_nascimento = $personal_datail->data_nascimento;
         $candidato->estado_civil = $personal_datail->estado_civil;
-        $candidato->naturalidade = $personal_datail->naturalidade;      
+        $candidato->naturalidade = $personal_datail->naturalidade_id;      
         if($candidato->save()){
             
                 return response()->json([
