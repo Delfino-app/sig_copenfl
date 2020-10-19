@@ -56,11 +56,11 @@ REQUEST BODY
         "nome" : "", // campo de preenchimento obrigatório
         "pai" : "", // campo de preenchimento obrigatório
         "mae" : "", // campo de preenchimento obrigatório
-        "nacionalidade_id" : "", // campo de preenchimento obrigatório
+        "nacionalidade_id" : "", // campo de preenchimento obrigatório, preenchido com id do pais
         "data_nascimento" : "", // campo de preenchimento obrigatório
         "estado_civil" : "", // campo de preenchimento obrigatório
         "genero" : "", // campo de preenchimento obrigatório
-        "naturalidade_id" : "", // campo de preenchimento obrigatório
+        "naturalidade_id" : "", // campo de preenchimento obrigatório, prenchido com o id do municipio
         "contact" : {
             "telefone" : "", // campo de preenchimento obrigatório
             "email" : "", // campo de preenchimento obrigatório
@@ -130,11 +130,11 @@ PUT URL
         "nome" : "", // campo de preenchimento obrigatório
         "pai" : "", // campo de preenchimento obrigatório
         "mae" : "", // campo de preenchimento obrigatório
-        "nacionalidade_id" : "", // campo de preenchimento obrigatório
+        "nacionalidade_id" : "", // campo de preenchimento obrigatório, preenchido com id do pais
         "data_nascimento" : "", // campo de preenchimento obrigatório
         "estado_civil" : "", // campo de preenchimento obrigatório
         "genero" : "", // campo de preenchimento obrigatório
-        "naturalidade_id" : "", // campo de preenchimento obrigatório
+        "naturalidade_id" : "", // campo de preenchimento obrigatório, prenchido com o id do municipio
     }
 }
 
