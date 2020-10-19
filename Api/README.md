@@ -14,7 +14,7 @@ REQUEST BODY
 }
 RESPONSE BODY
 {
-    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MDI4OTc2NjMsImV4cCI6MTYwMjkwMTI2MywibmJmIjoxNjAyODk3NjYzLCJqdGkiOiI0RXREd1ZwczZuUTg5enhyIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.2c3UghoMLmAncoH0vxYYd0r0lx-HMQjWZPKUKKlKRVM",
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiGFkYjM5ZTQjWZPKUKKlKRVM",
     "token_type": "bearer",
     "expires_in": 3600
 }
@@ -34,12 +34,12 @@ POST URL
 REQUEST HEADER
 "accept" : "application/json"
 "Content-Type" : "application/json"
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6OTAwMFwvdWVuZ2lcL2F.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoxvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
 </pre>
 
 <pre>
 
-## inscricão de candidato
+# inscricão de candidato
 
 POST URL
 "http://localhost:8000/api/v1/candidato/store"
@@ -47,7 +47,7 @@ POST URL
 REQUEST HEADER
 "accept" : "application/json"
 "Content-Type" : "application/json"
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6OTAwMFwvdWVuZ2lcL2F.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOAwMFwvdWVuZ2lcL2F.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
 
 REQUEST BODY
 {
@@ -110,9 +110,10 @@ status code
 401 // Sem permissão ou token expirado
 
 </pre>
-<hr>
 <pre>
+
 # Lista de Candidatos
+
 GET URL
 "http://localhost:8000/api/v1/candidato/index"
 
@@ -136,7 +137,9 @@ PUT URL
         "naturalidade_id" : "", // campo de preenchimento obrigatório
     }
 }
+
 # get especific Candidato
+
 GET URL
 "http://localhost:8000/api/v1/candidato/show/{candidato_id}"
 
@@ -146,6 +149,7 @@ DELETE URL
 </pre>
 
 <pre>
+
 # Assets
 
 GET URL
