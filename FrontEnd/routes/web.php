@@ -17,6 +17,15 @@ Route::get('/', function () {
     return view('login');
 });
 
+//Start Session
+Route::group([
+    'namespace' => 'App\Http\Controllers',
+], function ($router) {
+    
+    Route::get('/session', 'SessionContronller@start');
+    Route::post('/session', 'SessionContronller@start');
+});
+
 Route::get('/home', function () {
     return view('home.dashboard');
 });
