@@ -57,7 +57,7 @@
 							<input type="password" class="form-control form-control-lg input-login" name="senha_login" id="senha_login" placeholder="Senha" required />
 						</div>
 						<div class="login-buttons">
-							<button type="submit" class="btn btn-success btn-block btn-login">
+							<button id="btnLogin" type="submit" class="btn btn-success btn-block btn-login">
 								Entrar
 								<i class="fa fa-sign-in"></i>
 							</button>

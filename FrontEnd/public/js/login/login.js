@@ -12,6 +12,14 @@ export default{
         ui.getDefaultElements.call(this);
 
         e.preventDefault();
+
+        this.displayLoginInfo.innerHTML = `
+            <div class="alert alert-info">
+                <strong>Aguarde</strong> Verificando os dados...
+            </div>
+        `;
+
+        $("#btnLogin").attr("disabled",true);
         
         const dados = {
             email : this.login_email.value,
@@ -31,8 +39,28 @@ export default{
                     <strong>Erro</strong> Dados de acesso incorretos
                 </div>
             `;
-        }
 
-       console.log(makeLogin);
+            $("#btnLogin").removeAttr("disabled");
+        }
+        else{
+
+            this.displayLoginInfo.innerHTML = `
+                <div class="alert alert-success">
+                    <strong>Login feito com sucesso!</strong> Redirecionando...
+                </div>
+            `;
+
+            $("#btnLogin").attr("disabled",true);
+
+            dados._token = "YFoMwwcH7EWPAjQTyM8F0U4JHbuSbQGYzLMFuKcI";
+            dados._api_token = makeLogin.access_token;
+            //Submit Session
+            const makeSession = await requests.session(dados);
+
+            if(makeSession != ""){
+
+                window.location.href="/home";
+            }
+        }
     }
 }
