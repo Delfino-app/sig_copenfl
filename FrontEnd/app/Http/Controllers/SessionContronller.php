@@ -6,7 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class SessionContronller extends Controller
-{
+{   
+
+    public function index(){
+
+        Session::forget(['name','email','access_token']);
+
+        return view('login');
+    }
     public function start(Request $req){
         
         //Start Session

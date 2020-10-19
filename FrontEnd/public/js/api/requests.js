@@ -89,5 +89,19 @@ export default{
   
       const resData = await response.json();
       return resData;
+    },
+    async municipiosProvincia(idprovincia){
+
+      const myHeaders = new Headers();
+      myHeaders.append("accept","application/json");
+      myHeaders.append("Content-Type","application/json");
+
+      const response = await fetch(config.municipiosProvinciaRoute+idprovincia, {
+        method: 'GET',
+        headers: myHeaders
+      });
+  
+      const resData = await response.json();
+      return resData;
     }
 }
