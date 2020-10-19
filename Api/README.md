@@ -47,7 +47,7 @@ POST URL
 REQUEST HEADER
 "accept" : "application/json"
 "Content-Type" : "application/json"
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOAwMFwvdWVuZ2lcL2F.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJh.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
 
 REQUEST BODY
 {
@@ -120,7 +120,7 @@ GET URL
 REQUEST HEADER
 "accept" : "application/json"
 "Content-Type" : "application/json"
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6OTAwMFwvdWVuZ2lcL2F.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
+Authorization: Bearer eyJ0eXAOTAwMFwvdWVuZ2lcL2F.waVwvdjL2xvZ2luIiw.iaWF0IjozLCJleHAiOjE
 
 # Update de Candidatos
 PUT URL
