@@ -14,4 +14,69 @@ class SessionContronller extends Controller
 
         return Session::all();
     }
+
+    public function logout(){
+
+        Session::forget(['name','email','access_token']);
+
+        return redirect('/login');
+    }
+
+    public function home(){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+
+            return view('home.dashboard',['name' => $name]);
+        }
+        else{
+
+            return redirect('/login');
+        }
+    }
+
+    public function licenca(){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+            $token = Session::get('access_token');
+
+            return view('licenca.lista',['name' => $name,'token' => $token]);
+        }
+        else{
+
+            return redirect('/login');
+        }
+    }
+
+    public function licencaNova(){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+            $token = Session::get('access_token');
+            
+            return view('licenca.nova',['name' => $name,'token' => $token]);
+        }
+        else{
+
+            return redirect('/login');
+        }
+    }
+
+    public function licencaVer(){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+            
+            return view('licenca.ver',['name' => $name]);
+        }
+        else{
+
+            return redirect('/login');
+        }
+    }
 }

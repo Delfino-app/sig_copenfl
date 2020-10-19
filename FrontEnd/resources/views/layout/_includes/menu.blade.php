@@ -1,7 +1,7 @@
 <div id="header" class="header navbar-default">
     <!-- begin navbar-header -->
     <div class="navbar-header">
-      <a href="" class="navbar-brand">
+      <a href="{{route('home')}}" class="navbar-brand">
         <b>SIG</b> - COPENFL</a>
       <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
         <span class="icon-bar"></span>
@@ -39,7 +39,7 @@
             <i class="fa fa-user"></i>
           </div>
           <span class="d-none d-md-inline">
-          Delfino
+            {{$name}}
           </span>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
@@ -47,7 +47,7 @@
             Perfil
           </a>
           <div class="dropdown-divider"></div>
-          <a href="" class="dropdown-item">
+          <a href="{{route('login.sair')}}" class="dropdown-item">
             Sair
           </a>
         </div>

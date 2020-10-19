@@ -7,6 +7,7 @@
 	<div id="content" class="content" style="margin-top:40px;">
 			<div class="row">
 				<!-- begin col-10 -->
+				<input type="hidden"  id="recividToken" value="{{$token}}">
 				<div class="col-xl-12">
 					<!-- begin panel -->
 					<div class="panel panel-inverse">
@@ -72,7 +73,7 @@
 						</div>
 						<div class="float-right">
 							<br>
-							<a href="#" class="btn btn-primary btn-destaque">
+							<a href="{{route('licenca.nova')}}" class="btn btn-primary btn-destaque">
 								Adicionar<i class="fa fa-plus-circle" style="padding-left:5px;"></i>
 							</a>
 						</div>
@@ -91,4 +92,5 @@
 <script src="{{asset('assets-login/plugins/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('assets-login/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
 <script src="{{asset('assets-login/js/demo/table-manage-responsive.demo.js')}}"></script>
+<script src="{{asset('js/Listalicencas/index.js')}}" type="module"></script>
 @endsection

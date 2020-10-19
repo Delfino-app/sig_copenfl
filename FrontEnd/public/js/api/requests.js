@@ -18,7 +18,7 @@ export default{
     },
     async session(data){
 
-      const myHeaders = new Headers();
+        const myHeaders = new Headers();
         myHeaders.append("accept","application/json");
         myHeaders.append("Content-Type","application/json");
 
@@ -30,5 +30,64 @@ export default{
     
         const resData = await response.json();
         return resData;
+    },
+    async listaLicencas(token){
+
+        const myHeaders = new Headers();
+        myHeaders.append("accept","application/json");
+        myHeaders.append("Content-Type","application/json");
+        myHeaders.append("Authorization",`Bearer ${token}`);
+
+
+        const response = await fetch(config.licencaListaRoute, {
+          method: 'GET',
+          headers: myHeaders
+        });
+    
+        const resData = await response.json();
+        return resData;
+    },
+    //Licencas Add Prepare
+    async paises(){
+
+      const myHeaders = new Headers();
+      myHeaders.append("accept","application/json");
+      myHeaders.append("Content-Type","application/json");
+
+      const response = await fetch(config.paisesRoute, {
+        method: 'GET',
+        headers: myHeaders
+      });
+  
+      const resData = await response.json();
+      return resData;
+    },
+    async provincias(){
+
+      const myHeaders = new Headers();
+      myHeaders.append("accept","application/json");
+      myHeaders.append("Content-Type","application/json");
+
+      const response = await fetch(config.provinciasRoute, {
+        method: 'GET',
+        headers: myHeaders
+      });
+  
+      const resData = await response.json();
+      return resData;
+    },
+    async municipios(){
+
+      const myHeaders = new Headers();
+      myHeaders.append("accept","application/json");
+      myHeaders.append("Content-Type","application/json");
+
+      const response = await fetch(config.municipiosRoute, {
+        method: 'GET',
+        headers: myHeaders
+      });
+  
+      const resData = await response.json();
+      return resData;
     }
 }

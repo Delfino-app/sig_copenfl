@@ -25,7 +25,7 @@
 	</div>
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="text-lg-right col-form-label">País</label>
-		<select class="form-control" name="dados_pais">
+		<select class="form-control" id="dados_pais" name="dados_pais">
 			<option class="selectDefault" value="0">Selecionar</option>
 			<option value="1">Angola</option>
 		</select>

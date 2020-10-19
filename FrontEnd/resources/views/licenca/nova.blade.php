@@ -5,6 +5,7 @@
 @section('conteudo')
 	<div id="content" class="content content-form">
 		<form action="" method="POST" name="form-wizard" class="form-control-with-bg">
+			<input type="hidden"  id="recividToken" value="{{$token}}">
 			{{ csrf_field() }}
 			<!-- begin wizard -->
 			<div id="wizard">
@@ -140,4 +141,6 @@
 		</form>
 	</div>
 @endsection
-@include('licenca.forms.forms_validation')
+@section('add-js')
+<script src="{{asset('js/AddLicencas/index.js')}}" type="module"></script>
+@endsection
