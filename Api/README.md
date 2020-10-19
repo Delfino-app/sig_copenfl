@@ -98,7 +98,6 @@ REQUEST BODY
         "estado" : "" // pode ser Estudando ou Concluido
     }
 }
-
 RESPONSE BODY
 {
   "status" : "", // poderá ser Ok ou Info, se o code for 200
@@ -111,7 +110,7 @@ status code
 401 // Sem permissão ou token expirado
 
 </pre>
-
+<hr>
 <pre>
 # Lista de Candidatos
 GET URL
@@ -125,8 +124,35 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvX
 # Update de Candidatos
 PUT URL
 "http://localhost:8000/api/v1/candidato/update/{candidato_id}"
+{
+    "personal_datail" : {
+        "nome" : "", // campo de preenchimento obrigatório
+        "pai" : "", // campo de preenchimento obrigatório
+        "mae" : "", // campo de preenchimento obrigatório
+        "nacionalidade_id" : "", // campo de preenchimento obrigatório
+        "data_nascimento" : "", // campo de preenchimento obrigatório
+        "estado_civil" : "", // campo de preenchimento obrigatório
+        "genero" : "", // campo de preenchimento obrigatório
+        "naturalidade_id" : "", // campo de preenchimento obrigatório
+    }
+}
+# get especific Candidato
+GET URL
+"http://localhost:8000/api/v1/candidato/show/{candidato_id}"
 
 # Destroy de Candidatos
 DELETE URL
 "http://localhost:8000/api/v1/candidato/destroy/{candidato_id}"
+</pre>
+
+<pre>
+# Assets
+
+GET URL
+"http://localhost:8000/api/v1/asset/municipios"
+"http://localhost:8000/api/v1/asset/provincias"
+"http://localhost:8000/api/v1/asset/paises"
+
+GET URL for province, country and county
+"http://localhost:8000/api/v1/asset/paises-provincias-municipios"
 </pre>

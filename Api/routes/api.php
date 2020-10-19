@@ -18,14 +18,35 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Route::group([
-//     'middleware' => ['api'],
-//     'prefix' => 'v1/auth',
-//     'namespace' => 'App\Http\Controllers\Auth'
+Route::group([
+    'middleware' => ['api'],
+    'prefix' => 'asset',
 
-// ], function ($router) {
-
-//     Route::post('login', 'AuthController@login');
-//     Route::post('logout', 'AuthController@logout');
-//     Route::post('refresh', 'AuthController@refresh');
-// });
+], function ($router) {
+    Route::get('municipios', function(){
+        return response()->json([
+            "status" => "Ok",
+            "municipios" => App\Models\Candidato\municipios::all()
+            ]);
+    });
+    Route::get('provincias', function(){
+        return response()->json([
+            "status" => "Ok",
+            "provincias" => App\Models\Candidato\provincias::all()
+            ]);
+    });
+    Route::get('paises', function(){
+        return response()->json([
+            "status" => "Ok",
+            "paises" => App\Models\Candidato\paises::all()
+            ]);
+    });
+    Route::get('paises-provincias-municipios', function(){
+        return response()->json([
+            "status" => "Ok",
+            "paises" => App\Models\Candidato\paises::all(),
+            "provincias" => App\Models\Candidato\provincias::all(),
+            "municipios" => App\Models\Candidato\municipios::all(),
+            ]);
+    });
+});

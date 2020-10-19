@@ -144,12 +144,13 @@ class CandidatoCtrl extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(candidatos $candidatos)
+    public function show( $candidato_id)
     {
-        if(isset($candidatos->id)){
+        $candidato = candidatos::where("id","=", $candidato_id)->with('endereco')->with('contacto')->with("licenca")->with("carteira")->last();
+        if(isset($candidato->id)){
             return response()->json([
                 'status' => "Ok",
-                "candidatos" => $candidatos
+                "candidato" => $candidato
             ], 200);
         }else{
             return response()->json([
@@ -169,24 +170,26 @@ class CandidatoCtrl extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            "nome" => "required",
-            "pai" => "required",
-            "mae" => "required",
-            "nacionalidae" => "required",
-            "data_nascimento" => "required",
-            "estado_civil" => "required",
-            "genero" => "required",
-            "naturalidade" => "required",
+            "personal_datail.nome" => "required",
+            "personal_datail.pai" => "required",
+            "personal_datail.mae" => "required",
+            "personal_datail.nacionalidade" => "required",
+            "personal_datail.data_nascimento" => "required",
+            "personal_datail.estado_civil" => "required",
+            "personal_datail.genero" => "required",
+            "personal_datail.naturalidade" => "required",
         ]);
+
         $candidato = candidatos::find($id);
-        $candidato->nome = $request->nome;
-        $candidato->pai = $request->pai;
-        $candidato->mae = $request->mae;
-        $candidato->nacionalidade = $request->nacionalidade;
-        $candidato->data_nascimento = $request->data_nascimento;
-        $candidato->estado_civil = $request->estado_civil;
-        $candidato->naturalidade = $request->naturalidade;
-        if($candidato->save() and $candidato->wasChanged()){
+        $personal_datail = (object) $request->personal_datail;
+        $candidato->nome = $personal_datail->nome;
+        $candidato->pai = $personal_datail->pai;
+        $candidato->mae = $personal_datail->mae;
+        $candidato->nacionalidade = $personal_datail->nacionalidade;
+        $candidato->data_nascimento = $personal_datail->data_nascimento;
+        $candidato->estado_civil = $personal_datail->estado_civil;
+        $candidato->naturalidade = $personal_datail->naturalidade;      
+        if($candidato->save()){
             
                 return response()->json([
                     'status' => "Ok",
