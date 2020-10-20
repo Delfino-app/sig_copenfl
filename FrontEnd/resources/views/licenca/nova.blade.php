@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{asset('assets-login/css/customNovoProcesso.css')}}" type="text/css">
 @section('conteudo')
 	<div id="content" class="content content-form">
-		<form action="" method="POST" name="form-wizard" class="form-control-with-bg">
+		<form action="" id="frmPostLicenca" method="POST" name="form-wizard" class="form-control-with-bg">
 			<input type="hidden"  id="recividToken" value="{{$token}}">
 			{{ csrf_field() }}
 			<!-- begin wizard -->
@@ -122,7 +122,11 @@
 					<!-- end step-4 -->
 					<!-- begin step-5 -->
 					<div id="step-5">
-						<div class="jumbotron m-b-0 text-center" style="background-color:white">
+						<div class="text-center addLicencaGifContainer" id="addLicencaGifContainer" hidden>
+							<img id="img-gif" src="{{asset('img/ajax-loader.gif')}}">
+							<p>Aguarde...</p>
+						</div>
+						<div class="jumbotron m-b-0 text-center" id="submitLicencaGifContainer" style="background-color:white">
 							<h2 class="display-4" style="font-size:18px;font-weight:500">
 								Concluir registro
 							</h2>
