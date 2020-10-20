@@ -52,14 +52,26 @@ export default{
 
             $("#btnLogin").attr("disabled",true);
 
-            dados._token = this.inputToken;
+            dados._token = this.inputToken; //crsf_field
+
             dados._api_token = makeLogin.access_token;
+
             //Submit Session
             const makeSession = await requests.session(dados);
 
-            if(makeSession != ""){
+            if(makeSession.name != undefined && makeSession.email != undefined && makeSession.access_token != undefined){
 
                 window.location.href="/home";
+            }
+            else{
+
+                this.displayLoginInfo.innerHTML = `
+                    <div class="alert alert-danger">
+                        Erro ao redirecionar. Sua sessão não foi criada.
+                    </div>
+                `;
+
+                $("#btnLogin").removeAttr("disabled");
             }
         }
     }

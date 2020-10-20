@@ -79,7 +79,6 @@
 							<div class="row">
 								<!-- begin col-8 -->
 								<div class="col-xl-12">
-									<legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Endereço Actualizado da Residência</legend>
 									@include('licenca.forms.frm_enderecoPessoal')
 								</div>
 							</div>
@@ -94,7 +93,6 @@
 							<div class="row">
 								<!-- begin col-8 -->
 								<div class="col-xl-12">
-									<legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Endereço Actualizado do Local de Trabalho</legend>
 									@include('licenca.forms.frm_dadosTrabalho')
 								</div>
 								<!-- end col-8 -->

@@ -6,9 +6,9 @@ export default{
 
        await ui.getDefaultActions.call(this);
 
-
         this.paisesPrepare();
-        this.provinciasPrepare();
+        //this.provinciasPrepare();
+        this.municipiosPrepare();
     },
     async paisesPrepare(){
 
@@ -58,6 +58,28 @@ export default{
     async municipiosPrepare(){
         
         const getMunicipios = await request.municipios();
+
+        let display =`
+            <option class="selectDefault" value="0">Selecionar</option>
+        `;
+
+        if(getMunicipios.municipios != undefined && getMunicipios.municipios.length > 0){
+
+            const municipios = getMunicipios.municipios;
+
+            for (let i = 0; i < municipios.length; i++) {
+                
+                display +=`
+                    <option value="${municipios[i].id}">
+                        ${municipios[i].nome}
+					</option>
+                `;
+            }
+
+            this.displayMunicipios.innerHTML = display;
+            this.displayMunicipiosEndereco.innerHTML = display;
+            this.displayMunicipiosTrabalho.innerHTML = display;
+        }
 
     },
     async selectMunicipios(){
