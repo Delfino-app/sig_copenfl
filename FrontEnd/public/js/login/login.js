@@ -52,7 +52,7 @@ export default{
 
             $("#btnLogin").attr("disabled",true);
 
-            dados._token = "YFoMwwcH7EWPAjQTyM8F0U4JHbuSbQGYzLMFuKcI";
+            dados._token = this.inputToken;
             dados._api_token = makeLogin.access_token;
             //Submit Session
             const makeSession = await requests.session(dados);
