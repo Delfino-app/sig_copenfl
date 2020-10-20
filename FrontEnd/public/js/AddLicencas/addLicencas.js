@@ -177,6 +177,9 @@ export default{
     async submitFrmLicenca(e){
 
         e.preventDefault();
+        
+        //Get Token
+        const token = $('input[name="recividToken"]').val();
 
         //Add Preload Gif
         $("#addLicencaGifContainer").removeAttr("hidden");
@@ -186,6 +189,9 @@ export default{
 
         const data = await this.dataSubmitPrepare("Licenca");
 
-        console.log(data);
+        //Submit Dados
+        const submit = await request.submitDados(data,token);
+
+        console.log(submit);
     }
 }

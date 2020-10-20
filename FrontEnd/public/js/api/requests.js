@@ -103,5 +103,22 @@ export default{
   
       const resData = await response.json();
       return resData;
-    }
+    },
+    //Submit Dados
+    async submitDados(data,token){
+
+      const myHeaders = new Headers();
+      myHeaders.append("accept","application/json");
+      myHeaders.append("Content-Type","application/json");
+      myHeaders.append("Authorization",`Bearer ${token}`);
+
+      const response = await fetch(config.sumbmitDadosRoute, {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(data),
+      });
+  
+      const resData = await response.json();
+      return resData;
+  },
 }

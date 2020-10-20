@@ -8,5 +8,7 @@ export default{
     paisesRoute:"http://localhost:8000/api/v1/asset/paises",
     provinciasRoute:"http://localhost:8000/api/v1/asset/provincias",
     municipiosRoute:"http://localhost:8000/api/v1/asset/municipios",
-    municipiosProvinciaRoute:"http://localhost:8000/api/v1/asset/municipios/" 
+    municipiosProvinciaRoute:"http://localhost:8000/api/v1/asset/municipios/",
+    //Store Dados
+    sumbmitDadosRoute:"http://localhost:8000/api/v1/candidato/store"
 }

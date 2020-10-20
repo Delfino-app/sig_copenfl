@@ -5,7 +5,7 @@
 @section('conteudo')
 	<div id="content" class="content content-form">
 		<form action="" id="frmPostLicenca" method="POST" name="form-wizard" class="form-control-with-bg">
-			<input type="hidden"  id="recividToken" value="{{$token}}">
+			<input type="hidden" name="recividToken"  id="recividToken" value="{{$token}}">
 			{{ csrf_field() }}
 			<!-- begin wizard -->
 			<div id="wizard">

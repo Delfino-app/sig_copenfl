@@ -28,40 +28,36 @@
 										<th width="1%"></th>
 										<th width="1%" data-orderable="false"></th>
 										<th class="text-nowrap">Nome</th>
-										<th class="text-nowrap">Data Nascimento</th>
 										<th class="text-nowrap">Telefone</th>
-										<th class="text-nowrap">Tipo</th>
+										<th class="text-nowrap">Nível acadêmico</th>
 										<th class="text-nowrap">Estado processo</th>
 										<th class="text-nowrap">Data Registro</th>
 										<th data-orderable="false"></th>
 									</tr>
 								</thead>
-								<tbody>
-									@if(isset($licencas))
-										@foreach($licencas as $licenca)
+								<tbody id="tableData">
+									@if(isset($candidatos))
+										@foreach($candidatos as $candidato)
 											<tr class="even gradeC">
 												<td width="1%" class="f-s-600 text-inverse">
-													{{$licenca->id}}
+													{{$candidato->id}}
 												</td>
 												<td width="1%" class="with-img">
-													<img src="{{asset('img/default.jpg')}}" class="img-rounded height-30" /></td>
-												<td>{{$licenca->nome}}</td>
-												<td>{{$licenca->data_nascimento}}</td>
-												<td>999989797</td>
-												<td>{{$licenca->tipo_estudante}}</td>
-												<td>{{$licenca->estado}}</td>
-												<td>{{$licenca->data_registro}}</td>
+													<img src="{{asset('img/default.jpg')}}" class="img-rounded height-30" />
+												</td>
+												<td>{{$candidato->nome}}</td>
+												<td>{{$candidato->contacto[1]->telefone}}</td>
+												<td>#</td>
+												<td>#</td>
+												<td>#</td>
 												<td class="text-center">
-													<a href="{{route('licenca.ver',$licenca->id)}}" title="Ver detalhes" class="btn btn-success btn-action">
+													<a href="{{route('licenca.ver',$candidato->id)}}" title="Ver detalhes" class="btn btn-success btn-action">
 														<i class="fa fa-eye"></i>
 													</a>
-													<a href="{{route('licenca.documentos',$licenca->id)}}" title="Documentos" class="btn btn-primary btn-action">
-														<i class="fa fa-file-archive-o"></i>
-													</a>
-													<a href="{{route('licenca.editar',$licenca->id)}}" title="Editar" class="btn btn-dark btn-action">
+													<a href="{{route('licenca.editar',$candidato->id)}}" title="Editar" class="btn btn-dark btn-action">
 														<i class="fa fa-edit"></i>
 													</a>
-													<a href="{{route('licenca.eliminar',$licenca->id)}}" title="Eliminar" class="btn btn-danger btn-action">
+													<a href="{{route('licenca.eliminar',$candidato->id)}}" title="Eliminar" class="btn btn-danger btn-action">
 														<i class="fa fa-trash"></i>
 													</a>
 												</td>
