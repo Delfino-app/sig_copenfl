@@ -8,9 +8,9 @@ export default{
     async start(){
 
         const token = document.querySelector("#recividToken").value;
-        const listaLicencas = await requests.listaLicencas(token);
+        //const listaLicencas = await requests.listaLicencas(token);
 
-        if(listaLicencas.message != undefined && listaLicencas.message != "Unauthenticated."){
+        /*if(listaLicencas.message != undefined && listaLicencas.message != "Unauthenticated."){
 
             this.displayNot.innerHTML = `
                 <div class="text-center">
@@ -31,7 +31,7 @@ export default{
         }
 
         
-        console.log(listaLicencas);
+        console.log(listaLicencas);*/
     },
     async displayCandidatos(dados){
 

@@ -192,6 +192,14 @@ export default{
         //Submit Dados
         const submit = await request.submitDados(data,token);
 
-        console.log(submit);
+        if(submit.status != undefined && submit.status === "Ok"){
+            //Registro Feito com Sucesso
+            window.location.href = "/licencas/feito";
+        }
+        else{
+
+            //Erro to Added
+            console.log(submit);
+        }
     }
 }

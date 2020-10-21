@@ -25,14 +25,16 @@
 							<table id="data-table-responsive" class="table table-striped table-bordered table-td-valign-middle">
 								<thead>
 									<tr>
-										<th width="1%"></th>
-										<th width="1%" data-orderable="false"></th>
+										<th width="1%">
+										</th>
+										<th width="1%" data-orderable="false">
+										</th>
 										<th class="text-nowrap">Nome</th>
 										<th class="text-nowrap">Telefone</th>
 										<th class="text-nowrap">Nível acadêmico</th>
 										<th class="text-nowrap">Estado processo</th>
 										<th class="text-nowrap">Data Registro</th>
-										<th data-orderable="false"></th>
+										<th data-orderable="false">Ações</th>
 									</tr>
 								</thead>
 								<tbody id="tableData">
@@ -47,18 +49,18 @@
 												</td>
 												<td>{{$candidato->nome}}</td>
 												<td>{{$candidato->contacto[1]->telefone}}</td>
-												<td>#</td>
-												<td>#</td>
-												<td>#</td>
+												<td></td>
+												<td></td>
+												<td></td>
 												<td class="text-center">
 													<a href="{{route('licenca.ver',$candidato->id)}}" title="Ver detalhes" class="btn btn-success btn-action">
-														<i class="fa fa-eye"></i>
+														<i class="ion-md-eye"></i>
 													</a>
 													<a href="{{route('licenca.editar',$candidato->id)}}" title="Editar" class="btn btn-dark btn-action">
-														<i class="fa fa-edit"></i>
+														<i class="ion-md-create"></i>
 													</a>
 													<a href="{{route('licenca.eliminar',$candidato->id)}}" title="Eliminar" class="btn btn-danger btn-action">
-														<i class="fa fa-trash"></i>
+														<i class="ion-md-trash"></i>
 													</a>
 												</td>
 											</tr>
@@ -70,7 +72,7 @@
 						<div class="float-right">
 							<br>
 							<a href="{{route('licenca.nova')}}" class="btn btn-primary btn-destaque">
-								Adicionar<i class="fa fa-plus-circle" style="padding-left:5px;"></i>
+								Adicionar<i class="ion-md-add-circle-outline" style="padding-left:5px;"></i>
 							</a>
 						</div>
 						<!-- end panel-body -->
