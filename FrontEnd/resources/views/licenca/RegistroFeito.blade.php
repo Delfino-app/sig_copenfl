@@ -15,7 +15,7 @@
 								A primeira etapa do registro foi concluída com sucesso, faltando apenas anexar os documentos.
 							</p>
 							<hr>
-							<a class="btn btn-destaque" style="color:white" href="#">
+							<a class="btn btn-destaque" style="color:white" href="{{route('licenca.add.documentos')}}">
 								<i class="ion-md-attach" style="font-size:14px;padding-right:5px"></i>
 								Anexar Documentos
 							</a>

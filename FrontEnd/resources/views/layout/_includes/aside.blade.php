@@ -28,7 +28,7 @@
 			</li>
 			<li class="has-sub">
 				<a href="javascript:;">
-				    <b class="caret"></b>
+					<b class="caret"></b>
 				    <i class="ion-ios-paper"></i> 
 				    <span>Inscrição</span>
 				</a>

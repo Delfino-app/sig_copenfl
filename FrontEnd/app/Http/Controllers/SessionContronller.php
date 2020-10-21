@@ -132,6 +132,21 @@ class SessionContronller extends Controller
         }
     }
 
+    public function licencaAddDoc(){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+            $token = Session::get('access_token');
+            
+            return view('licenca.addDoc',['name' => $name,'token' => $token]);
+        }
+        else{
+
+            return redirect('/login');
+        }
+    }
+
     public function licencaVer($id){
 
         if(Session::has(['name','email','access_token'])){

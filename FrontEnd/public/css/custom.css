@@ -169,6 +169,11 @@
 .doc-not-add{
 	background-color:var(--dark) !important;
 }
+.lbl_addDoc{
+	width:100%;
+	cursor: pointer;
+	padding: unset;
+}
 /*==================Ficha=========================*/
 .btn-next-previus-ficha{
 
