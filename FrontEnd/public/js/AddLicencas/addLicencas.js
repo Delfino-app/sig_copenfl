@@ -1,8 +1,6 @@
 import ui from "./ui.js";
 import request from "../api/requests.js";
 export default{
-
-    allMunicipios:[],
     async start(){
        await ui.getDefaultElements.call(this);
 
@@ -11,8 +9,6 @@ export default{
 
         this.paisesPrepare();
         this.provinciasPrepare();
-        await this.municipiosPrepare();
-
     },
     async paisesPrepare(){
 
@@ -63,23 +59,30 @@ export default{
         
         const getMunicipios = await request.municipios();
 
-        if(getMunicipios.municipios != undefined && getMunicipios.municipios.length > 0){
-
-            this.allMunicipios = getMunicipios.municipios;
-        }
     },
     async selectMunicipios(){
 
         await ui.getDefaultElements.call(this);
 
-        const municipios = this.allMunicipios;
-        const idProvincia = JSON.stringify(this.provinciaId);
+        const getMunicipios = await request.municipiosProvincia(this.provinciaId);
+        let display =`
+            <option class="selectDefault" value="0">Selecionar</option>
+        `;
 
-        const data = municipios.filter((municipios,idProvincia) => {
-    
-            return municipios.provincia_id === idProvincia;
-        });
+        if(getMunicipios.municipios != undefined && getMunicipios.municipios.length > 0){
 
-        console.log(data);
+            const municipios = getMunicipios.municipios;
+
+            for (let i = 0; i < municipios.length; i++) {
+                
+                display +=`
+                    <option value="${municipios[i].id}">
+                        ${municipios[i].nome}
+					</option>
+                `;
+            }
+
+            this.displayMunicipios.innerHTML = display;
+        }
     }
 }

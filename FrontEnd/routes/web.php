@@ -13,19 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
 //Start Session
 Route::group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     
+    //Default
+    Route::get('/', 'SessionContronller@index');
+    Route::get('/login', 'SessionContronller@index');
+
+
+
+    //Others
     Route::get('/session', 'SessionContronller@start');
     Route::post('/session', 'SessionContronller@start');
     Route::get('/logout', ['as' =>'login.sair','uses' => 'SessionContronller@logout']);
