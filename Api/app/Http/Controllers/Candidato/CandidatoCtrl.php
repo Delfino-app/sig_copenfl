@@ -24,11 +24,69 @@ class CandidatoCtrl extends Controller
      */
     public function index()
     {
-        if(isset(candidatos::all()[0]))
+        if(isset(candidatos::all()[0])){
+            foreach(candidatos::all() as $candidato){
+                if(isset($candidato->id)){
+                    $home_address_data = $candidato->endereco->where("tipo","=","Residencia")->first();
+                    $home_contact_data = $candidato->contacto->where("tipo","=","Residencia")->first();
+                    if(isset($home_address_data->tipo) || isset($home_contact_data->tipo))
+                        $residencia = [
+                            "municipio" => $home_address_data->municipio->nome??null,
+                            "bairro" => $home_address_data->bairro??null,
+                            "rua" => $home_address_data->rua??null,
+                            "casa" => $home_address_data->casa??null,
+                            "telefone" => $home_contact_data->telefone??null,
+                            "email" => $home_contact_data->email??null,
+                            "caixa_postal" => $home_contact_data->caixa_postal??null,
+                            "fax" => $home_contact_data->fax??null,
+                        ];
+                    else $residencia =  null;
+        
+                    $work_address_data = $candidato->endereco->where("tipo","=","Trabalho")->first();
+                    $work_contact_data = $candidato->contacto->where("tipo","=","Trabalho")->first();
+                    if(isset($work_address_data->tipo) || isset($work_contact_data->tipo) )
+                        $trabalho = [
+                            "municipio" => $work_address_data->municipio->nome??null,
+                            "bairro" => $work_address_data->bairro??null,
+                            "rua" => $work_address_data->rua??null,
+                            "casa" => $work_address_data->casa??null,
+                            "telefone" => $work_contact_data->telefone??null,
+                            "email" => $work_contact_data->email??null,
+                            "caixa_postal" => $work_contact_data->caixa_postal??null,
+                            "fax" => $work_contact_data->fax??null,
+                        ];
+                    else $trabalho =  null;
+                    if(isset($candidato->naturalidade->nome))
+                        $naturalidade = [
+                            "municipio" => $candidato->naturalidade->nome??null,
+                            "provincia" => $candidato->naturalidade->provincia->nome??null,
+                            "pais" => $candidato->naturalidade->provincia->pais->nome??null,
+                        ];
+                    else $naturalidade = null;
+                    $data[] = [
+                        "id" => $candidato->id,
+                        "nome" => $candidato->nome,
+                        "pai" => $candidato->pai,
+                        "mae" => $candidato->mae,
+                        "genero" => $candidato->genero,
+                        "estado_civil" => $candidato->estado_civil,
+                        "data_nascimento" => $candidato->data_nascimento,
+                        "naturalidade" => $naturalidade,
+                        "nacionalidade" => $candidato->nacionalidade->nome??null,
+                        "residencia" => $residencia,
+                        "trabalho" => $trabalho,
+                        "documentos" => [],
+                        "dados_academicos" => [],
+                        "licenca" => [],
+                        "carteira" => [],
+                    ];
+                }
+            }
             return response()->json([
                 'status' => "Ok",
-                "candidatos" => candidatos::with('endereco')->with('contacto')->with("licenca")->with("carteira")->get()
+                "candidatos" => $data
             ], 200);
+        }
         return response()->json([
                 'status' => "Info",
                 "message" => "Nenhum registo de candidato encontrado"
@@ -58,10 +116,10 @@ class CandidatoCtrl extends Controller
         $candidato->nome = $personal_datail->nome;
         $candidato->pai = $personal_datail->pai;
         $candidato->mae = $personal_datail->mae;
-        $candidato->nacionalidade = $personal_datail->nacionalidade_id;
+        $candidato->nacionalidade_id = $personal_datail->nacionalidade_id;
         $candidato->data_nascimento = $personal_datail->data_nascimento;
         $candidato->estado_civil = $personal_datail->estado_civil;
-        $candidato->naturalidade = $personal_datail->naturalidade_id;
+        $candidato->naturalidade_id = $personal_datail->naturalidade_id;
         if($candidato->save()){
             // info about work  contact and address
             $work_info = (object) $request->work_info;
@@ -146,11 +204,64 @@ class CandidatoCtrl extends Controller
      */
     public function show( $candidato_id)
     {
-        $candidato = candidatos::where("id","=", $candidato_id)->with('endereco')->with('contacto')->with("licenca")->with("carteira")->last();
+        $candidato = candidatos::where("id","=", $candidato_id)->first();
         if(isset($candidato->id)){
+            $home_address_data = $candidato->endereco->where("tipo","=","Residencia")->first();
+            $home_contact_data = $candidato->contacto->where("tipo","=","Residencia")->first();
+            if(isset($home_address_data->tipo) || isset($home_contact_data->tipo))
+                $residencia = [
+                    "municipio" => $home_address_data->municipio->nome??null,
+                    "bairro" => $home_address_data->bairro??null,
+                    "rua" => $home_address_data->rua??null,
+                    "casa" => $home_address_data->casa??null,
+                    "telefone" => $home_contact_data->telefone??null,
+                    "email" => $home_contact_data->email??null,
+                    "caixa_postal" => $home_contact_data->caixa_postal??null,
+                    "fax" => $home_contact_data->fax??null,
+                ];
+            else $residencia =  null;
+
+            $work_address_data = $candidato->endereco->where("tipo","=","Trabalho")->first();
+            $work_contact_data = $candidato->contacto->where("tipo","=","Trabalho")->first();
+            if(isset($work_address_data->tipo) || isset($work_contact_data->tipo) )
+                $trabalho = [
+                    "municipio" => $work_address_data->municipio->nome??null,
+                    "bairro" => $work_address_data->bairro??null,
+                    "rua" => $work_address_data->rua??null,
+                    "casa" => $work_address_data->casa??null,
+                    "telefone" => $work_contact_data->telefone??null,
+                    "email" => $work_contact_data->email??null,
+                    "caixa_postal" => $work_contact_data->caixa_postal??null,
+                    "fax" => $work_contact_data->fax??null,
+                ];
+            else $trabalho =  null;
+            if(isset($candidato->naturalidade->nome))
+                $naturalidade = [
+                    "municipio" => $candidato->naturalidade->nome??null,
+                    "provincia" => $candidato->naturalidade->provincia->nome??null,
+                    "pais" => $candidato->naturalidade->provincia->pais->nome??null,
+                ];
+            else $naturalidade = null;
+            $data = [
+                "id" => $candidato->id,
+                "nome" => $candidato->nome,
+                "pai" => $candidato->pai,
+                "mae" => $candidato->mae,
+                "genero" => $candidato->genero,
+                "estado_civil" => $candidato->estado_civil,
+                "data_nascimento" => $candidato->data_nascimento,
+                "naturalidade" => $naturalidade,
+                "nacionalidade" => $candidato->nacionalidade->nome??null,
+                "residencia" => $residencia,
+                "trabalho" => $trabalho,
+                "documentos" => [],
+                "dados_academicos" => [],
+                "licenca" => [],
+                "carteira" => [],
+            ];
             return response()->json([
                 'status' => "Ok",
-                "candidato" => $candidato
+                "candidato" => $data
             ], 200);
         }else{
             return response()->json([
@@ -185,10 +296,10 @@ class CandidatoCtrl extends Controller
         $candidato->nome = $personal_datail->nome;
         $candidato->pai = $personal_datail->pai;
         $candidato->mae = $personal_datail->mae;
-        $candidato->nacionalidade = $personal_datail->nacionalidade_id;
+        $candidato->nacionalidade_id = $personal_datail->nacionalidade_id;
         $candidato->data_nascimento = $personal_datail->data_nascimento;
         $candidato->estado_civil = $personal_datail->estado_civil;
-        $candidato->naturalidade = $personal_datail->naturalidade_id;      
+        $candidato->naturalidade_id = $personal_datail->naturalidade_id;      
         if($candidato->save()){
             
                 return response()->json([

@@ -21,8 +21,8 @@ class CreateCandidatosTable extends Migration
             $table->enum("genero",['M','F']);
             $table->string("estado_civil");
             $table->date("data_nascimento");
-            $table->foreignId('naturalidade')->references('id')->on('municipios')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('nacionalidade')->references('id')->on('paises')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('naturalidade_id')->references('id')->on('municipios')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('nacionalidade_id')->references('id')->on('paises')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
