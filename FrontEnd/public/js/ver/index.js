@@ -39,7 +39,7 @@ async function previus(){
         changeTitle();
 
         $("#Step"+step).show();
-        $("#Step"+step).addClass("fadeInRight animated");
+        $("#Step"+step).addClass("fadeInLeft animated");
     }
 }
 async function next(){
