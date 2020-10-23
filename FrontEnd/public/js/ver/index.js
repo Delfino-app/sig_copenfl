@@ -39,7 +39,22 @@ async function previus(){
         changeTitle();
 
         $("#Step"+step).show();
+        $("#Step"+step).removeClass("fadeInRight animated");
         $("#Step"+step).addClass("fadeInLeft animated");
+        $("#nextVer").removeClass("disabled");
+    }
+
+    if(step === 1){
+
+        $("#previusVer").addClass("disabled");
+    }
+    else if(step > 1 && step < 4){
+
+        $("#nextVer").removeClass("disabled");
+    }
+    else if(step === 4){
+
+        $("#nextVer").addClass("disabled");
     }
 }
 async function next(){
@@ -49,11 +64,26 @@ async function next(){
         $("#Step"+step).hide();
 
         step += 1;
-
+        
         changeTitle();
 
         $("#Step"+step).removeAttr("hidden");
         $("#Step"+step).show();
+        $("#Step"+step).removeClass("fadeInLeft animated");
         $("#Step"+step).addClass("fadeInRight animated");
+
+        if(step === 1){
+
+            $("#previusVer").addClass("disabled");
+        }
+        else if(step > 1 && step < 4){
+
+            $("#previusVer").removeClass("disabled");
+        }
+        else if(step === 4){
+
+            $("#nextVer").addClass("disabled");
+
+        }
     }
 }

@@ -4,7 +4,7 @@
             <h3 class="semi-text-title">
                 <span id="StepTitle">Dados Pessoais</span>
                 <div class="float-right">
-                    <a step="Step4" title="Anterior" id="previusVer"  class="btn btn-sm btn-next-previus-ficha btn-previus-ficha" href="#">
+                    <a step="Step4" title="Anterior" id="previusVer"  class="btn btn-sm btn-next-previus-ficha btn-previus-ficha disabled" href="#">
                         <!--<i class="fa fa-angle-left"></i>-->
                         ❮
                     </a>
