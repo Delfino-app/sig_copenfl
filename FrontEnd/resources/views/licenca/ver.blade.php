@@ -11,7 +11,7 @@
 					<ul class="nav nav-tabs">
 					  <li class="nav-item">
 					    <a class="nav-link active" data-toggle="tab" href="#ficha">
-					    	Ficha de Inscrição
+					    	Dados da Inscrição
 					    </a>
 					  </li>
 					  <li class="nav-item">
@@ -46,4 +46,7 @@
 		</div>
 		<!-- end row -->
 	</div>
+@endsection
+@section('add-js')
+<script src="{{asset('js/ver/index.js')}}" type="module"></script>
 @endsection

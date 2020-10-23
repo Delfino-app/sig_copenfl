@@ -14,8 +14,8 @@ export default{
         e.preventDefault();
 
         this.displayLoginInfo.innerHTML = `
-            <div class="alert alert-info">
-                <strong>Aguarde</strong> Verificando os dados...
+            <div class="alert alert-info" style="padding:5px 10px">
+               Verificando os dados...
             </div>
         `;
 
@@ -35,8 +35,18 @@ export default{
 
         if(makeLogin.error != undefined){
             this.displayLoginInfo.innerHTML = `
-                <div class="alert alert-danger">
-                    <strong>Erro</strong> Dados de acesso incorretos
+                <div class="alert alert-danger" style="padding:5px 10px">
+                    Dados de acesso incorretos
+                </div>
+            `;
+
+            $("#btnLogin").removeAttr("disabled");
+        }
+        else if(makeLogin.internalError != undefined){
+
+            this.displayLoginInfo.innerHTML = `
+                <div class="alert alert-danger" style="padding:5px 10px">
+                    A autenticação falhou. Tente mais tarde.
                 </div>
             `;
 
@@ -45,8 +55,8 @@ export default{
         else{
 
             this.displayLoginInfo.innerHTML = `
-                <div class="alert alert-success">
-                    <strong>Login feito com sucesso!</strong> Redirecionando...
+                <div class="alert alert-success" style="padding:5px 10px">
+                   Login feito com sucesso!. Redirecionando...
                 </div>
             `;
 
@@ -66,11 +76,11 @@ export default{
             else{
 
                 this.displayLoginInfo.innerHTML = `
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger" style="padding:5px 10px">
                         Erro ao redirecionar. Sua sessão não foi criada.
                     </div>
                 `;
-
+                
                 $("#btnLogin").removeAttr("disabled");
             }
         }

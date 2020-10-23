@@ -32,12 +32,11 @@
 										<th class="text-nowrap">Nome</th>
 										<th class="text-nowrap">Telefone</th>
 										<th class="text-nowrap">Nível acadêmico</th>
-										<th class="text-nowrap">Estado processo</th>
 										<th class="text-nowrap">Data Registro</th>
-										<th data-orderable="false">Ações</th>
+										<th class="text-nowrap" data-orderable="false"></th>
 									</tr>
 								</thead>
-								<tbody id="tableData">
+								<tbody>
 									@if(isset($candidatos))
 										@foreach($candidatos as $candidato)
 											<tr class="even gradeC">
@@ -51,8 +50,7 @@
 												<td>{{$candidato->contacto[1]->telefone}}</td>
 												<td></td>
 												<td></td>
-												<td></td>
-												<td class="text-center">
+												<td style="display:inline-flex">
 													<a href="{{route('licenca.ver',$candidato->id)}}" title="Ver detalhes" class="btn btn-success btn-action">
 														<i class="ion-md-eye"></i>
 													</a>

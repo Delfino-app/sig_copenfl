@@ -7,14 +7,23 @@ export default{
         myHeaders.append("accept","application/json");
         myHeaders.append("Content-Type","application/json");
 
-        const response = await fetch(config.loginRoute, {
-          method: 'POST',
-          headers: myHeaders,
-          body: JSON.stringify(data),
-        });
-    
-        const resData = await response.json();
-        return resData;
+        try {
+
+          const response = await fetch(config.loginRoute, {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify(data),
+          });
+      
+          const resData = await response.json();
+          return resData;
+
+        }catch (error) {
+
+          const internalError = {internalError:"Internal Error"};
+
+          return internalError;
+        }
     },
     async session(data){
 
