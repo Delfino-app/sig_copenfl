@@ -8,6 +8,8 @@ use App\Models\Inscricao\inscricao_licencas;
 use App\Models\Inscricao\inscricao_carteiras;
 use App\Models\Candidato\enderecos;
 use App\Models\Candidato\contactos;
+use App\Models\Candidato\paises;
+use App\Models\Candidato\municipios;
 class candidatos extends Model
 {
     use HasFactory;
@@ -23,5 +25,11 @@ class candidatos extends Model
     }
     public function contacto(){
         return $this->hasMany(contactos::class,"candidato_id");
+    }
+    public function nacionalidade (){
+        return $this->belongsTo(paises::class,"nacionalidade_id");
+    }
+    public function naturalidade (){
+        return $this->belongsTo(municipios::class,"naturalidade_id");
     }
 }

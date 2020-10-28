@@ -121,6 +121,41 @@ REQUEST HEADER
 "accept" : "application/json"
 "Content-Type" : "application/json"
 Authorization: Bearer eyJ0eXAOTAwMFwvdWVuZ2lcL2F.waVwvdjL2xvZ2luIiw.iaWF0IjozLCJleHAiOjE
+RESPONSE BODY
+{
+    "status": "Ok",
+    "candidato": [{
+        "id": 1,
+        "nome": "Daniel Pedro",
+        "pai": "Jorge Daniel",
+        "mae": "Fineza Daniel",
+        "genero": "M",
+        "estado_civil": "Solteiro",
+        "data_nascimento": "2000-12-04",
+        "naturalidade": {
+            "municipio": "Dande",
+            "provincia": "Bengo",
+            "pais": "Angola"
+        },
+        "nacionalidade": "Angola",
+        "residencia": null,
+        "trabalho": {
+            "municipio": null,
+            "bairro": null,
+            "rua": null,
+            "casa": null,
+            "telefone": null,
+            "email": null,
+            "caixa_postal": null,
+            "fax": null
+        },
+        "documentos": [],
+        "dados_academicos": [],
+        "licenca": [],
+        "carteira": []
+    }]
+}
+
 
 # Update de Candidatos
 PUT URL
@@ -142,6 +177,7 @@ PUT URL
 
 GET URL
 "http://localhost:8000/api/v1/candidato/show/{candidato_id}"
+
 
 # Destroy de Candidatos
 DELETE URL
