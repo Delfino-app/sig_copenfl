@@ -87,6 +87,7 @@ class SessionContronller extends Controller
 
             $dados = json_decode($msg);
 
+
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 //Token Expire
                 return redirect('/login');
@@ -198,8 +199,8 @@ class SessionContronller extends Controller
             }
             else{
 
-                $candidatos = isset($dados->candidatos) ? $dados->candidatos : [];
-                return view('licenca.ver',['name' => $name,'token' => $token, 'candidatos' => $candidatos]);
+                $candidato = isset($dados->candidato) ? $dados->candidato : [];
+                return view('licenca.ver',['name' => $name,'token' => $token, 'candidato' => $candidato]);
             }            
         }
         else{

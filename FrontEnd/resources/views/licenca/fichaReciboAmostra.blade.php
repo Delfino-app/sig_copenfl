@@ -8,21 +8,25 @@
                 Decreto Presidencial nº 179/10</span><br>
                 <b>Conselho Provincial de Luanda</b>
             </p>
+            @if(!empty($candidato))
             <p class="heade-top-data">
-                Recibo de inscrição Provisório Nº <span>12</span>/{{date('Y')}}
+                Recibo de inscrição Provisório Nº <span>{{$candidato->id}}</span>/{{date('Y')}}
             </p>
+            @endif
         </div>
         <div style="margin-top:-20px;padding-top:20px">
+            @if(!empty($candidato))
             <p class="recibo-info">
                 Nome:
                 <span style="font-size:12px">
-                    <b>Adão de Almeida</b>
+                    <b>{{$candidato->nome}}</b>
                 </span>
                 <br>
                 Luanda <span style="font-size:12px">
                     <b>{{date('d/m/Y')}}</b>
                 </span>
             </p>
+            @endif
         </div>
         <div style="width:100%;margin-top:-10px;padding-bottom:50px;">
             <div class="float-left">

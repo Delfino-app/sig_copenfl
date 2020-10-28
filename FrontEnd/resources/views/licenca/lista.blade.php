@@ -32,7 +32,6 @@
 										<th class="text-nowrap">Nome</th>
 										<th class="text-nowrap">Telefone</th>
 										<th class="text-nowrap">Nível acadêmico</th>
-										<th class="text-nowrap">Data Registro</th>
 										<th class="text-nowrap" data-orderable="false"></th>
 									</tr>
 								</thead>
@@ -47,10 +46,9 @@
 													<img src="{{asset('img/default.jpg')}}" class="img-rounded height-30" />
 												</td>
 												<td>{{$candidato->nome}}</td>
-												<td>{{$candidato->contacto[1]->telefone}}</td>
-												<td></td>
-												<td></td>
-												<td style="display:inline-flex">
+												<td>{{$candidato->residencia->telefone}}</td>
+												<td>#</td>
+												<td>
 													<a href="{{route('licenca.ver',$candidato->id)}}" title="Ver detalhes" class="btn btn-success btn-action">
 														<i class="ion-md-eye"></i>
 													</a>
