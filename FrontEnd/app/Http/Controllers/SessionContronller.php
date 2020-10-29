@@ -193,4 +193,10 @@ class SessionContronller extends Controller
             return redirect('/login');
         }     
     }
+
+    //Pesquisa Processo
+    public function pesquisaProcesso(Request $req){
+
+        dd($req->all());
+    }
 }

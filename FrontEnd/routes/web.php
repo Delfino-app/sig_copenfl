@@ -28,7 +28,7 @@ Route::group([
     Route::get('/session', 'SessionContronller@start');
     Route::post('/session', 'SessionContronller@start');
     Route::get('/logout', ['as' =>'login.sair','uses' => 'SessionContronller@logout']);
-    Route::get('/home', ['as' =>'home','uses' => 'SessionContronller@home']);
+    Route::get('/dashboard', ['as' =>'home','uses' => 'SessionContronller@home']);
     //Licencas 
     Route::get('/licencas', ['as' =>'licenca.lista','uses' => 'SessionContronller@licenca']);
     Route::get('/licencas/nova', ['as' =>'licenca.nova','uses' => 'SessionContronller@licencaNova']);
@@ -37,4 +37,6 @@ Route::group([
     Route::get('/licencas/ver/{id}', ['as' =>'licenca.ver','uses' => 'SessionContronller@licencaVer']);
     Route::get('/licencas/editar/{id}', ['as' =>'licenca.editar','uses' => 'SessionContronller@editLicenca']);
     Route::get('/licencas/eliminar/{id}', ['as' =>'licenca.eliminar','uses' => 'SessionContronller@deleteLicenca']);
+    //Pesquisa
+    Route::post('/pesquisa', ['as' =>'pesquisa.processo','uses' => 'SessionContronller@pesquisaProcesso']);
 });

@@ -34,7 +34,7 @@ class ApiRequestController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
         );
 
-        $ch = curl_init("http://localhost:8000/api/v1/candidato/index");
+        $ch = curl_init(DOMINIO_API."/api/v1/candidato/index");
 
         curl_setopt_array($ch, $options);
 
@@ -80,7 +80,7 @@ class ApiRequestController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
         );
 
-        $ch = curl_init("http://localhost:8000/api/v1/candidato/show/".$id);
+        $ch = curl_init(DOMINIO_API."/api/v1/candidato/show/".$id);
 
         curl_setopt_array($ch, $options);
 
@@ -125,7 +125,7 @@ class ApiRequestController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
         );
 
-        $ch = curl_init("http://localhost:8000/api/v1/candidato/destroy/".$id);
+        $ch = curl_init(DOMINIO_API."/api/v1/candidato/destroy/".$id);
 
         curl_setopt_array($ch, $options);
 

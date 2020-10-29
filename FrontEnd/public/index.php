@@ -44,6 +44,9 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
+define("DOMINIO","http://127.0.0.1:8001");
+define("DOMINIO_API","http://127.0.0.1:8000");
+
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);

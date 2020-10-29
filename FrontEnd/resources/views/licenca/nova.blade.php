@@ -1,6 +1,7 @@
 @extends('layout.template')
 
 @section('titulo','Nova Licença')
+<link href="{{asset('assets-login/plugins/smartwizard/dist/css/smart_wizard.css')}}" rel="stylesheet" />
 <link rel="stylesheet" href="{{asset('assets-login/css/customNovoProcesso.css')}}" type="text/css">
 @section('conteudo')
 	<div id="content" class="content content-form">
@@ -144,5 +145,8 @@
 	</div>
 @endsection
 @section('add-js')
+<script src="{{asset('assets-login/plugins/parsleyjs/dist/parsley.js')}}"></script>
+<script src="{{asset('assets-login/plugins/smartwizard/dist/js/jquery.smartWizard.js')}}"></script>
+<script src="{{asset('assets-login/js/demo/form-wizards-validation.demo.js')}}"></script>
 <script src="{{asset('js/AddLicencas/index.js')}}" type="module"></script>
 @endsection

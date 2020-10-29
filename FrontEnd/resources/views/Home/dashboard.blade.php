@@ -1,12 +1,11 @@
 @extends('layout.template')
 
-@section('titulo','Home')
+@section('titulo','Dashboard')
 
 @section('conteudo')
 <div id="content" class="content">
-
     <!-- begin page-header -->
-    <h1 class="page-header">Dashboard</h1>
+    <h1 class="page-header" style="margin-top:20px">Dashboard</h1>
     <!-- end page-header -->
     
     <!-- begin row -->
@@ -67,7 +66,24 @@
             </div>
         </div>
         <!-- end col-3 -->
+        <div class="col-xl-12 md-12">
+            <!-- begin panel -->
+            <div class="panel panel-inverse" data-sortable-id="chart-js-3">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Relatório dos últimos 6 meses</h4>
+                </div>
+                <div class="panel-body">
+                </div>
+                <div class="panel-body p-0">
+                    <div id="apex-area-chart"></div>
+                </div>
+            </div>
+            <!-- end panel -->
+        </div>
     </div>
     <!-- end row -->
 </div>
+@section('add-js')
+<script src="{{asset('assets-login/plugins/apexcharts/dist/apexcharts.min.js')}}"></script>
+<script src="{{asset('assets-login/js/demo/chart-apex.demo.js')}}"></script>
 @endsection

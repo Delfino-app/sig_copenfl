@@ -5,13 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>@yield('titulo') | SIG - COPENFL</title>
-
-		<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
+		<link rel="icon" href="{{asset('img/logo.png')}}">
 		<link rel="stylesheet" href="{{asset('assets-login/css/apple/app.min.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{asset('assets-login/plugins/ionicons/css/ionicons.min.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{asset('css/animate.css')}}" type="text/css">
-		<link href="{{asset('assets-login/plugins/smartwizard/dist/css/smart_wizard.css')}}" rel="stylesheet" />
 		<link rel="stylesheet" href="{{asset('css/custom.css')}}" type="text/css">
 	</head>
 	<body>
@@ -38,12 +36,7 @@
 		<script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('assets-login/js/app.min.js')}}"></script>
-		<script src="{{asset('assets-login/js/theme/apple.min.js')}}"></script>
-
-		<script src="{{asset('assets-login/plugins/parsleyjs/dist/parsley.js')}}"></script>
-		<script src="{{asset('assets-login/plugins/smartwizard/dist/js/jquery.smartWizard.js')}}"></script>
-		<script src="{{asset('assets-login/js/demo/form-wizards-validation.demo.js')}}"></script>
-		<!--Conteudo--> 
+		<script src="{{asset('assets-login/js/theme/apple.min.js')}}"></script> 
 		@yield('add-js')
 	</body>
 </html>

@@ -6,8 +6,8 @@
 			<li class="nav-profile" style="margin-top:15px">
 				<a href="javascript:;" data-toggle="nav-profile">
 					<div class="cover with-shadow"></div>
-					<div class="image image-icon bg-black text-grey-darker">
-						<i class="fa fa-user"></i>
+					<div class="image">
+						<img src="{{asset('img/default.jpg')}}" alt="{{$name}}">
 					</div>
 					<div class="info">
 						{{$name}}

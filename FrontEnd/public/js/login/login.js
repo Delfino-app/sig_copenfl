@@ -71,7 +71,8 @@ export default{
 
             if(makeSession.name != undefined && makeSession.email != undefined && makeSession.access_token != undefined){
 
-                window.location.href="/home";
+                //Redir to Dashboard Page
+                window.location.href="/dashboard";
             }
             else{
 

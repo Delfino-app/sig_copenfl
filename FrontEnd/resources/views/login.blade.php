@@ -67,7 +67,7 @@
 						</div>-->
 						<hr />
 						<p class="text-center text-grey-darker mb-0 text-copy">
-							SIG-COPENFL&copy;2019
+							SIG-COPENFL&copy;{{date('Y')}}
 						</p>
 					</form>
 				</div>
