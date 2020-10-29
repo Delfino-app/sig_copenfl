@@ -8,12 +8,15 @@ use Illuminate\Support\Facades\Session;
 class SessionContronller extends Controller
 {   
 
+    //Login
     public function index(){
 
         Session::forget(['name','email','access_token']);
 
         return view('login');
     }
+
+    //Start Session
     public function start(Request $req){
         
         //Start Session
@@ -22,6 +25,7 @@ class SessionContronller extends Controller
         return Session::all();
     }
 
+    //Logout
     public function logout(){
 
         Session::forget(['name','email','access_token']);
@@ -29,6 +33,7 @@ class SessionContronller extends Controller
         return redirect('/login');
     }
 
+    //Dashboard
     public function home(){
 
         if(Session::has(['name','email','access_token'])){
@@ -43,6 +48,7 @@ class SessionContronller extends Controller
         }
     }
 
+    //Licencas
     public function licenca(){
 
         if(Session::has(['name','email','access_token'])){
@@ -50,43 +56,8 @@ class SessionContronller extends Controller
             $name = Session::get('name');
             $token = Session::get('access_token');
 
-            $headers = [
-                "Authorization: Bearer $token",
-                "Accept: application/vnd.proxypay.v2+json",
-                "Content-Type: application/json"
-            ];
-
-            $options = array(
-                CURLOPT_RETURNTRANSFER => true, // return web page
-                CURLOPT_HEADER => false, // don't return headers
-                CURLOPT_FOLLOWLOCATION => true, // follow redirects
-                CURLOPT_MAXREDIRS => 10, // stop after 10 redirects
-                CURLOPT_ENCODING => "", // handle compressed
-                CURLOPT_USERAGENT => "test", // name of client
-                CURLOPT_AUTOREFERER => true, // set referrer on redirect
-                CURLOPT_CONNECTTIMEOUT => 120, // time-out on connect
-                CURLOPT_TIMEOUT => 120, // time-out on response,
-                CURLOPT_CUSTOMREQUEST => 'GET',
-                CURLOPT_HTTPHEADER => $headers,
-            // CURLOPT_POSTFIELDS => http_build_query($body),
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
-            );
-
-            $ch = curl_init("http://localhost:8000/api/v1/candidato/index");
-
-            curl_setopt_array($ch, $options);
-
-            $msg = curl_exec($ch);
-            $erro = false;
-            if (curl_errno($ch)) {
-                $msg = curl_error($ch);
-                $erro = true;
-            }
-            
-            curl_close($ch);
-
-            $dados = json_decode($msg);
-
+            //Request
+            $dados = ApiRequestController::licencas();
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 //Token Expire
@@ -104,6 +75,7 @@ class SessionContronller extends Controller
         }
     }
 
+    //Nova Licenca (Registro) View
     public function licencaNova(){
 
         if(Session::has(['name','email','access_token'])){
@@ -118,6 +90,8 @@ class SessionContronller extends Controller
             return redirect('/login');
         }
     }
+
+    //Nova Licenca (Registro) Added
     public function licencaAdded(){
 
         if(Session::has(['name','email','access_token'])){
@@ -133,6 +107,7 @@ class SessionContronller extends Controller
         }
     }
 
+    //Nova Licenca (Add Doc) View
     public function licencaAddDoc(){
 
         if(Session::has(['name','email','access_token'])){
@@ -148,6 +123,7 @@ class SessionContronller extends Controller
         }
     }
 
+    //Ver Dados Licenca View
     public function licencaVer($id){
 
         if(Session::has(['name','email','access_token'])){
@@ -156,42 +132,8 @@ class SessionContronller extends Controller
 
             $token = Session::get('access_token');
 
-            $headers = [
-                "Authorization: Bearer $token",
-                "Accept: application/vnd.proxypay.v2+json",
-                "Content-Type: application/json"
-            ];
-
-            $options = array(
-                CURLOPT_RETURNTRANSFER => true, // return web page
-                CURLOPT_HEADER => false, // don't return headers
-                CURLOPT_FOLLOWLOCATION => true, // follow redirects
-                CURLOPT_MAXREDIRS => 10, // stop after 10 redirects
-                CURLOPT_ENCODING => "", // handle compressed
-                CURLOPT_USERAGENT => "test", // name of client
-                CURLOPT_AUTOREFERER => true, // set referrer on redirect
-                CURLOPT_CONNECTTIMEOUT => 120, // time-out on connect
-                CURLOPT_TIMEOUT => 120, // time-out on response,
-                CURLOPT_CUSTOMREQUEST => 'GET',
-                CURLOPT_HTTPHEADER => $headers,
-            // CURLOPT_POSTFIELDS => http_build_query($body),
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
-            );
-
-            $ch = curl_init("http://localhost:8000/api/v1/candidato/show/".$id);
-
-            curl_setopt_array($ch, $options);
-
-            $msg = curl_exec($ch);
-            $erro = false;
-            if (curl_errno($ch)) {
-                $msg = curl_error($ch);
-                $erro = true;
-            }
-            
-            curl_close($ch);
-
-            $dados = json_decode($msg);
+            //Request
+            $dados = ApiRequestController::vercandidato($id);
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 //Token Expire
@@ -199,8 +141,18 @@ class SessionContronller extends Controller
             }
             else{
 
-                $candidato = isset($dados->candidato) ? $dados->candidato : [];
-                return view('licenca.ver',['name' => $name,'token' => $token, 'candidato' => $candidato]);
+                //Validate Candidato
+                if(isset($dados->candidato)){
+
+                    $candidato = $dados->candidato;
+
+                    return view('licenca.ver',['name' => $name,'token' => $token, 'candidato' => $candidato]);
+                }
+                else{
+
+                    //404 Not Found
+                    return redirect('/404');
+                }
             }            
         }
         else{
