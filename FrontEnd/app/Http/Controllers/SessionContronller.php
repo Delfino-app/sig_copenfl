@@ -160,4 +160,37 @@ class SessionContronller extends Controller
             return redirect('/login');
         }
     }
+
+    //Editar Dados Licenca View
+    public function editLicenca($id){
+
+
+    }
+
+    //Delete Licenca
+    public function deleteLicenca($id){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+
+            $token = Session::get('access_token');
+
+            //Request
+            $dados = ApiRequestController::deleteCandidato($id);
+
+            if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
+                //Token Expire
+                return redirect('/login');
+            }
+            else{
+
+                return redirect()->route('licenca.lista');
+            }            
+        }
+        else{
+
+            return redirect('/login');
+        }     
+    }
 }

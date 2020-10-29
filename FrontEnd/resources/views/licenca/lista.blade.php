@@ -55,7 +55,7 @@
 													<a href="{{route('licenca.editar',$candidato->id)}}" title="Editar" class="btn btn-dark btn-action">
 														<i class="ion-md-create"></i>
 													</a>
-													<a href="{{route('licenca.eliminar',$candidato->id)}}" title="Eliminar" class="btn btn-danger btn-action">
+													<a href="#" reference ="{{route('licenca.eliminar',$candidato->id)}}" data-toggle="modal" data-target="#modalLicenca" title="Eliminar" class="btn btn-danger btn-action teste">
 														<i class="ion-md-trash"></i>
 													</a>
 												</td>
@@ -64,6 +64,26 @@
 									@endif
 								</tbody>
 							</table>
+						</div>
+						<div class="modal fade" id="modalLicenca">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title"><i class="fa fa-trash"></i> Eliminar</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+									</div>
+									<div class="modal-body">
+										<div class="row">
+											<div class="col-lg-12" id="modalLicencaContainer">
+												
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer" id="modalLicencaFooter">
+
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="float-right">
 							<br>

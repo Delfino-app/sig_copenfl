@@ -35,6 +35,6 @@ Route::group([
     Route::get('/licencas/feito', ['as' =>'licenca.feito','uses' => 'SessionContronller@licencaAdded']);
     Route::get('/licencas/add/docs', ['as' =>'licenca.add.documentos','uses' => 'SessionContronller@licencaAddDoc']);
     Route::get('/licencas/ver/{id}', ['as' =>'licenca.ver','uses' => 'SessionContronller@licencaVer']);
-    Route::get('/licencas/editar/{id}', ['as' =>'licenca.editar','uses' => 'SessionContronller@licencaVer']);
-    Route::get('/licencas/eliminar/{id}', ['as' =>'licenca.eliminar','uses' => 'SessionContronller@licencaVer']);
+    Route::get('/licencas/editar/{id}', ['as' =>'licenca.editar','uses' => 'SessionContronller@editLicenca']);
+    Route::get('/licencas/eliminar/{id}', ['as' =>'licenca.eliminar','uses' => 'SessionContronller@deleteLicenca']);
 });
