@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{asset('css/recibo.css')}}" type="text/css">
 	</head>
-	<body>	
+	<body>
 		<!-- begin #page-container -->
 		<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
 			<div id="content" class="content">

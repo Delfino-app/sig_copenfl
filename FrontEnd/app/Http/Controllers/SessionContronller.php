@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use PDF;
 
 class SessionContronller extends Controller
 {   
@@ -192,6 +193,29 @@ class SessionContronller extends Controller
 
             return redirect('/login');
         }     
+    }
+
+    //Gerando PDF
+    public function recibo($id){
+
+        #$licenca = Licenca::find($id);
+
+        #if (!empty($licenca)){
+
+           # $data = explode(" ", $licenca['created_at']);
+
+            #$dataD = date('d/m/Y', strtotime($data[0]));
+
+           # $licenca['data_registro'] = $dataD;
+           
+            $pdf = PDF::loadView('licenca.fichaRecibo');
+
+            return $pdf->setPaper('a4')->stream('Recibo de Licença nº'.$id.'.pdf');
+        #}
+        #else{
+
+           # return redirect('/404');
+        #}
     }
 
     //Pesquisa Processo

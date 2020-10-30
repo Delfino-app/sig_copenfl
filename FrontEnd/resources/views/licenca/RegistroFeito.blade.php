@@ -19,7 +19,7 @@
 								<i class="ion-md-attach" style="font-size:14px;padding-right:5px"></i>
 								Anexar Documentos
 							</a>
-							<a target="_blank" href="#" class="btn btn-primary" style="color:white">
+							<a target="_blank" href="{{route('licenca.recibo',1)}}" class="btn btn-primary" style="color:white">
 								<i class="ion-ios-list" style="font-size:14px;padding-right:5px"></i>
 								Gerar Pré-Recibo
 							</a>
