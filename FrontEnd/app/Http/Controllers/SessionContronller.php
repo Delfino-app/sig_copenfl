@@ -208,8 +208,11 @@ class SessionContronller extends Controller
 
            # $licenca['data_registro'] = $dataD;
            
-            $pdf = PDF::loadView('licenca.fichaRecibo');
+            #$pdf = PDF::loadView('licenca.fichaRecibo');
 
+            #return $pdf->setPaper('a4')->stream('Recibo de Licença nº'.$id.'.pdf');
+            $data = array("Teste" => 2);
+            $pdf = PDF::loadView('licenca.fichaRecibo',$data);
             return $pdf->setPaper('a4')->stream('Recibo de Licença nº'.$id.'.pdf');
         #}
         #else{
