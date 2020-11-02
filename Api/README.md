@@ -96,6 +96,15 @@ REQUEST BODY
         "ano_termino" : "", // ano que conclui, caso tenha
         "ano_inicio" : "", // ano que inicio a estudar
         "estado" : "" // pode ser Estudando ou Concluido
+    },
+    "identificao" : {
+        "file" : "",
+        "orgao_emissor": "",
+        "data_expiracao" : "",
+        "data_emissao" : "",
+        "numero" : "",
+        "tipo_documento",
+        "descricao": "",
     }
 }
 RESPONSE BODY
@@ -115,7 +124,10 @@ status code
 # Lista de Candidatos
 
 GET URL
-"http://localhost:8000/api/v1/candidato/index"
+dados do dia
+"http://localhost:8000/api/v1/candidato/index/{tipo}/{estado}"
+dados no intevalo de data
+"http://localhost:8000/api/v1/candidato/index/{tipo}/{estado}/{data_inicio?}/{data_fim?}"
 
 REQUEST HEADER
 "accept" : "application/json"

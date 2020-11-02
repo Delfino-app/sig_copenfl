@@ -16,6 +16,7 @@ class CreateCandidatosTable extends Migration
         Schema::create('candidatos', function (Blueprint $table) {
             $table->id();
             $table->string("nome");
+            $table->date("data_criada");
             $table->string("pai");
             $table->string("mae");
             $table->enum("genero",['M','F']);

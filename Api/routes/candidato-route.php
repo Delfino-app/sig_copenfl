@@ -18,7 +18,8 @@ Route::group([
     'middleware' => ['auth:api'],
     'namespace' => 'App\Http\Controllers\Candidato',
 ], function ($router) { 
-    Route::get('index', 'CandidatoCtrl@index');
+    Route::get('index/{tipo}/{estado}/{data_inicio?}/{data_fim?}', 'CandidatoCtrl@listado_pelo_tipo');
+    // Route::get('index/{data_inicio?}/{data_fim?}', 'CandidatoCtrl@index');
     Route::post('store', 'CandidatoCtrl@store');
     Route::get('show/{id}', 'CandidatoCtrl@show');
     Route::put('update/{id}', 'CandidatoCtrl@update');
