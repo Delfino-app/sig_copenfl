@@ -42,7 +42,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoxvZ2luIiw
 # inscricão de candidato
 
 POST URL
-"http://localhost:8000/api/v1/candidato/store"
+"http://localhost:8000/api/v1/candidato/store/licenca"
 
 REQUEST HEADER
 "accept" : "application/json"
@@ -51,7 +51,72 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJh.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0Ijo
 
 REQUEST BODY
 {
-    "apply_about" : "", // pode ser: Licenca ou Carteira
+    "licenca_tipo" : "", // pode ser: 'Medio' | 'Licenciatura'
+    "local_inscricao" : // pode ser: 'Offline' | 'Online'
+    "personal_datail" : {
+        "nome" : "", // campo de preenchimento obrigatório
+        "pai" : "", // campo de preenchimento obrigatório
+        "mae" : "", // campo de preenchimento obrigatório
+        "nacionalidade_id" : "", // campo de preenchimento obrigatório, preenchido com id do pais
+        "data_nascimento" : "", // campo de preenchimento obrigatório
+        "estado_civil" : "", // campo de preenchimento obrigatório
+        "genero" : "", // campo de preenchimento obrigatório
+        "naturalidade_id" : "", // campo de preenchimento obrigatório, prenchido com o id do municipio
+        "contact" : {
+            "telefone" : "", // campo de preenchimento obrigatório
+            "email" : "", // campo de preenchimento obrigatório
+            "caixa_postal" : "", // campo de preenchimento opcional
+            "fax" : "" // campo de preenchimento opcional
+        },
+        "address" : {
+            "municipio_id" : "", // campo de preenchimento obrigatório
+            "bairro" : "", // campo de preenchimento obrigatório
+            "rua" : "", // campo de preenchimento obrigatório
+            "casa" : "" // campo de preenchimento opcional
+        }
+    },
+    "work_info":{
+       "contact" : {
+            "telefone" : "", // campo de preenchimento opcional
+            "email" : "", // campo de preenchimento opcional
+            "caixa_postal" : "",// campo de preenchimento opcional
+            "fax" : ""   // campo de preenchimento opcional
+       },
+       "address" : {
+            "municipio_id" : "", // campo de preenchimento opcional
+            "bairro" : "", // campo de preenchimento opcional
+            "rua" : "", // campo de preenchimento opcional
+            "casa" : "" // campo de preenchimento opcional
+        }
+    },
+    "academic_detail" : {
+        "tipo_escola" : "", // pode ser Privada ou Publica
+        "escola" : "", // nome da escola
+        "nivel" : "", // pode ser Fundamental, Medio ou Superior
+    },
+    "identificao" : {
+        "file" : "",
+        "orgao_emissor": "",
+        "data_expiracao" : "",
+        "data_emissao" : "",
+        "numero" : "",
+        "tipo_documento",
+        "descricao": "",
+    }
+}
+
+POST URL
+"http://localhost:8000/api/v1/candidato/store/carteira"
+
+REQUEST HEADER
+"accept" : "application/json"
+"Content-Type" : "application/json"
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJh.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0IjoxNTk2MDE4OTUzLCJleHAiOjE
+
+REQUEST BODY
+{
+    "licenca_tipo" : "", // pode ser: 'Fundamental' | 'Medio' | 'Licenciatura'
+    "local_inscricao" : // pode ser: 'Offline' | 'Online'
     "personal_datail" : {
         "nome" : "", // campo de preenchimento obrigatório
         "pai" : "", // campo de preenchimento obrigatório
@@ -94,8 +159,8 @@ REQUEST BODY
         "nivel" : "", // pode ser Fundamental, Medio ou Superior
         "ano_frequencia" : "", // ano/anos de frequencia escolar
         "ano_termino" : "", // ano que conclui, caso tenha
-        "ano_inicio" : "", // ano que inicio a estudar
-        "estado" : "" // pode ser Estudando ou Concluido
+        "municipio" : "", // municipio de localidade da escola
+        "bairro" : "" // bairro de localidade da escola
     },
     "identificao" : {
         "file" : "",
@@ -107,6 +172,7 @@ REQUEST BODY
         "descricao": "",
     }
 }
+
 RESPONSE BODY
 {
   "status" : "", // poderá ser Ok ou Info, se o code for 200
@@ -169,6 +235,7 @@ RESPONSE BODY
 }
 
 
+
 # Update de Candidatos
 PUT URL
 "http://localhost:8000/api/v1/candidato/update/{candidato_id}"
@@ -210,4 +277,32 @@ GET URL for province, country and county
 
 "http://localhost:8000/api/v1/asset/provincias/{pais_id}"
 "http://localhost:8000/api/v1/asset/municipios/{provincia_id}"
+
+# TIPOS DE DOCUMENTOS
+
+REQUEST HEADER
+"accept" : "application/json"
+"Content-Type" : "application/json"
+Authorization: Bearer eyJ0eXAOTAwMFwvdWVuZ2lcL2F.waVwvdjL2xvZ2luIiw.iaWF0IjozLCJleHAiOjE
+RESPONSE BODY
+
+GET URL
+tipo : 'Fundamental' | 'Medio_Estudando' | 'Medio' | 'Licenciatura_Estudando' | 'Licenciatura'
+"http://localhost:8000/api/v1/inscricao/{tipo}/documentos"
+
+# Upload de documentos
+POST URL
+
+"http://localhost:8000/api/v1/inscricao/documentos/upload"
+{
+    "inscricao_tipo":,  //  Carteira | Licenca
+    "inscricao_id" : "",
+       "file" : "",
+        "orgao_emissor": "",
+        "data_expiracao" : "",
+        "data_emissao" : "",
+        "numero" : "",
+        "tipo_documento",
+        "descricao": "",
+}
 </pre>

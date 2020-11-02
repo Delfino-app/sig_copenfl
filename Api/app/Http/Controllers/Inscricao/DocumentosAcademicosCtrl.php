@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Inscricao;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Inscricao\tipo_documentos;
 class DocumentosAcademicosCtrl extends Controller
 {
     /**
@@ -12,9 +12,19 @@ class DocumentosAcademicosCtrl extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index_documentos($tipo)
     {
-        //
+        $doc = tipo_documentos::where("para",$tipo)->get();
+        if(isset($doc[0]))
+            return response()->json([
+                'status' => "Ok",
+                "documentos" => $doc,
+            ], 200);
+
+        return response()->json([
+            'status' => "Info",
+            "message" => "Nenhum registo de documento encontrado"
+    ], 200);
     }
 
     /**

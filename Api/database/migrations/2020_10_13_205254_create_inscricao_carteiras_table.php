@@ -16,9 +16,16 @@ class CreateInscricaoCarteirasTable extends Migration
         Schema::create('inscricao_carteiras', function (Blueprint $table) {
             $table->id();
             $table->enum("estado",['Pendente','Inscrito','Analisado','Aprovado',"Invalido", 'Anulado']);
+            $table->date("data_inscricao");
             $table->string("numero");
             $table->integer("sequencia");
+            $table->enum("carteira_tipo",['Fundamental','Medio','Licenciatura']);
+            $table->enum("local_inscricao",['Offline','Online']);
             $table->foreignId('candidato_id')->references('id')->on('candidatos')->onUpdate('cascade')->onDelete('cascade');
+            $table->string("analisado_por")->nullable();
+            $table->string("analisado_data")->nullable();
+            $table->string("aprovado_por")->nullable();
+            $table->date("aprovado_data")->nullable();
             $table->timestamps();
         });
     }

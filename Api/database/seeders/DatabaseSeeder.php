@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ProvinciaSeeder::class,
             MunicipioSeeder::class,
             LaratrustSeeder::class,
+            TipoDocumentosSeeder::class,
         ]);
     }
 }

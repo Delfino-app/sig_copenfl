@@ -16,6 +16,7 @@ class CreateTipoDocumentosTable extends Migration
         Schema::create('tipo_documentos', function (Blueprint $table) {
             $table->id();
             $table->string("nome");
+            $table->enum("para",['Fundamental','Medio_Estudando','Medio','Licenciatura_Estudando','Licenciatura']);
             $table->timestamps();
         });
     }
