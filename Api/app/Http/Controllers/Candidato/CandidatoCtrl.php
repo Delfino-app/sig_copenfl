@@ -115,7 +115,7 @@ class CandidatoCtrl extends Controller
         if($data_inicio != null && $data_fim != null){
             $candidatos = candidatos::whereHas($tipo, function($query) use ($estado){
                 $query->where("estado", $estado);
-            })->between("data_criada",[$data_inicio, $data_fim])->get();
+            })->whereBetween("data_criada",[$data_inicio, $data_fim])->get();
         }else {
             $candidatos = candidatos::whereHas($tipo, function($query) use ($estado){
                 $query->where("estado", $estado);
