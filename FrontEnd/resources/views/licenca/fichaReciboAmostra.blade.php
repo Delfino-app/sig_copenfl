@@ -51,7 +51,7 @@
 <div class="row">
     <div class="col-lg-12 fotter_ver-container">
         <div class="float-right">
-            <a href="{{route('licenca.recibo',$candidato->id)}}" class="btn btn-destaque">
+            <a target="_blank" href="{{route('licenca.recibo',$candidato->id)}}" class="btn btn-destaque">
                 Gerar PDF <i class="fa fa-file-pdf-o"></i>
             </a>
         </div>

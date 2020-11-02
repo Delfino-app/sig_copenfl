@@ -226,4 +226,10 @@ class SessionContronller extends Controller
 
         dd($req->all());
     }
+
+    //Suporte
+    public function suporte(Request $req){
+
+        dd($req->all());
+    }
 }

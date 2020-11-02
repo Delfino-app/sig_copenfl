@@ -35,11 +35,6 @@
           </li>
         </ul>
       </li>
-      <li class="dropdown">
-        <a href="#" data-toggle="dropdown" title="Suporte">
-          <i class="ion-md-help-circle" style="font-size:22px"></i>
-        </a>
-      </li>
       <li class="dropdown navbar-user">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           <img src="{{asset('img/default.jpg')}}" alt="{{$name}}">
