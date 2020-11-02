@@ -21,7 +21,7 @@ class SessionContronller extends Controller
     public function start(Request $req){
         
         //Start Session
-        Session::put(['name' => "User Name",'email' => $req['email'],'access_token' =>$req['_api_token']]);
+        Session::put(['name' => "User Name",'email' => $req['email'],'access_token' =>$req['_api_token'], 'redir' => route('home')]);
 
         return Session::all();
     }
@@ -223,6 +223,12 @@ class SessionContronller extends Controller
 
     //Pesquisa Processo
     public function pesquisaProcesso(Request $req){
+
+        dd($req->all());
+    }
+
+    //Suporte
+    public function suporte(Request $req){
 
         dd($req->all());
     }

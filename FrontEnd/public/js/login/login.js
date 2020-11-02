@@ -72,7 +72,7 @@ export default{
             if(makeSession.name != undefined && makeSession.email != undefined && makeSession.access_token != undefined){
 
                 //Redir to Dashboard Page
-                window.location.href="/dashboard";
+                window.location.href = makeSession.redir;
             }
             else{
 

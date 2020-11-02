@@ -6,6 +6,8 @@
 	padding-left:40px;
 	padding-right:40px;
 	padding-bottom:80px;
+	justify-content: center;
+	align-items: center;
 }
 .heade-top-content{
 	padding-top:20px;

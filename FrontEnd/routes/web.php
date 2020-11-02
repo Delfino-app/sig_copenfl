@@ -37,8 +37,14 @@ Route::group([
     Route::get('/licencas/ver/{id}', ['as' =>'licenca.ver','uses' => 'SessionContronller@licencaVer']);
     Route::get('/licencas/editar/{id}', ['as' =>'licenca.editar','uses' => 'SessionContronller@editLicenca']);
     Route::get('/licencas/eliminar/{id}', ['as' =>'licenca.eliminar','uses' => 'SessionContronller@deleteLicenca']);
+
     //Recibo
     Route::get('/licencas/recibo/{id}', ['as' =>'licenca.recibo','uses' => 'SessionContronller@recibo']);
+
     //Pesquisa
     Route::post('/pesquisa', ['as' =>'pesquisa.processo','uses' => 'SessionContronller@pesquisaProcesso']);
+    
+    //Suporte
+    Route::post('/ajuda', ['as' =>'suporte.ajuda','uses' => 'SessionContronller@suporte']);
+
 });
