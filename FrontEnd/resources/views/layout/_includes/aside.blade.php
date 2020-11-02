@@ -30,20 +30,51 @@
 				<a href="javascript:;">
 					<b class="caret"></b>
 				    <i class="ion-ios-paper"></i> 
-				    <span>Inscrição</span>
+				    <span>Licença</span>
 				</a>
 				<ul class="sub-menu">
 					<li>
+						<a href="{{route('licenca.nova')}}">
+							Nova
+						</a>
+					</li>
+					<li>
 						<a href="{{route('licenca.lista')}}">
-							Licença
+							Lista
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+				    <i class="ion-ios-card"></i> 
+				    <span>Carteira</span>
+				</a>
+				<ul class="sub-menu">
+					<li>
+						<a href="#">
+							Nova
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							Carteira
+							Lista
 						</a>
 					</li>
 				</ul>
+			</li>
+			<li class="">
+				<a href="#">
+				    <i class="ion-ios-help-buoy"></i>
+				    <span>Suporte</span>
+			    </a>
+			</li>
+			<li class="">
+				<a href="{{route('login.sair')}}">
+				    <i class="ion-ios-log-out"></i>
+				    <span>Sair</span>
+			    </a>
 			</li>
 			<!-- begin sidebar minify button -->
 			<li>

@@ -1,11 +1,10 @@
 @extends('layout.template')
 
 @section('titulo','Dashboard')
-
 @section('conteudo')
 <div id="content" class="content">
     <!-- begin page-header -->
-    <h1 class="page-header" style="margin-top:20px">Dashboard</h1>
+    <h1 class="page-header" style="margin-top:-30px">Dashboard</h1>
     <!-- end page-header -->
     
     <!-- begin row -->
@@ -69,20 +68,35 @@
         <div class="col-xl-12 md-12">
             <!-- begin panel -->
             <div class="panel panel-inverse" data-sortable-id="chart-js-3">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Relatório dos últimos 6 meses</h4>
+                <div class="panel-heading" style="background-color:white;color:#1c1c1c">
+                    <h4 class="panel-title">
+                        <i class="ion-ios-podium"></i>
+                        Relatório dos últimos 6 meses
+                    </h4>
                 </div>
                 <div class="panel-body">
-                </div>
-                <div class="panel-body p-0">
                     <div id="apex-area-chart"></div>
                 </div>
             </div>
             <!-- end panel -->
         </div>
-    </div>
+        <!--<div class="col-xl-3 md-12">
+            <div class="panel panel-inverse" data-sortable-id="index-10">
+                <div class="panel-heading" style="background-color:white;color:#1c1c1c">
+                    <h4 class="panel-title">
+                        <i class="ion-ios-calendar"></i>
+                        Calendário
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div id="datepicker-inline" class="datepicker-full-width overflow-y-scroll position-relative"><div></div></div>
+                </div>
+            </div>
+        </div>
+    </div>-->
     <!-- end row -->
 </div>
+@endsection
 @section('add-js')
 <script src="{{asset('assets-login/plugins/apexcharts/dist/apexcharts.min.js')}}"></script>
 <script src="{{asset('assets-login/js/demo/chart-apex.demo.js')}}"></script>

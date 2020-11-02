@@ -8,6 +8,7 @@
 		<link rel="icon" href="{{asset('img/logo.png')}}">
 		<link rel="stylesheet" href="{{asset('assets-login/css/apple/app.min.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{asset('assets-login/plugins/ionicons/css/ionicons.min.css')}}" type="text/css">
+		<link rel="stylesheet" href="{{asset('assets-login/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{asset('css/animate.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{asset('css/custom.css')}}" type="text/css">
