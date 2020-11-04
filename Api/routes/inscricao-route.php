@@ -18,6 +18,17 @@ Route::group([
     'middleware' => 'api',
     'namespace' => 'App\Http\Controllers\Inscricao',
 ], function ($router) { 
+
+    Route::get('/{tipo}/documentos', 'DocumentosAcademicosCtrl@index_documentos');
+    Route::post('documentos/upload', 'DocumentosAcademicosCtrl@store');
+    Route::put('update/{id}', 'DocumentosAcademicosCtrl@update');
+    Route::delete('destroy/{id}', 'DocumentosAcademicosCtrl@destroy');
+});
+
+Route::group([
+    'middleware' => 'api',
+    'namespace' => 'App\Http\Controllers\Inscricao',
+], function ($router) { 
     Route::get('index', 'PermissionCtrl@index');
     Route::post('store', 'PermissionCtrl@store');
     Route::put('update/{id}', 'PermissionCtrl@update');

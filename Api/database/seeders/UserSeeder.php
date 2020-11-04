@@ -19,6 +19,8 @@ class UserSeeder extends Seeder
         $dados = [
         	'name' => Str::random(10),
         	'email' => "app@gmail.com",
+            'first_login' => 0,
+            "photo" => '',
         	'password' => Hash::make("password")
         ];
         if(User::where('email','=',$dados['email'])->count()){

@@ -115,7 +115,7 @@ class CandidatoCtrl extends Controller
         if($data_inicio != null && $data_fim != null){
             $candidatos = candidatos::whereHas($tipo, function($query) use ($estado){
                 $query->where("estado", $estado);
-            })->between("data_criada",[$data_inicio, $data_fim])->get();
+            })->whereBetween("data_criada",[$data_inicio, $data_fim])->get();
         }else {
             $candidatos = candidatos::whereHas($tipo, function($query) use ($estado){
                 $query->where("estado", $estado);
@@ -233,7 +233,7 @@ class CandidatoCtrl extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store_carteira(Request $request)
     {
         $this->validate($request, [
             "personal_datail.nome" => "required",
@@ -244,6 +244,7 @@ class CandidatoCtrl extends Controller
             "personal_datail.estado_civil" => "required",
             "personal_datail.genero" => "required",
             "personal_datail.naturalidade_id" => "required",
+            "identificacao" => "required",
         ]);
 
         $candidato = new candidatos;
@@ -335,6 +336,116 @@ class CandidatoCtrl extends Controller
                 $dados_academicos->ano_inicio = $academic_detail->ano_frequencia;
                 $dados_academicos->ano_frequencia = $academic_detail->ano_inicio;
                 $dados_academicos->estado = $academic_detail->estado;
+                $dados_academicos->model_type = $inscricao_type;
+                $dados_academicos->model_id = $inscricao_id;
+                if($dados_academicos->save()){
+                    return response()->json([
+                        'status' => "Ok",
+                        "candidato_id" => $candidato->id,
+                        "message" => "Candidato cadastrado com sucesso"
+                    ], 200);
+                }
+            }
+        }
+        return response()->json([
+            'status' => "Info",
+            "message" => "Falha ao cadastrar o candidato"
+        ], 200);
+    }
+    public function store_licenca(Request $request)
+    {
+        $this->validate($request, [
+            "personal_datail.nome" => "required",
+            "personal_datail.pai" => "required",
+            "personal_datail.mae" => "required",
+            "personal_datail.nacionalidade_id" => "required",
+            "personal_datail.data_nascimento" => "required",
+            "personal_datail.estado_civil" => "required",
+            "personal_datail.genero" => "required",
+            "personal_datail.naturalidade_id" => "required",
+            "identificacao" => "required",
+            "licenca_tipo" => "required",
+            "local_inscricao" => "required",
+        ]);
+
+        $candidato = new candidatos;
+        $personal_datail = (object) $request->personal_datail;
+        $candidato->data_criada = Date("Y-m-d");
+        $candidato->nome = $personal_datail->nome;
+        $candidato->pai = $personal_datail->pai;
+        $candidato->mae = $personal_datail->mae;
+        $candidato->nacionalidade_id = $personal_datail->nacionalidade_id;
+        $candidato->data_nascimento = $personal_datail->data_nascimento;
+        $candidato->estado_civil = $personal_datail->estado_civil;
+        $candidato->naturalidade_id = $personal_datail->naturalidade_id;
+        if($candidato->save()){
+            // info about work  contact and address
+            $work_info = (object) $request->work_info;
+            if( isset($work_info) and isset($work_info->contact)){
+                $work_info_contact = (object) $work_info->contact;
+                $candidato->contacto()->create([
+                        "telefone" => $work_info_contact->telefone,
+                        "email" => $work_info_contact->email,
+                        'caixa_postal' => $work_info_contact->caixa_postal,
+                        'fax' => $work_info_contact->fax,
+                        'tipo' => "Trabalho", 
+                ]);
+            }
+            if(isset($work_info) and isset($work_info->address)){
+                $work_info_adderess =  (object) $work_info->address;
+                $candidato->endereco()->create([
+                        "municipio_id" => $work_info_adderess->municipio_id,
+                        "bairro" => $work_info_adderess->bairro,
+                        'rua' => $work_info_adderess->rua,
+                        'casa' => $work_info_adderess->casa,
+                        'tipo' => "Trabalho", 
+                ]);
+            }
+            // info about personal  contact and address
+            if(isset($personal_datail->contact)){
+                $personal_datail_contact = (object) $personal_datail->contact;
+                $candidato->contacto()->create([
+                        "telefone" => $personal_datail_contact->telefone,
+                        "email" => $personal_datail_contact->email,
+                        'caixa_postal' => $personal_datail_contact->caixa_postal,
+                        'fax' => $personal_datail_contact->fax,
+                        'tipo' => "Residencia", 
+                ]);
+            }
+            if( isset($personal_datail->address)){
+                $personal_datail_address = (object) $personal_datail->address;
+                $candidato->endereco()->create([
+                        "municipio_id" => $personal_datail_address->municipio_id,
+                        "bairro" => $personal_datail_address->bairro,
+                        'rua' => $personal_datail_address->rua,
+                        'casa' => $personal_datail_address->casa,
+                        'tipo' => "Residencia", 
+                ]);
+            } 
+            // info about nurse licence and Wallet
+            $sequencia = 0;
+            $inscricao_id = null;
+            $inscricao_type = null;
+                $table_sequence = licenca::get()->last();
+                if(isset($table_sequence->sequencia))
+                    $sequencia = 1 + $table_sequence->sequencia;
+                $inscricao_id = $candidato->licenca()->create([
+                    "numero" => "L/".Str::random(4)."/".date("Y"),
+                    "data_inscricao" => date("Y-m-d"),
+                    "licenca_tipo" => $request->apply_about,
+                    "estado" => "Pendente",
+                    "sequencia" => $sequencia,
+                ])->id;
+                $inscricao_type = licenca::class;
+
+            $academic_detail = (object) $request->academic_detail;
+            if( isset($academic_detail) and isset($academic_detail->tipo_escola) and $inscricao_id != null){
+                $dados_academicos = new dados_academicos;
+                $dados_academicos->escola = $academic_detail->escola;
+                $dados_academicos->tipo_escola = $academic_detail->tipo_escola;
+                $dados_academicos->nivel = $academic_detail->nivel;
+                $dados_academicos->ano_frequencia = $academic_detail->ano_frequencia;
+                $dados_academicos->estado = "Estudando";
                 $dados_academicos->model_type = $inscricao_type;
                 $dados_academicos->model_id = $inscricao_id;
                 if($dados_academicos->save()){
