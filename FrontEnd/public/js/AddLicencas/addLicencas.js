@@ -107,11 +107,9 @@ export default{
             this.displayMunicipios.innerHTML = display;
         }
     },
-    async dataSubmitPrepare(about){
+    async dataSubmitPrepare(){
 
         //Creatind data structure
-
-        const apply_about = about;
 
         //Personal Dados
         const personal_datail = {
@@ -166,12 +164,12 @@ export default{
 
         //Identify Data
         const identificao = {
-            file: "",
-            orgao_emissor: "",
-            data_expiracao : "",
-            data_emissao: "",
-            numero: "",
-            tipo_documento,
+            file: document.querySelector("#bi_file").files[0],
+            orgao_emissor: $('input[name="orgao_emissor"]').val(),
+            data_expiracao : $('input[name="data_expiracao_bi"]').val(),
+            data_emissao: $('input[name="data_emissao_bi"]').val(),
+            numero: $('input[name="numero_bi"]').val(),
+            tipo_documento : "",
             descricao: "",
         }
 
@@ -200,19 +198,21 @@ export default{
 
         //Disabled Some Buttons
 
-        const data = await this.dataSubmitPrepare("Licenca");
+        const data = await this.dataSubmitPrepare();
+
+        console.log(data);
 
         //Submit Dados
-        const submit = await request.submitDados(data,token);
+        // const submit = await request.submitDados(data,token);
 
-        if(submit.status != undefined && submit.status === "Ok"){
-            //Registro Feito com Sucesso
-            window.location.href = "/licencas/feito";
-        }
-        else{
+        // if(submit.status != undefined && submit.status === "Ok"){
+        //     //Registro Feito com Sucesso
+        //     window.location.href = "/licencas/feito";
+        // }
+        // else{
 
-            //Erro to Added
-            console.log(submit);
-        }
+        //     //Erro to Added
+        //     console.log(submit);
+        // }
     }
 }
