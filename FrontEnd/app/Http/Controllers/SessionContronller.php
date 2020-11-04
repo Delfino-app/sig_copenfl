@@ -60,6 +60,8 @@ class SessionContronller extends Controller
             //Request
             $dados = ApiRequestController::licencas();
 
+            dd($dados);
+
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 //Token Expire
                 return redirect('/login');
