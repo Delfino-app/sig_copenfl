@@ -15,7 +15,7 @@
 					<li class="bg-dark">
 						<a href="#step-1">
 							<span class="number">1</span> 
-							<span class="info">
+							<span class="info" style="font-size:12px !important">
 								Dados Pessoais
 							</span>
 						</a>
@@ -23,31 +23,39 @@
 					<li>
 						<a href="#step-2">
 							<span class="number">2</span> 
-							<span class="info">
-								Endereço
+							<span class="info" style="font-size:12px !important">
+								Itentificação
 							</span>
 						</a>
 					</li>
 					<li>
 						<a href="#step-3">
-							<span class="number">3</span>
-							<span class="info">
-								Trabalho
+							<span class="number">3</span> 
+							<span class="info" style="font-size:12px !important">
+								Endereço
 							</span>
 						</a>
 					</li>
 					<li>
 						<a href="#step-4">
-							<span class="number">4</span> 
-							<span class="info">
-								Escola
+							<span class="number">4</span>
+							<span class="info" style="font-size:12px !important">
+								Trabalho
 							</span>
 						</a>
 					</li>
 					<li>
 						<a href="#step-5">
 							<span class="number">5</span> 
-							<span class="info">
+							<span class="info" style="font-size:12px !important">
+								Escola
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="#step-6">
+							<span class="number">6</span> 
+							<span class="info" style="font-size:12px !important">
 								Conclusão
 							</span>
 						</a>
@@ -80,6 +88,20 @@
 							<div class="row">
 								<!-- begin col-8 -->
 								<div class="col-xl-12">
+									@include('licenca.forms.frm_addItentificacao')
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<!-- end step-2 -->
+					<!-- begin step-2 -->
+					<div id="step-3">
+						<!-- begin fieldset -->
+						<fieldset>
+							<!-- begin row -->
+							<div class="row">
+								<!-- begin col-8 -->
+								<div class="col-xl-12">
 									@include('licenca.forms.frm_enderecoPessoal')
 								</div>
 							</div>
@@ -87,7 +109,7 @@
 					</div>
 					<!-- end step-2 -->
 					<!-- begin step-3 -->
-					<div id="step-3">
+					<div id="step-4">
 						<!-- begin fieldset -->
 						<fieldset>
 							<!-- begin row -->
@@ -104,7 +126,7 @@
 					</div>
 					<!-- end step-3 -->
 					<!-- begin step-3 -->
-					<div id="step-4">
+					<div id="step-5">
 						<!-- begin fieldset -->
 						<fieldset>
 							<!-- begin row -->
@@ -122,7 +144,7 @@
 					</div>
 					<!-- end step-4 -->
 					<!-- begin step-5 -->
-					<div id="step-5">
+					<div id="step-6">
 						<div class="text-center addLicencaGifContainer" id="addLicencaGifContainer" hidden>
 							<img id="img-gif" src="{{asset('img/ajax-loader.gif')}}">
 							<p>Aguarde...</p>

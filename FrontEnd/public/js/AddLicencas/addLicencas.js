@@ -158,18 +158,31 @@ export default{
             tipo_escola : $('select[name="escola_tipo"]').val(), // pode ser Privada ou Publica
             escola : $('input[name="escola_nome"]').val(), // nome da escola
             nivel : $('select[name="escola_nivel"]').val(), // pode ser Fundamental, Medio ou Superior
-            ano_frequencia : $('input[name="escola_ano_frequencia"]').val(), // ano/anos de frequencia escolar
-            ano_termino : $('input[name="escola_ano_termino"]').val(), // ano que conclui, caso tenha
-            ano_inicio : $('input[name="escola_ano_inicio"]').val(), // ano que inicio a estudar
-            estado : $('select[name="escola_estado"]').val() // pode ser Estudando ou Concluido
+            // ano_frequencia : $('input[name="escola_ano_frequencia"]').val(), // ano/anos de frequencia escolar
+            // ano_termino : $('input[name="escola_ano_termino"]').val(), // ano que conclui, caso tenha
+            // ano_inicio : $('input[name="escola_ano_inicio"]').val(), // ano que inicio a estudar
+            // estado : $('select[name="escola_estado"]').val() // pode ser Estudando ou Concluido
         };
+
+        //Identify Data
+        const identificao = {
+            file: "",
+            orgao_emissor: "",
+            data_expiracao : "",
+            data_emissao: "",
+            numero: "",
+            tipo_documento,
+            descricao: "",
+        }
 
         //Default Data
         const defaultData = {
-            apply_about: apply_about,
+            licenca_tipo : academic_detail.nivel, // pode ser: 'Medio' | 'Licenciatura'
+            local_inscricao : 'Offline',// pode ser: 'Offline' | 'Online'
             personal_datail : personal_datail,
             work_info : work_info,
-            academic_detail : academic_detail
+            academic_detail : academic_detail,
+            identificao: identificao
         }
 
         return defaultData;
