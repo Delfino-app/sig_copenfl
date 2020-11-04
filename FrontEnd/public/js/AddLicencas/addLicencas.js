@@ -169,8 +169,8 @@ export default{
             data_expiracao : $('input[name="data_expiracao_bi"]').val(),
             data_emissao: $('input[name="data_emissao_bi"]').val(),
             numero: $('input[name="numero_bi"]').val(),
-            tipo_documento : "",
-            descricao: "",
+            tipo_documento : 21,
+            descricao: "rueuroeurou",
         }
 
         //Default Data
@@ -200,10 +200,10 @@ export default{
 
         const data = await this.dataSubmitPrepare();
 
-        console.log(data);
-
         //Submit Dados
-        // const submit = await request.submitDados(data,token);
+        const submit = await request.submitDados(data,token);
+
+        console.log(submit);
 
         // if(submit.status != undefined && submit.status === "Ok"){
         //     //Registro Feito com Sucesso

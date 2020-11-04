@@ -24,7 +24,7 @@
 						<a href="#step-2">
 							<span class="number">2</span> 
 							<span class="info" style="font-size:12px !important">
-								Itentificação
+								Identificação
 							</span>
 						</a>
 					</li>
