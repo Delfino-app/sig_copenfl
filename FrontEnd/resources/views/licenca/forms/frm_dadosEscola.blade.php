@@ -9,7 +9,7 @@
 	</div>
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="text-lg-right col-form-label">Escola</label>
-		<input type="text" name="escola_nome" placeholder="Nome da Escola" data-parsley-group="step-5" data-parsley-required="true" class="form-control" />
+		<input type="text" name="escola_nome" placeholder="Nome da Escola" data-parsley-group="step-5" data-parsley-required="false" class="form-control" />
 	</div>
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="col-form-label">Nível<span class="text-danger">*</span></label>
