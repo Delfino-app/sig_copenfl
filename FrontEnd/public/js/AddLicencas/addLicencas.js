@@ -273,7 +273,25 @@ export default{
             returnData.status = 400;
             returnData.messageError = "A data de Emissão do Bilhete de Identidade não pode ser maior que a data de validade.";
         }
-        
+
+        //Endereço Pessoal Data  = Required All False
+        else if((personal_datail.contact.telefone.length <= 0)){
+
+            returnData.status = 400;
+            returnData.messageError = "O número de telefone do Candidato deve ser informado";
+        }
+        else if((personal_datail.address.municipio_id <= 0)){
+
+            returnData.status = 400;
+            returnData.messageError = "O Município onde reside o Candidato deve ser informado";
+        }
+
+        else if((personal_datail.contact.telefone.length > 9)){
+
+            returnData.status = 400;
+            returnData.messageError = "O número de telefone do Candidato é inválido";
+        }
+
         return returnData;
     }
 }
