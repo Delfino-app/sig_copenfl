@@ -13,10 +13,10 @@
 	</div>
     <div class="form-group col-lg-3 col-sm-6">
 		<label class="text-lg-right col-form-label">Date de Emissão</label>
-		<input type="date" name="data_emissao_bi" placeholder="Carregar arquivo" data-parsley-group="step-2" data-parsley-required="true" class="form-control" />
+		<input type="date" name="data_emissao_bi" placeholder="Carregar arquivo" data-parsley-group="step-2" data-parsley-required="false" class="form-control" />
 	</div>
     <div class="form-group col-lg-3 col-sm-6">
 		<label class="text-lg-right col-form-label">Date de Validade</label>
-		<input type="date" name="data_expiracao_bi" placeholder="Carregar arquivo" data-parsley-group="step-2" data-parsley-required="true" class="form-control" />
+		<input type="date" name="data_expiracao_bi" placeholder="Carregar arquivo" data-parsley-group="step-2" data-parsley-required="false" class="form-control" />
 	</div>
 </div>

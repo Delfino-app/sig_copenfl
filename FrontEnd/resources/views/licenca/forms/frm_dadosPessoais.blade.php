@@ -9,7 +9,7 @@
 	</div>-->
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="col-form-label">Nome Completo</label>
-		<input type="text" name="nome" placeholder="Nome Completo" required="true" class="form-control"/>
+		<input type="text" name="nome" placeholder="Nome Completo" class="form-control" data-parsley-group="step-1" data-parsley-required="true" required/>
 	</div>
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="text-lg-right col-form-label">Nome Completo(Pai)</label>
@@ -21,7 +21,7 @@
 	</div>
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="text-lg-right col-form-label">Data de Nascimento<span class="text-danger">&nbsp;</span></label>
-		<input type="date" name="data_nascimento" placeholder="Smith" data-parsley-group="step-1" data-parsley-required="true" class="form-control" required/>
+		<input type="date" name="data_nascimento" placeholder="Smith" data-parsley-group="step-1" data-parsley-required="false" class="form-control" required/>
 	</div>
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="text-lg-right col-form-label">Nacionalidade</label>

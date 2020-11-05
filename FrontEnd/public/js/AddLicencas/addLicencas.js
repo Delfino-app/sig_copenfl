@@ -225,9 +225,9 @@ export default{
     async validateDatas(data){
 
         const personal_datail = data.personal_datail;
+        const identificacao = data.identificacao;
         const work_info =  data.work_info;
         const academic_detail = data.academic_detail;
-        const identificacao = data.identificacao;
         const licenca_tipo = data.licenca_tipo;
         const local_inscricao = data.local_inscricao;
 
@@ -237,21 +237,41 @@ export default{
 
 
         //Personal Data = Required All True
-        if((personal_datail.nome === "") || 
-            (personal_datail.pai === "") || 
-            (personal_datail.mae === "") || 
-            (personal_datail.nacionalidade_id === "0") || 
-            (personal_datail.nacionalidade_id === "") || 
-            (personal_datail.data_nascimento === "") || 
-            (personal_datail.naturalidade_id === "0") || 
-            (personal_datail.naturalidade_id === "") || 
-            (personal_datail.estado_civil === "0") || 
-            (personal_datail.estado_civil === "")||
-            (personal_datail.genero === "0") ||
-            (personal_datail.genero === "")){
+        if((personal_datail.nome.length <= 0) || 
+            (personal_datail.pai.length <= 0) || 
+            (personal_datail.mae.length <= 0) || 
+            (personal_datail.nacionalidade_id.length <= 0) || 
+            (personal_datail.data_nascimento.length <= 0 ) || 
+            (personal_datail.naturalidade_id.length <= 0) || 
+            (personal_datail.estado_civil.length <= 0) ||
+            (personal_datail.genero.length <= 0)){
 
             returnData.status = 400;
             returnData.messageError = "Todos os Campos dos Dados Pessoais devem ser preenchidos.";
+        }
+
+        //Identificacao Data  = Required All False
+        else if((identificacao.numero.length != 14)){
+
+            returnData.status = 400;
+            returnData.messageError = "O número do Bilhete de Identidade esta incorreto.";
+        }
+        else if((identificacao.data_emissao.length <= 0)){
+
+            returnData.status = 400;
+            returnData.messageError = "A data de emissão do Bilhete de Identidade deve ser inserido.";
+        }
+
+        else if((identificacao.data_expiracao.length <= 0)){
+
+            returnData.status = 400;
+            returnData.messageError = "A data de validade do Bilhete de Identidade deve ser inserido.";
+        }
+
+        else if(identificacao.data_emissao > identificacao.data_expiracao){
+
+            returnData.status = 400;
+            returnData.messageError = "A data de Emissão do Bilhete de Identidade não pode ser maior que a data de validade.";
         }
         
         return returnData;
