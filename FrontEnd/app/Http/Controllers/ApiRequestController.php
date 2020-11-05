@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 class ApiRequestController extends Controller
 {
     //Lista Licencas
-    public static function licencas(){
+    public static function licencas($estado){
 
         $token = Session::get('access_token');
 
@@ -34,7 +34,7 @@ class ApiRequestController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
         );
 
-        $ch = curl_init(DOMINIO_API."/api/v1/candidato/index/licenca/pendente");
+        $ch = curl_init(DOMINIO_API."/api/v1/candidato/index/licenca/".$estado);
 
         curl_setopt_array($ch, $options);
 

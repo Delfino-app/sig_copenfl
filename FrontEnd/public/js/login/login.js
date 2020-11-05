@@ -66,6 +66,8 @@ export default{
 
             dados._api_token = makeLogin.access_token;
 
+            dados.name = makeLogin.user.name;
+
             //Submit Session
             const makeSession = await requests.session(dados);
 

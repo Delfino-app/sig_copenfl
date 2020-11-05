@@ -36,7 +36,7 @@
                         <span class="col-lg-2">4. Nacionalidade</span>
                         <p class="col-lg-2">{{$candidato->nacionalidade}}</p>
                         <span class="col-lg-2">5. Naturalidade</span>
-                        <p class="col-lg-2">{{$candidato->naturalidade->municipio}}</p>
+                        <p class="col-lg-2">{{$candidato->naturalidade->provincia}} - {{$candidato->naturalidade->municipio}}</p>
                         <span class="col-lg-2" style="margin-top:5px">6. Gênero</span>
                         <p class="col-lg-2" style="margin-top:5px">{{$candidato->genero}}</p>
                         <span class="col-lg-2" style="margin-top:5px">7. Estado Civil</span>

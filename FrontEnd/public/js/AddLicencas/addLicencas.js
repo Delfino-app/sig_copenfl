@@ -163,7 +163,7 @@ export default{
         };
 
         //Identify Data
-        const identificao = {
+        const identificacao = {
             file: document.querySelector("#bi_file").files[0],
             orgao_emissor: $('input[name="orgao_emissor"]').val(),
             data_expiracao : $('input[name="data_expiracao_bi"]').val(),
@@ -180,7 +180,7 @@ export default{
             personal_datail : personal_datail,
             work_info : work_info,
             academic_detail : academic_detail,
-            identificao: identificao
+            identificacao: identificacao
         }
 
         return defaultData;
@@ -192,27 +192,68 @@ export default{
         //Get Token
         const token = $('input[name="recividToken"]').val();
 
-        //Add Preload Gif
-        $("#addLicencaGifContainer").removeAttr("hidden");
-        $("#submitLicencaGifContainer").hide();
-
         //Disabled Some Buttons
-
         const data = await this.dataSubmitPrepare();
 
-        //Submit Dados
-        const submit = await request.submitDados(data,token);
 
-        console.log(submit);
+        const validateData = await this.validateDatas(data);
 
-        // if(submit.status != undefined && submit.status === "Ok"){
-        //     //Registro Feito com Sucesso
-        //     window.location.href = "/licencas/feito";
-        // }
-        // else{
+        if(validateData.status === 200){
 
-        //     //Erro to Added
-        //     console.log(submit);
-        // }
+            //Add Preload Gif
+            $("#addLicencaGifContainer").removeAttr("hidden");
+            $("#submitLicencaGifContainer").hide();
+
+            const submit = await request.submitDados(data,token);
+
+            if(submit.status != undefined && submit.status === "Ok"){
+                //Registro Feito com Sucesso
+                window.location.href = "/licencas/feito";
+            }
+            else{
+
+                //Erro to Added
+                alert("Houve algum erro inesperado. Tente mais tarde ou contacte o Suporte.");
+                console.log(submit);
+            }        
+        }
+        else{
+
+            alert(validateData.messageError);
+        }
+    },
+    async validateDatas(data){
+
+        const personal_datail = data.personal_datail;
+        const work_info =  data.work_info;
+        const academic_detail = data.academic_detail;
+        const identificacao = data.identificacao;
+        const licenca_tipo = data.licenca_tipo;
+        const local_inscricao = data.local_inscricao;
+
+
+        //Default Return
+        const returnData = {status:200,messageError:'success!'};
+
+
+        //Personal Data = Required All True
+        if((personal_datail.nome === "") || 
+            (personal_datail.pai === "") || 
+            (personal_datail.mae === "") || 
+            (personal_datail.nacionalidade_id === "0") || 
+            (personal_datail.nacionalidade_id === "") || 
+            (personal_datail.data_nascimento === "") || 
+            (personal_datail.naturalidade_id === "0") || 
+            (personal_datail.naturalidade_id === "") || 
+            (personal_datail.estado_civil === "0") || 
+            (personal_datail.estado_civil === "")||
+            (personal_datail.genero === "0") ||
+            (personal_datail.genero === "")){
+
+            returnData.status = 400;
+            returnData.messageError = "Todos os Campos dos Dados Pessoais devem ser preenchidos.";
+        }
+        
+        return returnData;
     }
 }

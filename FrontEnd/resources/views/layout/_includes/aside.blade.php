@@ -11,7 +11,7 @@
 					</div>
 					<div class="info">
 						{{$name}}
-						<small>Recepcionista</small>
+						<small></small>
 					</div>
 				</a>
 			</li>
