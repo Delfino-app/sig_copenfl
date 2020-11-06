@@ -388,20 +388,20 @@ class CandidatoCtrl extends Controller
             if( isset($work_info) and isset($work_info->contact)){
                 $work_info_contact = (object) $work_info->contact;
                 $candidato->contacto()->create([
-                        "telefone" => $work_info_contact->telefone,
-                        "email" => $work_info_contact->email,
-                        'caixa_postal' => $work_info_contact->caixa_postal,
-                        'fax' => $work_info_contact->fax,
+                        "telefone" => $work_info_contact->telefone?? null,
+                        "email" => $work_info_contact->email?? null,
+                        'caixa_postal' => $work_info_contact->caixa_postal?? null,
+                        'fax' => $work_info_contact->fax?? null,
                         'tipo' => "Trabalho", 
                 ]);
             }
             if(isset($work_info) and isset($work_info->address)){
                 $work_info_adderess =  (object) $work_info->address;
                 $candidato->endereco()->create([
-                        "municipio_id" => $work_info_adderess->municipio_id,
-                        "bairro" => $work_info_adderess->bairro,
-                        'rua' => $work_info_adderess->rua,
-                        'casa' => $work_info_adderess->casa,
+                        "municipio_id" => $work_info_adderess->municipio_id?? null,
+                        "bairro" => $work_info_adderess->bairro?? null,
+                        'rua' => $work_info_adderess->rua?? null,
+                        'casa' => $work_info_adderess->casa?? null,
                         'tipo' => "Trabalho", 
                 ]);
             }
@@ -409,20 +409,20 @@ class CandidatoCtrl extends Controller
             if(isset($personal_datail->contact)){
                 $personal_datail_contact = (object) $personal_datail->contact;
                 $candidato->contacto()->create([
-                        "telefone" => $personal_datail_contact->telefone,
-                        "email" => $personal_datail_contact->email,
-                        'caixa_postal' => $personal_datail_contact->caixa_postal,
-                        'fax' => $personal_datail_contact->fax,
+                        "telefone" => $personal_datail_contact->telefone?? null,
+                        "email" => $personal_datail_contact->email?? null,
+                        'caixa_postal' => $personal_datail_contact->caixa_postal?? null,
+                        'fax' => $personal_datail_contact->fax?? null,
                         'tipo' => "Residencia", 
                 ]);
             }
             if( isset($personal_datail->address)){
                 $personal_datail_address = (object) $personal_datail->address;
                 $candidato->endereco()->create([
-                        "municipio_id" => $personal_datail_address->municipio_id,
-                        "bairro" => $personal_datail_address->bairro,
-                        'rua' => $personal_datail_address->rua,
-                        'casa' => $personal_datail_address->casa,
+                        "municipio_id" => $personal_datail_address->municipio_id?? null,
+                        "bairro" => $personal_datail_address->bairro?? null,
+                        'rua' => $personal_datail_address->rua?? null,
+                        'casa' => $personal_datail_address->casa?? null,
                         'tipo' => "Residencia", 
                 ]);
             } 
@@ -436,8 +436,8 @@ class CandidatoCtrl extends Controller
                 $inscricao_id = $candidato->licenca()->create([
                     "numero" => "L/".Str::random(4)."/".date("Y"),
                     "data_inscricao" => Date("Y-m-d"),
-                    "licenca_tipo" => $request->licenca_tipo,
-                    "local_inscricao" => $request->local_inscricao,
+                    "licenca_tipo" => $request->licenca_tipo?? null,
+                    "local_inscricao" => $request->local_inscricao?? null,
                     "estado" => "Pendente",
                     "sequencia" => $sequencia,
                 ])->id;
@@ -446,13 +446,13 @@ class CandidatoCtrl extends Controller
             $academic_detail = (object) $request->academic_detail;
             if( isset($academic_detail) and isset($academic_detail->tipo_escola) and $inscricao_id != null){
                 $dados_academicos = new dados_academicos;
-                $dados_academicos->escola = $academic_detail->escola;
-                $dados_academicos->tipo_escola = $academic_detail->tipo_escola;
-                $dados_academicos->nivel = $academic_detail->nivel;
-                $dados_academicos->ano_frequencia = $academic_detail->ano_frequencia;
+                $dados_academicos->escola = $academic_detail->escola?? null;
+                $dados_academicos->tipo_escola = $academic_detail->tipo_escola?? null;
+                $dados_academicos->nivel = $academic_detail->nivel?? null;
+                $dados_academicos->ano_frequencia = $academic_detail->ano_frequencia?? null;
                 $dados_academicos->estado = "Estudando";
-                $dados_academicos->model_type = $inscricao_type;
-                $dados_academicos->model_id = $inscricao_id;
+                $dados_academicos->model_type = $inscricao_type?? null;
+                $dados_academicos->model_id = $inscricao_id?? null;
                 if($dados_academicos->save()){
                     return response()->json([
                         'status' => "Ok",
