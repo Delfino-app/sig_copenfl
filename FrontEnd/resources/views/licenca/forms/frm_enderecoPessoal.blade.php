@@ -6,21 +6,21 @@
 		<div class="content_address row">
 			<div class="form-group col-lg-6 col-sm-12">
 				<label class="text-lg-right col-form-label">Município</label>
-				<select data-parsley-group="step-2" data-parsley-required="true" class="form-control" id="endereco_municipio" name="endereco_municipio">
+				<select data-parsley-group="step-3" data-parsley-required="true" class="form-control" id="endereco_municipio" name="endereco_municipio">
 					<option class="selectDefault" value="0">Selecionar</option>
 				</select>
 			</div>
 			<div class="form-group col-lg-6 col-sm-12">
 				<label class="text-lg-right col-form-label">Bairro</label>
-				<input type="text" name="endereco_bairro" placeholder="Bairro" data-parsley-group="step-2" data-parsley-required="false" class="form-control" />
+				<input type="text" name="endereco_bairro" placeholder="Bairro" data-parsley-group="step-3" data-parsley-required="false" class="form-control" />
 			</div>
 			<div class="form-group col-lg-6 col-sm-12">
 				<label class="col-form-label">Rua</label>
-				<input type="text" name="endereco_rua" placeholder="Rua" data-parsley-group="step-2" data-parsley-required="false" class="form-control" />
+				<input type="text" name="endereco_rua" placeholder="Rua" data-parsley-group="step-3" data-parsley-required="false" class="form-control" />
 			</div>
 			<div class="form-group col-lg-6 col-sm-12">
 				<label class="text-lg-right col-form-label">Casa nº</label>
-				<input type="number" name="endereco_casa" placeholder="Casa nº" data-parsley-group="step-2" data-parsley-required="false" class="form-control" />
+				<input type="number" name="endereco_casa" placeholder="Casa nº" data-parsley-group="step-3" data-parsley-required="false" class="form-control" />
 			</div>
 		</div>
 	</div>
@@ -31,19 +31,19 @@
 		<div class="content_address row">
 			<div class="form-group col-lg-6 col-sm-12">
 				<label class="text-lg-right col-form-label">Telefone</label>
-				<input type="number" name="endereco_telefone" placeholder="Telefone" data-parsley-group="step-2" data-parsley-required="true" class="form-control" />
+				<input type="number" name="endereco_telefone" placeholder="Telefone" data-parsley-group="step-3" data-parsley-required="true" class="form-control" />
 			</div>
 			<div class="form-group col-lg-6 col-sm-12">
 				<label class="text-lg-right col-form-label">Email</label>
-				<input type="email" name="endereco_email" placeholder="Email" data-parsley-group="step-2" data-parsley-required="true" class="form-control" />
+				<input type="email" name="endereco_email" placeholder="Email" data-parsley-group="step-3" data-parsley-required="true" class="form-control" />
 			</div>
 			<div class="form-group col-lg-6 col-sm-12">
 				<label class="text-lg-right col-form-label">Caixa Postal</label>
-				<input type="text" name="endereco_caixa_postal" placeholder="Caixa Postal" data-parsley-group="step-2" data-parsley-required="false" class="form-control" />
+				<input type="text" name="endereco_caixa_postal" placeholder="Caixa Postal" data-parsley-group="step-3" data-parsley-required="false" class="form-control" />
 			</div>
 			<div class="form-group col-lg-6 col-sm-12">
 				<label class="text-lg-right col-form-label">Fax</label>
-				<input type="text" name="endereco_fax" placeholder="Fax" data-parsley-group="step-2" data-parsley-required="false" class="form-control" />
+				<input type="text" name="endereco_fax" placeholder="Fax" data-parsley-group="step-3" data-parsley-required="false" class="form-control" />
 			</div>		
 		</div>
 	</div>

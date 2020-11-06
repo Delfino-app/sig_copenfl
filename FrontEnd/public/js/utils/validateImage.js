@@ -40,6 +40,45 @@ export default{
 		}
 
 		return retorno;
+	},
+	validateFilepdf(file){
+
+		const pdf = file;
+
+		const pdf_name = pdf.name;
+		const pdf_extension = pdf_name.split('.').pop().toLowerCase();
+		const extension_valida = ['pdf'];
+
+		const pdf_size = pdf.size;
+
+		//Retorno 
+		const retorno = {
+
+			status:'',
+			info:'',
+			message:''
+		}
+
+		//Validar Exetensão
+		if(jQuery.inArray(img_extension,extension_valida) == -1){
+
+			retorno.status = 400;
+			retorno.info = 'Ficheiro inválido.';
+			retorno.message = `São apenas permitidos ficheiros do tipo PDF`;
+		}
+		else if(img_size > 2000000){
+
+			retorno.status = 400;
+			retorno.info = 'Ficheiro muito grande.';
+			retorno.message = `O tamanho do arquivo não pode ser superior a 2MB`;
+		}
+		else{
+			
+			//True
+			retorno.status = 200;
+		}
+
+		return retorno;
 	}
 }
 

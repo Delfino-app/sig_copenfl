@@ -107,11 +107,9 @@ export default{
             this.displayMunicipios.innerHTML = display;
         }
     },
-    async dataSubmitPrepare(about){
+    async dataSubmitPrepare(){
 
         //Creatind data structure
-
-        const apply_about = about;
 
         //Personal Dados
         const personal_datail = {
@@ -158,18 +156,31 @@ export default{
             tipo_escola : $('select[name="escola_tipo"]').val(), // pode ser Privada ou Publica
             escola : $('input[name="escola_nome"]').val(), // nome da escola
             nivel : $('select[name="escola_nivel"]').val(), // pode ser Fundamental, Medio ou Superior
-            ano_frequencia : $('input[name="escola_ano_frequencia"]').val(), // ano/anos de frequencia escolar
-            ano_termino : $('input[name="escola_ano_termino"]').val(), // ano que conclui, caso tenha
-            ano_inicio : $('input[name="escola_ano_inicio"]').val(), // ano que inicio a estudar
-            estado : $('select[name="escola_estado"]').val() // pode ser Estudando ou Concluido
+            // ano_frequencia : $('input[name="escola_ano_frequencia"]').val(), // ano/anos de frequencia escolar
+            // ano_termino : $('input[name="escola_ano_termino"]').val(), // ano que conclui, caso tenha
+            // ano_inicio : $('input[name="escola_ano_inicio"]').val(), // ano que inicio a estudar
+            // estado : $('select[name="escola_estado"]').val() // pode ser Estudando ou Concluido
         };
+
+        //Identify Data
+        const identificao = {
+            file: document.querySelector("#bi_file").files[0],
+            orgao_emissor: $('input[name="orgao_emissor"]').val(),
+            data_expiracao : $('input[name="data_expiracao_bi"]').val(),
+            data_emissao: $('input[name="data_emissao_bi"]').val(),
+            numero: $('input[name="numero_bi"]').val(),
+            tipo_documento : 21,
+            descricao: "rueuroeurou",
+        }
 
         //Default Data
         const defaultData = {
-            apply_about: apply_about,
+            licenca_tipo : academic_detail.nivel, // pode ser: 'Medio' | 'Licenciatura'
+            local_inscricao : 'Offline',// pode ser: 'Offline' | 'Online'
             personal_datail : personal_datail,
             work_info : work_info,
-            academic_detail : academic_detail
+            academic_detail : academic_detail,
+            identificao: identificao
         }
 
         return defaultData;
@@ -187,19 +198,21 @@ export default{
 
         //Disabled Some Buttons
 
-        const data = await this.dataSubmitPrepare("Licenca");
+        const data = await this.dataSubmitPrepare();
 
         //Submit Dados
         const submit = await request.submitDados(data,token);
 
-        if(submit.status != undefined && submit.status === "Ok"){
-            //Registro Feito com Sucesso
-            window.location.href = "/licencas/feito";
-        }
-        else{
+        console.log(submit);
 
-            //Erro to Added
-            console.log(submit);
-        }
+        // if(submit.status != undefined && submit.status === "Ok"){
+        //     //Registro Feito com Sucesso
+        //     window.location.href = "/licencas/feito";
+        // }
+        // else{
+
+        //     //Erro to Added
+        //     console.log(submit);
+        // }
     }
 }

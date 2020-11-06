@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="col-form-label">Tipo Escola<span class="text-danger">*</span></label>
-		<select class="form-control" name="escola_tipo">
+		<select data-parsley-group="step-5" data-parsley-required="true" class="form-control" name="escola_tipo">
 			<option value="0">Selecionar</option>
 			<option value="Publica">Pública</option>
 			<option value="Privada">Privada</option>
@@ -9,17 +9,17 @@
 	</div>
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="text-lg-right col-form-label">Escola</label>
-		<input type="text" name="escola_nome" placeholder="Nome da Escola" data-parsley-group="step-4" data-parsley-required="true" class="form-control" />
+		<input type="text" name="escola_nome" placeholder="Nome da Escola" data-parsley-group="step-5" data-parsley-required="true" class="form-control" />
 	</div>
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="col-form-label">Nível<span class="text-danger">*</span></label>
-		<select class="form-control" name="escola_nivel">
+		<select data-parsley-group="step-5" data-parsley-required="true" class="form-control" name="escola_nivel">
 			<option value="0">Selecionar</option>
 			<option value="Medio">Médio</option>
-			<option value="Superior">Superior</option>
+			<option value="Licenciatura">Superior</option>
 		</select>
 	</div>
-	<div class="form-group col-lg-4 col-sm-6">
+	<!-- <div class="form-group col-lg-4 col-sm-6">
 		<label class="text-lg-right col-form-label">Ano de Frequência</label>
 		<input type="number" name="escola_ano_frequencia" placeholder="Ano de Frequência" data-parsley-group="step-4" data-parsley-required="true" class="form-control" />
 	</div>
@@ -38,5 +38,5 @@
 			<option value="Estudando">Estudando</option>
 			<option value="Concluido">Concluído</option>
 		</select>
-	</div>
+	</div> -->
 </div>
