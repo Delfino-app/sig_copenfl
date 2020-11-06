@@ -17,46 +17,18 @@
         <div class="doc-em-falta-container">
             <h3 class="semi-text-title">Documentos em falta</h3>
             <div class="row doc-container">
-                <div class="col-lg-12 content-doc-list-container">
-                    <div class="content-doc-list">
-                        <p class="doc-list-title">
-                            <span class="doc-list-number doc-not-add">1</span>
-                            Declração de ano de frequência
-                       </p>
-                    </div>
-                </div>
-                <div class="col-lg-12 content-doc-list-container">
-                    <div class="content-doc-list">
-                        <p class="doc-list-title">
-                            <span class="doc-list-number doc-not-add">2</span>
-                            Cópia do Bilhete de Identidade
-                       </p>
-                    </div>
-                </div>
-                <div class="col-lg-12 content-doc-list-container">
-                    <div class="content-doc-list">
-                        <p class="doc-list-title">
-                            <span class="doc-list-number doc-not-add">3</span>
-                            3 Fotográfias tipo passe
-                       </p>
-                    </div>
-                </div>
-                <div class="col-lg-12 content-doc-list-container">
-                    <div class="content-doc-list">
-                        <p class="doc-list-title">
-                            <span class="doc-list-number doc-not-add">4</span>
-                            Cópia autênticada do certificado da 12ª classe
-                       </p>
-                    </div>
-                </div>
-                <div class="col-lg-12 content-doc-list-container">
-                    <div class="content-doc-list">
-                        <p class="doc-list-title">
-                            <span class="doc-list-number doc-not-add">5</span>
-                            Cópia do nº de cartão de contribuente
-                       </p>
-                    </div>
-                </div>
+                @if(!empty($docs))
+                    @foreach($docs as $doc)
+                        <div class="col-lg-12 content-doc-list-container">
+                            <div class="content-doc-list">
+                                <p class="doc-list-title">
+                                    <span class="doc-list-number doc-not-add">1</span>
+                                    {{$doc->nome}}
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

@@ -15,11 +15,11 @@
 								A primeira etapa do registro foi concluída com sucesso, faltando apenas anexar os documentos.
 							</p>
 							<hr>
-							<a class="btn btn-destaque" style="color:white" href="{{route('licenca.add.documentos')}}">
+							<a class="btn btn-destaque" style="color:white" href="{{route('licenca.add.documentos',$id)}}">
 								<i class="ion-md-attach" style="font-size:14px;padding-right:5px"></i>
 								Anexar Documentos
 							</a>
-							<a target="_blank" href="{{route('licenca.recibo',1)}}" class="btn btn-primary" style="color:white">
+							<a target="_blank" href="{{route('licenca.recibo',$id)}}" class="btn btn-primary" style="color:white">
 								<i class="ion-ios-list" style="font-size:14px;padding-right:5px"></i>
 								Gerar Pré-Recibo
 							</a>

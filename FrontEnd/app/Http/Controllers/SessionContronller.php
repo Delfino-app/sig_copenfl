@@ -60,8 +60,6 @@ class SessionContronller extends Controller
             //Request
             $dados = ApiRequestController::licencas("Pendente");
 
-            dd($dados);
-
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 //Token Expire
                 return redirect('/login');
@@ -95,14 +93,24 @@ class SessionContronller extends Controller
     }
 
     //Nova Licenca (Registro) Added
-    public function licencaAdded(){
+    public function licencaAdded($id){
 
         if(Session::has(['name','email','access_token'])){
 
             $name = Session::get('name');
             $token = Session::get('access_token');
-            
-            return view('licenca.RegistroFeito',['name' => $name,'token' => $token]);
+
+            $dados = ApiRequestController::vercandidato($id);
+
+            if(!empty($dados) && isset($dados->candidatos)){
+
+                return view('licenca.RegistroFeito',['name' => $name,'token' => $token,'id' => $id]);
+            }
+            else{
+
+                //Not Found
+                return redirect('404');
+            }
         }
         else{
 
@@ -145,11 +153,34 @@ class SessionContronller extends Controller
             else{
 
                 //Validate Candidato
-                if(isset($dados->candidato)){
+                if(isset($dados->candidatos)){
 
-                    $candidato = $dados->candidato;
+                    $candidato = $dados->candidatos;
 
-                    return view('licenca.ver',['name' => $name,'token' => $token, 'candidato' => $candidato]);
+                    $docs = [];
+
+                    //Validate Show Documentos
+                    if(isset($candidato->inscricao->licenca->academic_data)){
+
+                        $tipoDoc = $candidato->inscricao->licenca->academic_data->nivel;
+
+                        if($tipoDoc == "Medio"){
+
+                            $tipoDoc = "Medio_Estudando";
+                        }
+                        elseif($tipoDoc == "Superior"){
+
+                            $tipoDoc = "Licenciatura_Estudando";
+                        }
+
+                        //View List Docs
+                        $doc = ApiRequestController::lisDocs($tipoDoc);
+
+                        $docs = isset($doc->documentos) ? $doc->documentos : [];
+
+                    }
+
+                    return view('licenca.ver',['name' => $name,'token' => $token, 'candidato' => $candidato, 'docs' => $docs]);
                 }
                 else{
 
