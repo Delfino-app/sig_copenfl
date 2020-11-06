@@ -11,61 +11,21 @@
                         <div class="doc-em-falta-container">
                             <h3 class="semi-text-title">Documentos</h3>
                             <div class="row doc-container">
-                                <div class="col-lg-12 content-doc-list-container">
-                                    <div class="content-doc-list">
-                                        <p class="doc-list-title">
-                                            <label title="Clique para adicionar" class="lbl_addDoc" for="b_i">
-                                                <span class="doc-list-number doc-not-add">1</span>
-                                                Cópia do Bilhete de Identidade
-                                                <input type="file" id="b_i" name="b_i" hidden required>
-                                            </label>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 content-doc-list-container">
-                                    <div class="content-doc-list">
-                                        <p class="doc-list-title">
-                                            <label title="Clique para adicionar" class="lbl_addDoc" for="Declaracao_Frequencia">
-                                                <span class="doc-list-number doc-not-add">2</span>
-                                                Declração de ano de frequência
-                                                <input type="file" id="Declaracao_Frequencia" name="Declaracao_Frequencia" hidden required>
-                                            </label>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 content-doc-list-container">
-                                    <div class="content-doc-list">
-                                        <p class="doc-list-title"> 
-                                            <label title="Clique para adicionar" class="lbl_addDoc" for="3_fotos">
-                                                <span class="doc-list-number doc-not-add">3</span>
-                                                3 Fotográfias tipo passe
-                                                <input type="file" id="3_fotos" name="3_fotos" hidden required>
-                                            </label>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 content-doc-list-container">
-                                    <div class="content-doc-list">
-                                        <p class="doc-list-title">
-                                            <label title="Clique para adicionar" class="lbl_addDoc" for="copia_certificado">
-                                                <span class="doc-list-number doc-not-add">4</span>
-                                                Cópia autênticada do certificado da 12ª classe
-                                                <input type="file" id="copia_certificado" name="copia_certificado" hidden required>
-                                            </label>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 content-doc-list-container">
-                                    <div class="content-doc-list">
-                                        <p class="doc-list-title">
-                                            <label title="Clique para adicionar" class="lbl_addDoc" for="copia_cartao_contribuente">
-                                                <span class="doc-list-number doc-not-add">5</span>
-                                                Cópia do nº de cartão de contribuente
-                                                <input type="file" id="copia_cartao_contribuente" name="copia_cartao_contribuente" hidden required>
-                                            </label>
-                                        </p>
-                                    </div>
-                                </div>
+                                @if(!empty($docs))
+                                    @foreach($docs as $doc)
+                                        <div class="col-lg-12 content-doc-list-container">
+                                            <div class="content-doc-list">
+                                                <p class="doc-list-title">
+                                                    <label title="Clique para adicionar" class="lbl_addDoc" for="Declaracao_Frequencia">
+                                                        <span class="doc-list-number doc-not-add">2</span>
+                                                        {{$doc->nome}}
+                                                        <input type="file" id="Declaracao_Frequencia" name="Declaracao_Frequencia" hidden required>
+                                                    </label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>

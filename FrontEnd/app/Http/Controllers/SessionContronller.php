@@ -119,14 +119,56 @@ class SessionContronller extends Controller
     }
 
     //Nova Licenca (Add Doc) View
-    public function licencaAddDoc(){
+    public function licencaAddDoc($id){
 
         if(Session::has(['name','email','access_token'])){
 
             $name = Session::get('name');
             $token = Session::get('access_token');
-            
-            return view('licenca.addDoc',['name' => $name,'token' => $token]);
+
+            $dados = ApiRequestController::vercandidato($id);
+
+            if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
+                //Token Expire
+                return redirect('/login');
+            }
+            else{
+
+                //Validate Candidato
+                if(isset($dados->candidatos)){
+
+                    $candidato = $dados->candidatos;
+
+                    $docs = [];
+
+                    //Validate Show Documentos
+                    if(isset($candidato->inscricao->licenca->academic_data)){
+
+                        $tipoDoc = $candidato->inscricao->licenca->academic_data->nivel;
+
+                        if($tipoDoc == "Medio"){
+
+                            $tipoDoc = "Medio_Estudando";
+                        }
+                        elseif($tipoDoc == "Superior"){
+
+                            $tipoDoc = "Licenciatura_Estudando";
+                        }
+
+                        //View List Docs
+                        $doc = ApiRequestController::lisDocs($tipoDoc);
+
+                        $docs = isset($doc->documentos) ? $doc->documentos : [];
+                    }
+
+                    return view('licenca.addDoc',['name' => $name,'token' => $token,'docs' => $docs]);
+                }
+                else{
+
+                    //404 Not Found
+                    return redirect('/404');
+                }
+            }     
         }
         else{
 
@@ -197,7 +239,6 @@ class SessionContronller extends Controller
 
     //Editar Dados Licenca View
     public function editLicenca($id){
-
 
     }
 
