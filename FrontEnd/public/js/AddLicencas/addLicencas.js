@@ -302,8 +302,6 @@ export default{
             returnData.messageError = "Selecione o Nível de Escola do Candidato deve ser ";
         }
 
-        console.log(academic_detail.tipo_escola.length);
-
         return returnData;
     }
 }

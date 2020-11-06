@@ -30,9 +30,13 @@
 										<th width="1%" data-orderable="false">
 										</th>
 										<th class="text-nowrap">Nome</th>
-										<th class="text-nowrap">Telefone</th>
-										<th class="text-nowrap">Nível acadêmico</th>
-										<th class="text-nowrap" data-orderable="false"></th>
+										<th class="text-nowrap">Gênero</th>
+										<th class="text-nowrap">Naturalidade</th>
+										<th class="text-nowrap" data-orderable="false">Telefone</th>
+										<th class="text-nowrap">Nº Inscrição</th>
+										<th class="text-nowrap">Estado</th>
+										<th class="text-nowrap" data-orderable="false">Acção</th>
+										<th width="0%"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -46,9 +50,13 @@
 													<img src="{{asset('img/default.jpg')}}" class="img-rounded height-30" />
 												</td>
 												<td>{{$candidato->nome}}</td>
+												<td>{{$candidato->genero}}</td>
+												<td>{{$candidato->naturalidade->provincia}} - {{$candidato->naturalidade->municipio}}</td>
 												<td>{{$candidato->residencia->telefone}}</td>
-												<td>#</td>
+												<td>{{$candidato->inscricao->numero}}</td>
+												<td>{{$candidato->inscricao->estado}}</td>
 												<td>
+													<p>
 													<a href="{{route('licenca.ver',$candidato->id)}}" title="Ver detalhes" class="btn btn-success btn-action">
 														<i class="ion-md-eye"></i>
 													</a>
@@ -58,7 +66,9 @@
 													<a href="#" reference ="{{route('licenca.eliminar',$candidato->id)}}" data-toggle="modal" data-target="#modalLicenca" title="Eliminar" class="btn btn-danger btn-action teste">
 														<i class="ion-md-trash"></i>
 													</a>
+													</p>
 												</td>
+												<td></td>
 											</tr>
 										@endforeach
 									@endif
