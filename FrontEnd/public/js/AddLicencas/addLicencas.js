@@ -208,7 +208,9 @@ export default{
 
             if(submit.status != undefined && submit.status === "Ok"){
                 //Registro Feito com Sucesso
-                window.location.href = "/licencas/feito";
+                // window.location.href = "/licencas/feito";
+
+                console.log(submit);
             }
             else{
 
