@@ -11,7 +11,7 @@ use App\Models\Inscricao\documentos;
 class inscricao_licencas extends Model
 {
     use HasFactory;
-    protected $fillable = ['numero', 'sequencia', 'estado'];
+    protected $fillable = ['numero', 'sequencia', 'estado', 'data_inscricao', 'licenca_tipo', 'local_inscricao'];
 
     public function candidato(){
         return $this->belongsTo(candidatos::class,"candidato_id");

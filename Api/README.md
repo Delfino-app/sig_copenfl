@@ -93,6 +93,8 @@ REQUEST BODY
         "tipo_escola" : "", // pode ser Privada ou Publica
         "escola" : "", // nome da escola
         "nivel" : "", // pode ser Fundamental, Medio ou Superior
+         "municipio" : "", // municipio de localidade da escola
+        "bairro" : "" // bairro de localidade da escola
     },
     "identificao" : {
         "file" : "",
@@ -162,7 +164,7 @@ REQUEST BODY
         "municipio" : "", // municipio de localidade da escola
         "bairro" : "" // bairro de localidade da escola
     },
-    "identificao" : {
+    "identificacao" : {
         "file" : "",
         "orgao_emissor": "",
         "data_expiracao" : "",
