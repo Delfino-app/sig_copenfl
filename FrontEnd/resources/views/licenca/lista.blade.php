@@ -46,7 +46,7 @@
 													<img src="{{asset('img/default.jpg')}}" class="img-rounded height-30" />
 												</td>
 												<td>{{$candidato->nome}}</td>
-												<td>{{$candidato->residencia->telefone}}</td>
+												<td>{{$candidato->residencia->telefone??""}}</td>
 												<td>#</td>
 												<td>
 													<a href="{{route('licenca.ver',$candidato->id)}}" title="Ver detalhes" class="btn btn-success btn-action">
