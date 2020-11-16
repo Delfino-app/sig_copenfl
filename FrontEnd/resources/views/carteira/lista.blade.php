@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('titulo','Licenças')
+@section('titulo','Carteiras')
 <link href="{{asset('assets-login/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
 <link href="{{asset('assets-login/plugins/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
 @section('conteudo')
@@ -10,18 +10,18 @@
 				<input type="hidden"  id="recividToken" value="{{$token}}">
 				<div class="col-xl-12">
 					@if(!empty($infoAuth))
-						<div class="alert alert-danger" style="padding:5px 10px">
+						<div class="alert alert-danger" role="alert" style="font-size:14px">
 							{{$infoAuth}}
 						</div>
 					@endif
 					@if(!empty($infoDelete))
-						<div class="alert alert-success" style="padding:5px 10px">
+						<div class="alert alert-success" role="alert" style="font-size:14px">
 							{{$infoDelete}}
 						</div>
 					@endif
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
-							<h4 class="panel-title">Licenças - Lista de Incrições</h4>
+							<h4 class="panel-title">Carteiras - Lista de Incrições</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
@@ -65,13 +65,13 @@
 												<td>{{$candidato->inscricao->numero}}</td>
 												<td>{{$candidato->inscricao->estado}}</td>
 												<td class="text-center">
-													<a href="{{route('licenca.ver',$candidato->id)}}" title="Ver detalhes" class="btn btn-success btn-action">
+													<a href="{{route('carteira.ver',$candidato->id)}}" title="Ver detalhes" class="btn btn-success btn-action">
 														<i class="ion-md-eye"></i>
 													</a>
 													<!--<a href="{{route('licenca.editar',$candidato->id)}}" title="Editar" class="btn btn-dark btn-action">
 														<i class="ion-md-create"></i>
 													</a>-->
-													<a href="#" reference ="{{route('licenca.eliminar',$candidato->id)}}" data-toggle="modal" data-target="#modalLicenca" title="Eliminar" class="btn btn-danger btn-action teste">
+													<a href="#" reference ="{{route('carteira.eliminar',$candidato->id)}}" data-toggle="modal" data-target="#modalLicenca" title="Eliminar" class="btn btn-danger btn-action teste">
 														<i class="ion-md-trash"></i>
 													</a>
 												</td>
@@ -104,7 +104,7 @@
 						</div>
 						<div class="float-right">
 							<br>
-							<a href="{{route('licenca.nova')}}" class="btn btn-primary btn-destaque">
+							<a href="{{route('carteira.nova')}}" class="btn btn-primary btn-destaque">
 								Adicionar<i class="ion-md-add-circle-outline" style="padding-left:5px;"></i>
 							</a>
 						</div>

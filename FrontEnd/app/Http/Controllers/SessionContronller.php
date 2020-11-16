@@ -14,7 +14,14 @@ class SessionContronller extends Controller
 
         Session::forget(['name','email','access_token']);
 
-        return view('login');
+        $message = "";
+
+        if(Session::has('expireToken')){
+
+            $message = Session::get('expireToken');
+        }
+
+        return view('login',['info' => $message]);
     }
 
     //Start Session
@@ -31,7 +38,7 @@ class SessionContronller extends Controller
 
         Session::forget(['name','email','access_token']);
 
-        return redirect('/login');
+        return redirect()->route('login');
     }
 
     //Dashboard
@@ -45,11 +52,14 @@ class SessionContronller extends Controller
         }
         else{
 
-            return redirect('/login');
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
         }
     }
 
-    //Licencas
+    //===Licencas===
     public function licenca(){
 
         if(Session::has(['name','email','access_token'])){
@@ -58,21 +68,44 @@ class SessionContronller extends Controller
             $token = Session::get('access_token');
 
             //Request
-            $dados = ApiRequestController::licencas("Pendente");
+            $dados = ApiRequestController::licencas("licenca","Pendente");
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
-                //Token Expire
-                return redirect('/login');
+                
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+
+                return redirect()->route('login');
             }
             else{
 
+                $infoDelete = "";
+                $infoAuth = "";
+
+                //Verificar Flash Messages
+                if(Session::has(['name'])){
+
+                    //Sem Autorizacao
+                    $infoAuth = Session::get('semAutorizacao');
+                }
+
+                if(Session::has(['name'])){
+
+                    //Registro Deletado
+                    $infoDelete = Session::get('deleteRegistro');
+                }
+
                 $candidatos = isset($dados->candidatos) ? $dados->candidatos : [];
-                return view('licenca.lista',['name' => $name,'token' => $token, 'candidatos' => $candidatos]);
+
+                return view('licenca.lista',['name' => $name,'token' => $token, 'candidatos' => $candidatos , 'infoAuth' => $infoAuth , 'infoDelete' => $infoDelete]);
             }
         }
         else{
 
-            return redirect('/login');
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
         }
     }
 
@@ -88,7 +121,10 @@ class SessionContronller extends Controller
         }
         else{
 
-            return redirect('/login');
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
         }
     }
 
@@ -114,12 +150,15 @@ class SessionContronller extends Controller
         }
         else{
 
-            return redirect('/login');
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
         }
     }
 
     //Nova Licenca (Add Doc) View
-    public function licencaAddDoc($id){
+    public function AddDoc($id){
 
         if(Session::has(['name','email','access_token'])){
 
@@ -129,8 +168,10 @@ class SessionContronller extends Controller
             $dados = ApiRequestController::vercandidato($id);
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
-                //Token Expire
-                return redirect('/login');
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+
+                return redirect()->route('login');
             }
             else{
 
@@ -172,7 +213,10 @@ class SessionContronller extends Controller
         }
         else{
 
-            return redirect('/login');
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
         }
     }
 
@@ -189,8 +233,11 @@ class SessionContronller extends Controller
             $dados = ApiRequestController::vercandidato($id);
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
-                //Token Expire
-                return redirect('/login');
+                
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+
+                return redirect()->route('login');
             }
             else{
 
@@ -233,7 +280,10 @@ class SessionContronller extends Controller
         }
         else{
 
-            return redirect('/login');
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
         }
     }
 
@@ -255,17 +305,31 @@ class SessionContronller extends Controller
             $dados = ApiRequestController::deleteCandidato($id);
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
-                //Token Expire
-                return redirect('/login');
+                
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+                return redirect()->route('login');
+            }
+            elseif(isset($dados->status) && $dados->status == 'Ok'){
+
+                //Criando Message Info
+                (new helper())->deleteRegistro();
+
+                return redirect()->route('licenca.lista');
             }
             else{
 
+                //Sem Autorizaçao Para Realizar a Acção
+                (new helper())->semAutorizacao();
                 return redirect()->route('licenca.lista');
             }            
         }
         else{
 
-            return redirect('/login');
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
         }     
     }
 
@@ -305,5 +369,154 @@ class SessionContronller extends Controller
     public function suporte(Request $req){
 
         dd($req->all());
+    }
+
+    //===Carteiras===
+    public function carteira(){
+        
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+            $token = Session::get('access_token');
+
+            //Request
+            $dados = ApiRequestController::licencas("carteira","Pendente");
+
+            if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
+                
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+
+                return redirect()->route('login');
+            }
+            else{
+
+                $infoDelete = "";
+                $infoAuth = "";
+
+                //Verificar Flash Messages
+                if(Session::has(['name'])){
+
+                    //Sem Autorizacao
+                    $infoAuth = Session::get('semAutorizacao');
+                }
+
+                if(Session::has(['name'])){
+
+                    //Registro Deletado
+                    $infoDelete = Session::get('deleteRegistro');
+                }
+
+
+                $candidatos = isset($dados->candidatos) ? $dados->candidatos : [];
+                return view('carteira.lista',['name' => $name,'token' => $token, 'candidatos' => $candidatos, 'infoAuth' => $infoAuth, 'infoDelete' => $infoDelete]);
+            }
+        }
+        else{
+
+            //Criando Message Auth
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
+        }
+    }
+
+    public function carteiraNova(){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+            $token = Session::get('access_token');
+
+            if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+
+                return redirect()->route('login');
+            }
+            else{
+
+                return view('carteira.nova',['name' => $name,'token' => $token]);
+            }
+        }
+        else{
+
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
+        }
+
+    }
+
+    public function carteiraAdded($id){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+            $token = Session::get('access_token');
+
+            $dados = ApiRequestController::vercandidato($id);
+
+            if(!empty($dados) && isset($dados->candidatos)){
+
+                return view('carteira.RegistroFeito',['name' => $name,'token' => $token,'id' => $id]);
+            }
+            else{
+
+                //Not Found
+                return redirect('404');
+            }
+        }
+        else{
+
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
+        }
+    }
+
+    public function carteiraVer($id){
+
+    }
+
+    public function deleteCarteira($id){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+
+            $token = Session::get('access_token');
+
+            //Request
+            $dados = ApiRequestController::deleteCandidato($id);
+
+            if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
+                
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+                return redirect()->route('login');
+            }
+            elseif(isset($dados->status) && $dados->status == 'Ok'){
+
+                //Criando Message Info
+                (new helper())->deleteRegistro();
+
+                return redirect()->route('carteira.lista');
+            }
+            else{
+
+                //Sem Autorizaçao Para Realizar a Acção
+                (new helper())->semAutorizacao();
+                return redirect()->route('carteira.lista');
+            }            
+        }
+        else{
+
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+            return redirect()->route('login');
+        }  
     }
 }

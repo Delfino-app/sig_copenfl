@@ -23,7 +23,7 @@
 								<i class="ion-ios-list" style="font-size:14px;padding-right:5px"></i>
 								Gerar Pré-Recibo
 							</a>
-							<a class="btn btn-dark" style="color:white" href="{{route('licenca.nova')}}">
+							<a class="btn btn-dark" style="color:white" href="{{route('carteira.nova')}}">
 								<i class="ion-ios-add-circle-outline" style="font-size:14px;padding-right:5px"></i>
 								Novo Registro
 							</a>
