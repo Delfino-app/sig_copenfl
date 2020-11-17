@@ -10,12 +10,12 @@
 				<input type="hidden"  id="recividToken" value="{{$token}}">
 				<div class="col-xl-12">
 					@if(!empty($infoAuth))
-						<div class="alert alert-danger" style="padding:5px 10px">
+						<div class="alert alert-danger" style="padding:5px 10px;font-size: 16px;">
 							{{$infoAuth}}
 						</div>
 					@endif
 					@if(!empty($infoDelete))
-						<div class="alert alert-success" style="padding:5px 10px">
+						<div class="alert alert-success" style="padding:5px 10px;font-size: 16px;">
 							{{$infoDelete}}
 						</div>
 					@endif

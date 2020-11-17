@@ -25,4 +25,9 @@ class helper extends Controller
 
         $this->messageFlash("deleteRegistro","Registro eliminado com sucesso!.");
     }
+
+    public function pagamentoFeito(){
+
+        $this->messageFlash("pagamentoFeito","Registro de pagamento feito com sucesso!");
+    }
 }

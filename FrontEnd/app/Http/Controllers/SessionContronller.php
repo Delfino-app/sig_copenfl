@@ -83,13 +83,13 @@ class SessionContronller extends Controller
                 $infoAuth = "";
 
                 //Verificar Flash Messages
-                if(Session::has(['name'])){
+                if(Session::has(['semAutorizacao'])){
 
                     //Sem Autorizacao
                     $infoAuth = Session::get('semAutorizacao');
                 }
 
-                if(Session::has(['name'])){
+                if(Session::has(['deleteRegistro'])){
 
                     //Registro Deletado
                     $infoDelete = Session::get('deleteRegistro');
@@ -333,47 +333,9 @@ class SessionContronller extends Controller
         }     
     }
 
-    //Gerando PDF
-    public function recibo($id){
-
-        #$licenca = Licenca::find($id);
-
-        #if (!empty($licenca)){
-
-           # $data = explode(" ", $licenca['created_at']);
-
-            #$dataD = date('d/m/Y', strtotime($data[0]));
-
-           # $licenca['data_registro'] = $dataD;
-           
-            #$pdf = PDF::loadView('licenca.fichaRecibo');
-
-            #return $pdf->setPaper('a4')->stream('Recibo de Licença nº'.$id.'.pdf');
-            $data = array("Teste" => 2);
-            $pdf = PDF::loadView('licenca.fichaRecibo',$data);
-            return $pdf->setPaper('a4')->stream('Recibo de Licença nº'.$id.'.pdf');
-        #}
-        #else{
-
-           # return redirect('/404');
-        #}
-    }
-
-    //Pesquisa Processo
-    public function pesquisaProcesso(Request $req){
-
-        return redirect()->route('licenca.lista');
-    }
-
-    //Suporte
-    public function suporte(Request $req){
-
-        dd($req->all());
-    }
-
     //===Carteiras===
     public function carteira(){
-        
+    
         if(Session::has(['name','email','access_token'])){
 
             $name = Session::get('name');
@@ -395,13 +357,13 @@ class SessionContronller extends Controller
                 $infoAuth = "";
 
                 //Verificar Flash Messages
-                if(Session::has(['name'])){
+                if(Session::has(['semAutorizacao'])){
 
                     //Sem Autorizacao
                     $infoAuth = Session::get('semAutorizacao');
                 }
 
-                if(Session::has(['name'])){
+                if(Session::has(['deleteRegistro'])){
 
                     //Registro Deletado
                     $infoDelete = Session::get('deleteRegistro');
@@ -478,7 +440,62 @@ class SessionContronller extends Controller
     }
 
     public function carteiraVer($id){
+        
+        if(Session::has(['name','email','access_token'])){
 
+            $name = Session::get('name');
+
+            $token = Session::get('access_token');
+
+            //Request
+            $dados = ApiRequestController::vercandidato($id);
+
+            dd("Pendente -  API Error");
+
+            if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
+                
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+
+                return redirect()->route('login');
+            }
+            else{
+
+                //Validate Candidato
+                if(isset($dados->candidatos)){
+
+                    $candidato = $dados->candidatos;
+
+                    $docs = [];
+
+                    //Validate Show Documentos
+                    if(isset($candidato->inscricao->licenca->academic_data)){
+
+                        $tipoDoc = $candidato->inscricao->licenca->academic_data->nivel;
+
+                        //View List Docs
+                        $doc = ApiRequestController::lisDocs($tipoDoc);
+
+                        $docs = isset($doc->documentos) ? $doc->documentos : [];
+
+                    }
+
+                    return view('carteira.ver',['name' => $name,'token' => $token, 'candidato' => $candidato, 'docs' => $docs]);
+                }
+                else{
+
+                    //404 Not Found
+                    return redirect('/404');
+                }
+            }            
+        }
+        else{
+
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
+        }
     }
 
     public function deleteCarteira($id){
@@ -519,4 +536,177 @@ class SessionContronller extends Controller
             return redirect()->route('login');
         }  
     }
+
+    //Gerando PDF
+    public function recibo($id){
+
+        #$licenca = Licenca::find($id);
+
+        #if (!empty($licenca)){
+
+           # $data = explode(" ", $licenca['created_at']);
+
+            #$dataD = date('d/m/Y', strtotime($data[0]));
+
+           # $licenca['data_registro'] = $dataD;
+           
+            #$pdf = PDF::loadView('licenca.fichaRecibo');
+
+            #return $pdf->setPaper('a4')->stream('Recibo de Licença nº'.$id.'.pdf');
+            $data = array("Teste" => 2);
+            $pdf = PDF::loadView('licenca.fichaRecibo',$data);
+            return $pdf->setPaper('a4')->stream('Recibo de Licença nº'.$id.'.pdf');
+        #}
+        #else{
+
+           # return redirect('/404');
+        #}
+    }
+
+    //Pesquisa Processo
+    public function pesquisaProcesso(Request $req){
+
+        return redirect()->route('licenca.lista');
+    }
+
+    //Pagamentos
+    public function pagamentos(){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+            $token = Session::get('access_token');
+
+            return view('adds.pagamentos',['name' => $name, 'token' => $token]);
+        }
+        else{
+
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
+        }
+    }
+
+    public function pagamentosCandidato(Request $req){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+
+            $token = Session::get('access_token');
+
+            $id = $req["processo_num"];
+
+            return redirect()->route('pagamento.dados',$id);         
+        }
+        else{
+
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
+        }
+    }
+
+    public function pagamentosPost(Request $req){
+
+        //Faker -  Pagamento Feito
+        $id = $req["pagamento_candidato"];
+        (new helper())->pagamentoFeito();
+        return redirect()->route('pagamento.dados',$id);
+    }
+    public function pagamentosDadosCandidato($id){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+
+            $token = Session::get('access_token');
+
+            //Request
+            $dados = ApiRequestController::vercandidato($id);
+
+            if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
+                
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+
+                return redirect()->route('login');
+            }
+            else{
+
+                //Validate Candidato
+                if(isset($dados->candidatos)){
+
+                    $candidato = $dados->candidatos;
+
+                    //Faker Historico de Pagamentos
+                    $pagamentos = [
+                        [
+                          "id"=> 1,
+                          "desc"=> "Primeiro Pagamento",
+                          "data" => "20/12/2015"
+                        ],
+                        [
+                           "id"=> 2,
+                           "desc"=> "Segundo Pagamento",
+                           "data" => "20/12/2016"
+                        ],
+                        [
+                           "id"=> 3,
+                           "desc"=> "Terceiro Pagamento",
+                           "data" => "20/12/2017"
+                        ],
+                        [
+                            "id"=> 4,
+                            "desc"=> "Quarto Pagamento",
+                            "data" => "20/12/2018"
+                        ],
+                        [
+                            "id"=> 5,
+                            "desc"=> "Quinto Pagamento",
+                            "data" => "20/12/2019"
+                        ],
+                        [
+                            "id"=> 6,
+                            "desc"=> "Sexto Pagamento",
+                            "data" => "20/12/2020"
+                        ],
+                    ];
+
+                    //Faker Pagamento Feito Session Flash
+                    $info = "";
+
+                    //Verificar Flash Messages
+                    if(Session::has(['pagamentoFeito'])){
+
+                        //Sem Autorizacao
+                        $info = Session::get('pagamentoFeito');
+                    }
+
+                    return view('adds.pagamentos',['name' => $name,'token' => $token, 'candidato' => $candidato, 'pagamentos' => $pagamentos, "info" => $info]);
+                }
+                else{
+
+                    //404 Not Found
+                    return redirect('/404');
+                }
+            }            
+        }
+        else{
+
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
+        }
+    }
+
+    //Suporte
+    public function suporte(Request $req){
+
+        dd($req->all());
+    }
+
 }

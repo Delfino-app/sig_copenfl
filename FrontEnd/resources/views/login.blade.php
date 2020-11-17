@@ -44,12 +44,13 @@
 				<!-- end login-header -->
 				<!-- begin login-content -->
 				<div class="login-content">
-					<div id="displayLoginInfo"></div>
-					@if(!empty($info))
-						<div class="alert alert-info" role="alert" style="padding:5px 10px">
-							{{$info}}
-						</div>
-					@endif                    
+					<div id="displayLoginInfo">
+						@if(!empty($info))
+							<div class="alert alert-info" role="alert" style="padding:5px 10px;font-size: 16px;">
+								{{$info}}
+							</div>
+						@endif
+					</div>                    
 					<form method="Post" id="frmLogin" class="margin-bottom-0 frmLogin">
                         <small>Insira seus dados de acesso</small>
 						{{ csrf_field() }}

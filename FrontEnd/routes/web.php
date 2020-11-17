@@ -33,7 +33,6 @@ Route::group([
     Route::get('/licencas', ['as' =>'licenca.lista','uses' => 'SessionContronller@licenca']);
     Route::get('/licencas/nova', ['as' =>'licenca.nova','uses' => 'SessionContronller@licencaNova']);
     Route::get('/licencas/feito/{id}', ['as' =>'licenca.feito','uses' => 'SessionContronller@licencaAdded']);
-    Route::get('/licencas/add/docs/{id}', ['as' =>'licenca.add.documentos','uses' => 'SessionContronller@AddDoc']);
     Route::get('/licencas/ver/{id}', ['as' =>'licenca.ver','uses' => 'SessionContronller@licencaVer']);
     Route::get('/licencas/editar/{id}', ['as' =>'licenca.editar','uses' => 'SessionContronller@editLicenca']);
     Route::get('/licencas/eliminar/{id}', ['as' =>'licenca.eliminar','uses' => 'SessionContronller@deleteLicenca']);
@@ -44,7 +43,16 @@ Route::group([
     Route::get('/carteiras/ver/{id}', ['as' =>'carteira.ver','uses' => 'SessionContronller@carteiraVer']);
     Route::get('/carteiras/eliminar/{id}', ['as' =>'carteira.eliminar','uses' => 'SessionContronller@deleteCarteira']);
     Route::get('/carteiras/feito/{id}', ['as' =>'carteira.feito','uses' => 'SessionContronller@carteiraAdded']);
-    Route::get('/carteiras/add/docs/{id}', ['as' =>'carteira.add.documentos','uses' => 'SessionContronller@AddDoc']);
+    
+
+    //Docs
+    Route::get('/adDocs/{id}', ['as' =>'add.documentos','uses' => 'SessionContronller@AddDoc']);
+
+    //Pagamentos
+    Route::get('/pagamentos', ['as' =>'pagamentos','uses' => 'SessionContronller@pagamentos']);
+    Route::post('/pagamentos', ['as' =>'pagamento.find','uses' => 'SessionContronller@pagamentosCandidato']);
+    Route::post('/pagamentos/add', ['as' =>'pagamento.post','uses' => 'SessionContronller@pagamentosPost']);
+    Route::get('/pagamentos/{id}', ['as' =>'pagamento.dados','uses' => 'SessionContronller@pagamentosDadosCandidato']);
 
 
 
