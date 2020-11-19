@@ -27,6 +27,8 @@ Route::group([
     //Others
     Route::get('/session', 'SessionContronller@start');
     Route::post('/session', 'SessionContronller@start');
+    Route::get('/sessionAddLicenca', 'SessionContronller@sessionAddLicenca');
+
     Route::get('/logout', ['as' =>'login.sair','uses' => 'SessionContronller@logout']);
     Route::get('/dashboard', ['as' =>'home','uses' => 'SessionContronller@home']);
     //Licencas 

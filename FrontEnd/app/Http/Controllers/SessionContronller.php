@@ -33,6 +33,14 @@ class SessionContronller extends Controller
         return Session::all();
     }
 
+    //Session Adds
+    public function sessionAddLicenca(){
+
+        (new helper())->addLicenca();
+
+        return true;
+    }
+
     //Logout
     public function logout(){
 
@@ -97,7 +105,7 @@ class SessionContronller extends Controller
 
                 $candidatos = isset($dados->candidatos) ? $dados->candidatos : [];
 
-                return view('licenca.lista',['name' => $name,'token' => $token, 'candidatos' => $candidatos , 'infoAuth' => $infoAuth , 'infoDelete' => $infoDelete]);
+                return view('licenca.lista',['name' => $name,'token' => $token, 'candidatos' => $candidatos, 'infoAuth' => $infoAuth , 'infoDelete' => $infoDelete]);
             }
         }
         else{
@@ -140,7 +148,20 @@ class SessionContronller extends Controller
 
             if(!empty($dados) && isset($dados->candidatos)){
 
-                return view('licenca.RegistroFeito',['name' => $name,'token' => $token,'id' => $id]);
+                $info = "";
+
+                $statusPage = false;
+
+                if(Session::has('addLicenca')){
+
+                    $info = Session::get('addLicenca');
+                }
+                else{
+                    //Pagina Indisponivel
+                    $statusPage = true;
+                }
+
+                return view('licenca.RegistroFeito',['name' => $name,'token' => $token,'id' => $id, 'info' => $info, 'statusPage' => $statusPage]);
             }
             else{
 
@@ -566,7 +587,9 @@ class SessionContronller extends Controller
     //Pesquisa Processo
     public function pesquisaProcesso(Request $req){
 
-        return redirect()->route('licenca.lista');
+        $id = $req["processo_num"];
+
+        return redirect()->route('licenca.ver',$id);
     }
 
     //Pagamentos
@@ -577,7 +600,14 @@ class SessionContronller extends Controller
             $name = Session::get('name');
             $token = Session::get('access_token');
 
-            return view('adds.pagamentos',['name' => $name, 'token' => $token]);
+            $notFound = "";
+
+            if(Session::has('notFound')){
+
+                $notFound = Session::get('notFound');
+            }
+
+            return view('adds.pagamentos',['name' => $name, 'token' => $token, 'notFound' => $notFound]);
         }
         else{
 
@@ -689,8 +719,10 @@ class SessionContronller extends Controller
                 }
                 else{
 
-                    //404 Not Found
-                    return redirect('/404');
+                    //404 Not Found - registro nao encontrado
+                    (new helper())->notFound();
+
+                    return redirect()->route('pagamentos');
                 }
             }            
         }

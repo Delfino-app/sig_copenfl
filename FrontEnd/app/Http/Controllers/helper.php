@@ -30,4 +30,15 @@ class helper extends Controller
 
         $this->messageFlash("pagamentoFeito","Registro de pagamento feito com sucesso!");
     }
+
+    public function notFound(){
+
+        $this->messageFlash("notFound","Registro não encontrado.");
+
+    }
+
+    public function addLicenca(){
+
+        $this->messageFlash("addLicenca","Registro de licença conluído com sucesso!");
+    }
 }

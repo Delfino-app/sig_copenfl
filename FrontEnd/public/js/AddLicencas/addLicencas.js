@@ -207,15 +207,27 @@ export default{
             const submit = await request.submitDados(data,token);
 
             if(submit.status != undefined && submit.status === "Ok"){
-                //Registro Feito com Sucesso
-                window.location.href = `/licencas/feito/${submit.candidato_id}`;
+
+                //Crianda Session Flash
+                const session = await request.sessionFlashAddLicenca();
+
+                if(session){
+
+                    //Registro Feito com Sucesso
+                    window.location.href = `/licencas/feito/${submit.candidato_id}`;
+                }
+                else{
+
+                    console.log(session);
+                }
+                
             }
             else{
 
                 //Erro to Added
                 alert("Houve algum erro inesperado. Tente mais tarde ou contacte o Suporte.");
                 console.log(submit);
-                window.location.reload();
+               // window.location.reload();
             }        
         }
         else{

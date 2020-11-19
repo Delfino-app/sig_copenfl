@@ -11,9 +11,13 @@
         <div style="background-color:white;padding:15px">
             <div class="row">
                 <div class="col-lg-12">
-                    @if(!empty($info))
+                    @if(isset($info) && !empty($info))
 						<div class="alert alert-success" role="alert" style="padding:5px 10px;font-size: 16px;">
 							{{$info}}
+						</div>
+                    @elseif(isset($notFound) && !empty($notFound))
+						<div class="alert alert-danger" role="alert" style="padding:5px 10px;font-size: 16px;">
+							{{$notFound}}
 						</div>
                     @endif
                 </div>  
@@ -123,7 +127,7 @@
                                 <p class="title-doc-em-falta">
                                     <i class="fa fa-history icon-doc-not-add"></i>
                                     <br>
-                                    O histórico de pagamentos do Candidato aparecerá aqui
+                                    O histórico de pagamentos aparecerá aqui
                                 </p>
                             </div>
                         </div>

@@ -132,6 +132,17 @@ export default{
       return resData;
     },
 
+    //Session Flash Add Licença
+    async sessionFlashAddLicenca(){
+
+      const response = await fetch(config.sessionAddLicenca, {
+        method: 'GET',
+      });
+  
+      const resData = await response.json();
+      return resData;
+    },
+
     //Submit Dados Carteira
     async submitDadosCarteira(data,token){
 
@@ -149,4 +160,6 @@ export default{
       const resData = await response.json();
       return resData;
     }
+
+
 }

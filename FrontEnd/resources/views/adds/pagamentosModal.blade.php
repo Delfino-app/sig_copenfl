@@ -8,7 +8,7 @@
 			<div class="modal-body" style="padding:0px">
 				<div class="row">
 					<div class="col-lg-12">
-						<form class="row p-20" action="{{route('pagamento.post')}}" method="POST">
+						<form class="row p-20" enctype="multpart/fromData" action="{{route('pagamento.post')}}" method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="pagamento_candidato" value="{{$candidato->id}}" class="form-control" required/>
 							<div class="form-group col-lg-6 col-sm-6">
@@ -47,6 +47,10 @@
                             <div class="form-group col-lg-6 col-sm-6">
 								<label class="col-form-label">Nº de Refêrencia</label>
 								<input type="number" name="pagamento_referencia" placeholder="Nº de referência" class="form-control" required/>
+							</div>
+							<div class="form-group col-lg-12 col-sm-12">
+								<label class="col-form-label">Talão de pagamento</label>
+								<input type="file" name="pagamento_talao" placeholder="Talão de pagamento" class="form-control" required/>
 							</div>
 							<div class="form-group col-lg-12 col-sm-6">
 								<button class="btn btn-primary btn-destaque" type="submit" style="width:100%;padding:10px;font-size:14px">
