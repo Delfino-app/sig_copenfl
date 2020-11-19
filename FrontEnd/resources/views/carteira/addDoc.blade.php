@@ -5,7 +5,7 @@
 <div id="content" class="content" style="margin-top:40px;">
     <div class="row">
         <div class="col-lg-12" style="background-color:white;padding-to:20px">
-            <form method="Post" style="margin-top:20px">
+            <form method="Post" enctype='multipart/form-data' style="margin-top:20px">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="doc-em-falta-container">

@@ -8,7 +8,7 @@
 			<div class="modal-body" style="padding:0px">
 				<div class="row">
 					<div class="col-lg-12">
-						<form class="row p-20" enctype="multpart/fromData" action="{{route('pagamento.post')}}" method="POST">
+						<form class="row p-20" enctype='multipart/form-data' action="{{route('pagamento.post')}}" method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="pagamento_candidato" value="{{$candidato->id}}" class="form-control" required/>
 							<div class="form-group col-lg-6 col-sm-6">

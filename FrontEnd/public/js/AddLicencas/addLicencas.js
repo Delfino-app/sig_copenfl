@@ -210,7 +210,6 @@ export default{
 
                 //Crianda Session Flash
                 const session = await request.sessionFlashAddLicenca();
-
                 if(session){
 
                     //Registro Feito com Sucesso
@@ -220,7 +219,6 @@ export default{
 
                     console.log(session);
                 }
-                
             }
             else{
 

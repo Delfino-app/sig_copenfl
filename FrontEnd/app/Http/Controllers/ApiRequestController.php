@@ -34,6 +34,11 @@ class ApiRequestController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
         );
 
+        //Datas
+        $dataInicio = date('d/m/Y', strtotime('-5 days'));
+
+        $dataFim = date('d/m/Y');
+
         $ch = curl_init(DOMINIO_API."/api/v1/candidato/index/".$entidade."/".$estado);
 
         curl_setopt_array($ch, $options);

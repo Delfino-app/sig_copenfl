@@ -338,3 +338,7 @@
 	max-height: 320px;
 	overflow-y: auto;
 }
+.icon-hover:hover{
+
+	color:var(--distaque);
+}
