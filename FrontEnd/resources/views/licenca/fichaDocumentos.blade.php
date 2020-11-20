@@ -22,7 +22,6 @@
                         <div class="col-lg-12 content-doc-list-container">
                             <div class="content-doc-list">
                                 <p class="doc-list-title">
-                                    <span class="doc-list-number doc-not-add">1</span>
                                     {{$doc->nome}}
                                 </p>
                             </div>

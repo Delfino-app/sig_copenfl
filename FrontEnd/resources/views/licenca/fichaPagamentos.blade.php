@@ -42,7 +42,6 @@
                 <div class="col-lg-12 content-doc-list-container">
                     <div class="content-doc-list">
                         <p class="doc-list-title">
-                            <span class="doc-list-number doc-not-add">1</span>
                             Inscrição 2.000,00 kz
                        </p>
                     </div>
@@ -50,7 +49,6 @@
                 <div class="col-lg-12 content-doc-list-container">
                     <div class="content-doc-list">
                         <p class="doc-list-title">
-                            <span class="doc-list-number doc-not-add">2</span>
                             Cota 4.500,00 Kz (Anual)
                        </p>
                     </div>
@@ -58,7 +56,6 @@
                 <div class="col-lg-12 content-doc-list-container">
                     <div class="content-doc-list">
                         <p class="doc-list-title">
-                            <span class="doc-list-number doc-not-add">3</span>
                             Licença de Aprendizagem 2.500,00 Kz
                        </p>
                     </div>
