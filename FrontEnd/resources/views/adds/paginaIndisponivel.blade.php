@@ -1,5 +1,5 @@
 <div class=" text-center" style="padding:20px;">
-    <i class="ion-ios-warning" style="font-size:70px;color:#FF9500"></i>
+    <i class="ion ion-ios-information-circle" style="font-size:70px;color:#FF9500"></i>
     <h3 style="color:#444">Página Indisponível</h3>
     <p style="font-size:15px;">
         A página que tentou solicitar não esta disponível de momento.

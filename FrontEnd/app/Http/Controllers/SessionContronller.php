@@ -574,14 +574,41 @@ class SessionContronller extends Controller
             #$pdf = PDF::loadView('licenca.fichaRecibo');
 
             #return $pdf->setPaper('a4')->stream('Recibo de Licença nº'.$id.'.pdf');
-            $data = array("Teste" => 2);
-            $pdf = PDF::loadView('licenca.fichaRecibo',$data);
-            return $pdf->setPaper('a4')->stream('Recibo de Licença nº'.$id.'.pdf');
+            #$data = array("Teste" => 2);
+            #$pdf = PDF::loadView('licenca.fichaRecibo',$data);
+            #return $pdf->setPaper('a4')->stream('Recibo de Licença nº'.$id.'.pdf');
         #}
         #else{
 
            # return redirect('/404');
         #}
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+            $token = Session::get('access_token');
+
+            $dados = ApiRequestController::vercandidato($id);
+
+            if(isset($dados->candidatos)){
+
+                $candidato = $dados->candidatos;
+
+                return view('licenca.fichaRecibo',['name' => $name, 'token' => $token, 'candidato' => $candidato]);
+
+            }else{
+
+                //404 Not Found
+                return redirect('/404');
+            }
+        }
+        else{
+
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
+        }
     }
 
     //Pesquisa Processo

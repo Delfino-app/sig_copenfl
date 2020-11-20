@@ -71,6 +71,4 @@
         $print.remove();
         $print.close();
     }
-
-    
 </script>

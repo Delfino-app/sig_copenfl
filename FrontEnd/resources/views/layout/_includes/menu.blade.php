@@ -17,7 +17,7 @@
         <form action="{{route('pesquisa.processo')}}" method="POST" name="search_form">
           {{ csrf_field() }}
           <div class="form-group">
-            <input type="text" class="form-control" name="processo_num" placeholder="Nº de Processo..." require style="height:28px !important" />
+            <input type="text" class="form-control" name="processo_num" placeholder="Nº de Processo..." required style="height:28px !important" />
             <button type="submit" class="btn btn-search">
               <i class="ion-ios-search" style="font-size:18px"></i></button>
           </div>

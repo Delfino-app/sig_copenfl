@@ -66,7 +66,7 @@
 			</li>
 			<li class="">
 				<a href="{{route('pagamentos')}}">
-				    <i class="ion-ios-pulse"></i>
+				    <i class="ion-ios-stats"></i>
 				    <span>Pagamentos</span>
 			    </a>
 			</li>
