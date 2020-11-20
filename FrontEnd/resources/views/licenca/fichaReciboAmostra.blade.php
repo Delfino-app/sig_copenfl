@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-12 content-recibo bg-white" style="padding:20px;">
+    <div class="col-lg-12 content-recibo bg-white" id="printable" style="padding:20px;">
         <div class="text-center heade-top-content">
             <img width="50" src="{{asset('img/logo.png')}}">
             <p class="heade-top">
@@ -51,9 +51,26 @@
 <div class="row">
     <div class="col-lg-12 fotter_ver-container">
         <div class="float-right">
-            <a target="_blank" href="{{route('recibo',$candidato->id)}}" class="btn btn-destaque">
-                Gerar PDF <i class="fa fa-file-pdf-o"></i>
+            <a target="_blank" href="#" class="btn btn-destaque" onclick='printBy("#printable")'>
+                Imprimir <i class="fa fa-print"></i>
             </a>
         </div>
     </div>
 </div>
+<script>
+    function printBy(selector){
+        var $print = $(selector)
+            .clone()
+            .addClass('print')
+            .prependTo('body');
+
+        // Stop JS execution
+        window.print();
+
+        // Remove div once printed
+        $print.remove();
+        $print.close();
+    }
+
+    
+</script>

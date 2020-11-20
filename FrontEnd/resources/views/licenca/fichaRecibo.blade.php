@@ -5,15 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Recibo de Inscrição | SIG - COPENFL</title>
-		<link rel="icon" href="{{asset('img/logo.png')}}">
-		<link rel="stylesheet" href="{{asset('assets-login/css/apple/app.min.css')}}" type="text/css">
-		<link rel="stylesheet" href="{{asset('css/recibo.css')}}" type="text/css">
+
 	</head>
 	<body>	
 		<div class="row">
 			<div class="col-lg-12 content-recibo bg-white" style="padding:20px;">
 				<div class="text-center heade-top-content">
-					<img width="50" src="{{asset('img/logo.png')}}">
+					<img width="50" src="http://127.0.0.1:8001/img/default.jpg">
 					<p class="heade-top">
 						Ordem de Enfermagem de Angola<br>
 						<span class="decreto">
