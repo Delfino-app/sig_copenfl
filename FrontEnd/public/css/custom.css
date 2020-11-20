@@ -338,9 +338,37 @@
 	max-height: 320px;
 	overflow-y: auto;
 }
+.icon-hover i{
+
+	font-size:16px;
+}
 .icon-hover:hover{
 
 	color:var(--distaque);
+}
+.content-doc-list{
+	border-left:3px solid var(--distaque);
+	border-radius:2px;
+}
+.col-form-label{
+
+	color:#1c1c1c !important;
+	padding-top: calc(7px + 1px) !important;
+    padding-bottom: calc(7px + 1px) !important;
+    margin-bottom: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+}
+.link-add-talao-pagamento{
+
+	font-style: italic;
+	cursor: pointer !important;
+	color: #1c1c1c;
+	font-size:13px;
+}
+.text-dark{
+
+	color: #1c1c1c;
 }
 @media print {
     html, body {

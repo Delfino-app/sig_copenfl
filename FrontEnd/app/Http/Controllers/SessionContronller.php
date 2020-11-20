@@ -223,7 +223,7 @@ class SessionContronller extends Controller
                         $docs = isset($doc->documentos) ? $doc->documentos : [];
                     }
 
-                    return view('licenca.addDoc',['name' => $name,'token' => $token,'docs' => $docs]);
+                    return view('licenca.addDoc',['name' => $name,'token' => $token,'docs' => $docs, 'candidato' => $candidato]);
                 }
                 else{
 
