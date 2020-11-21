@@ -52,7 +52,7 @@ export default{
 
             $("#btnLogin").removeAttr("disabled");
         }
-        else{
+        else if(makeLogin.access_token != undefined){
 
             this.displayLoginInfo.innerHTML = `
                 <div class="alert alert-success" style="padding:5px 10px">
@@ -71,6 +71,8 @@ export default{
             //Submit Session
             const makeSession = await requests.session(dados);
 
+            console.log(makeSession);
+
             if(makeSession.name != undefined && makeSession.email != undefined && makeSession.access_token != undefined){
 
                 //Redir to Dashboard Page
@@ -86,6 +88,17 @@ export default{
                 
                 $("#btnLogin").removeAttr("disabled");
             }
+        }
+        else{
+
+            //Erro desconhecido
+            this.displayLoginInfo.innerHTML = `
+                <div class="alert alert-danger" style="padding:5px 10px">
+                    Houve um erro desconhecido. Tente mais tarde.
+                </div>
+            `;
+            
+            $("#btnLogin").removeAttr("disabled");
         }
     }
 }
