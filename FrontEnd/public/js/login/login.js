@@ -34,6 +34,7 @@ export default{
        const makeLogin = await requests.login(dados);
 
         if(makeLogin.error != undefined){
+            
             this.displayLoginInfo.innerHTML = `
                 <div class="alert alert-danger" style="padding:5px 10px">
                     Dados de acesso incorretos
