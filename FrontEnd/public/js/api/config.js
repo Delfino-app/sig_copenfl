@@ -10,5 +10,8 @@ export default{
     municipiosRoute:"http://localhost:8000/api/v1/asset/municipios",
     municipiosProvinciaRoute:"http://localhost:8000/api/v1/asset/municipios/",
     //Store Dados
-    sumbmitDadosRoute:"http://localhost:8000/api/v1/candidato/store/licenca"
+    sumbmitDadosRouteLicenca:"http://localhost:8000/api/v1/candidato/store/licenca",
+    sumbmitDadosRouteCarteira:"http://localhost:8000/api/v1/candidato/store/carteira",
+    //Session Add
+    sessionAddLicenca:`/sessionAddLicenca`
 }

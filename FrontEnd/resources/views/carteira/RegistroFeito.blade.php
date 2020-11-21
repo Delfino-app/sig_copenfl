@@ -8,14 +8,11 @@
 			<div class="col-lg-12  bg-white">
 				<div class="row justify-content-center">
 					<div class="col-lg-7" style="padding-bottom:50px">
-						@if($statusPage)
-							@include('adds.paginaIndisponivel')
-						@else
 						<div class=" text-center" style="padding:20px;">
 							<i class="ion-ios-checkmark-circle-outline" style="font-size:70px;color:#4CD964"></i>
-							<h3 style="color:#444">{{$info}}</h3>
+							<h3 style="color:#444">Registro de carteira conluído com sucesso!</h3>
 							<p style="font-size:15px;">
-								A primeira etapa do registro foi concluída com sucesso, faltando apenas anexar os documentos e fazer os pagamentos.
+								A primeira etapa do registro foi concluída com sucesso, faltando apenas anexar os documentos.
 							</p>
 							<hr>
 							<a class="btn btn-destaque" style="color:white" href="{{route('add.documentos',$id)}}">
@@ -26,12 +23,11 @@
 								<i class="ion-ios-list" style="font-size:14px;padding-right:5px"></i>
 								Gerar Pré-Recibo
 							</a>
-							<a class="btn btn-dark" style="color:white" href="{{route('licenca.nova')}}">
+							<a class="btn btn-dark" style="color:white" href="{{route('carteira.nova')}}">
 								<i class="ion-ios-add-circle-outline" style="font-size:14px;padding-right:5px"></i>
 								Novo Registro
 							</a>
 						</div>
-						@endif
 					</div>
 				</div>
 			</div>

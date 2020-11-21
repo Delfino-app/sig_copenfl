@@ -280,3 +280,108 @@
 
 	border:1px solid #444;
 }
+
+/*==============Pagamentos=============*/
+.card-dados-candidatos{
+
+	background-color: white;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1) !important;
+	min-height: 180px;
+	transition: box-shadow .3s;
+	cursor: pointer;
+	border-radius: 3px;
+	padding-top:10px;
+}
+
+.card-dados-candidatos:hover{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-dados-candidatos img{
+
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	border-radius: 50%;
+	margin-left: 5px;
+}
+
+.card-dados-candidatos li{
+
+	font-size:14px;
+	color: #1c1c1c;
+	font-weight: 600;
+}
+
+.card-dados-candidatos .dados_value{
+
+	font-size:14px;
+	color: var(--dark);
+	text-align: right;
+	float: right;
+	font-weight: 400;
+	padding-right:10px;
+}
+.btn-link-recibo-pagamento{
+
+	transition: color .3s;
+	transition: background-color .3s;
+}
+.btn-link-recibo-pagamento:hover{
+
+	color:white;
+	background-color: var(--distaque);
+}
+
+.pagamentos-history-content{
+
+	min-height: 320px;
+	max-height: 320px;
+	overflow-y: auto;
+}
+.icon-hover i{
+
+	font-size:16px;
+}
+.icon-hover:hover{
+
+	color:var(--distaque);
+}
+.content-doc-list{
+	border-left:3px solid var(--distaque);
+	border-radius:2px;
+}
+.col-form-label{
+
+	color:#1c1c1c !important;
+	padding-top: calc(7px + 1px) !important;
+    padding-bottom: calc(7px + 1px) !important;
+    margin-bottom: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+}
+.link-add-talao-pagamento{
+
+	font-style: italic;
+	cursor: pointer !important;
+	color: #1c1c1c;
+	font-size:13px;
+}
+.text-dark{
+
+	color: #1c1c1c;
+}
+@media print {
+    html, body {
+        margin: 0;
+        padding: 0;
+		border: 0;
+    }
+    #printable {
+		margin: 0;
+        padding: 0;
+		font-size: 14px;
+    }
+    #printable ~ * {
+        display: none;
+    }
+}

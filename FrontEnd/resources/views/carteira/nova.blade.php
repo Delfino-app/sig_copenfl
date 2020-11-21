@@ -1,11 +1,11 @@
 @extends('layout.template')
 
-@section('titulo','Nova Licença')
+@section('titulo','Nova Carteira')
 <link href="{{asset('assets-login/plugins/smartwizard/dist/css/smart_wizard.css')}}" rel="stylesheet" />
 <link rel="stylesheet" href="{{asset('assets-login/css/customNovoProcesso.css')}}" type="text/css">
 @section('conteudo')
 	<div id="content" class="content content-form">
-		<form action="" enctype='multipart/form-data' id="frmPostLicenca" method="POST" name="form-wizard" class="form-control-with-bg">
+		<form action="" enctype='multipart/form-data' id="frmPostCarteira" method="POST" name="form-wizard" class="form-control-with-bg">
 			<input type="hidden" name="recividToken"  id="recividToken" value="{{$token}}">
 			{{ csrf_field() }}
 			<!-- begin wizard -->
@@ -74,7 +74,7 @@
 								<div class="col-xl-12">
 									<legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Dados pessoais do Solicitante</legend>
 									<!-- begin form-group -->
-									@include('licenca.forms.frm_dadosPessoais')
+									@include('carteira.forms.frm_dadosPessoais')
 								</div>
 							</div>
 						</fieldset>
@@ -88,7 +88,7 @@
 							<div class="row">
 								<!-- begin col-8 -->
 								<div class="col-xl-12">
-									@include('licenca.forms.frm_addItentificacao')
+									@include('carteira.forms.frm_addItentificacao')
 								</div>
 							</div>
 						</fieldset>
@@ -102,7 +102,7 @@
 							<div class="row">
 								<!-- begin col-8 -->
 								<div class="col-xl-12">
-									@include('licenca.forms.frm_enderecoPessoal')
+									@include('carteira.forms.frm_enderecoPessoal')
 								</div>
 							</div>
 						</fieldset>
@@ -116,7 +116,7 @@
 							<div class="row">
 								<!-- begin col-8 -->
 								<div class="col-xl-12">
-									@include('licenca.forms.frm_dadosTrabalho')
+									@include('carteira.forms.frm_dadosTrabalho')
 								</div>
 								<!-- end col-8 -->
 							</div>
@@ -134,7 +134,7 @@
 								<!-- begin col-8 -->
 								<div class="col-xl-12">
 									<legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Escola e Ano da última Formação em Enfermagem</legend>
-									@include('licenca.forms.frm_dadosEscola')
+									@include('carteira.forms.frm_dadosEscola')
 								</div>
 								<!-- end col-8 -->
 							</div>
@@ -170,5 +170,5 @@
 <script src="{{asset('assets-login/plugins/parsleyjs/dist/parsley.js')}}"></script>
 <script src="{{asset('assets-login/plugins/smartwizard/dist/js/jquery.smartWizard.js')}}"></script>
 <script src="{{asset('assets-login/js/demo/form-wizards-validation.demo.js')}}"></script>
-<script src="{{asset('js/AddLicencas/index.js')}}" type="module"></script>
+<script src="{{asset('js/AddCarteiras/index.js')}}" type="module"></script>
 @endsection

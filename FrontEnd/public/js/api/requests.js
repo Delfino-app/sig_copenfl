@@ -113,7 +113,8 @@ export default{
       const resData = await response.json();
       return resData;
     },
-    //Submit Dados
+
+    //Submit Dados Licença
     async submitDados(data,token){
 
       const myHeaders = new Headers();
@@ -121,7 +122,7 @@ export default{
       myHeaders.append("Content-Type","application/json");
       myHeaders.append("Authorization",`Bearer ${token}`);
 
-      const response = await fetch(config.sumbmitDadosRoute, {
+      const response = await fetch(config.sumbmitDadosRouteLicenca, {
         method: 'POST',
         headers: myHeaders,
         body: JSON.stringify(data),
@@ -129,5 +130,36 @@ export default{
   
       const resData = await response.json();
       return resData;
-  },
+    },
+
+    //Session Flash Add Licença
+    async sessionFlashAddLicenca(){
+
+      const response = await fetch(config.sessionAddLicenca, {
+        method: 'GET',
+      });
+  
+      const resData = await response.json();
+      return resData;
+    },
+
+    //Submit Dados Carteira
+    async submitDadosCarteira(data,token){
+
+      const myHeaders = new Headers();
+      myHeaders.append("accept","application/json");
+      myHeaders.append("Content-Type","application/json");
+      myHeaders.append("Authorization",`Bearer ${token}`);
+
+      const response = await fetch(config.sumbmitDadosRouteCarteira, {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(data),
+      });
+  
+      const resData = await response.json();
+      return resData;
+    }
+
+
 }

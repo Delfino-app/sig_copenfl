@@ -22,7 +22,6 @@
                         <div class="col-lg-12 content-doc-list-container">
                             <div class="content-doc-list">
                                 <p class="doc-list-title">
-                                    <span class="doc-list-number doc-not-add">1</span>
                                     {{$doc->nome}}
                                 </p>
                             </div>
@@ -36,7 +35,7 @@
 <div class="row">
     <div class="col-lg-12 fotter_ver-container">
         <div class="float-right">
-            <a href="#" class="btn btn-destaque">
+            <a href="{{route('add.documentos',$candidato->id)}}" class="btn btn-destaque">
                 Carregar Documentos <i class="fa fa-upload"></i>
             </a>
         </div>

@@ -67,7 +67,7 @@ export default{
 
             const municipios = getMunicipios.municipios;
 
-            for (let i = 0; i < municipios.length; i++) {
+            for (let i = 0; i < municipios.length; i++){
                 
                 display +=`
                     <option value="${municipios[i].id}">
@@ -80,7 +80,7 @@ export default{
         this.displayMunicipios.innerHTML = display;
         this.displayMunicipiosEndereco.innerHTML = display;
         this.displayMunicipiosTrabalho.innerHTML = display;
-
+        this.displayMunicipiosEscola.innerHTML = display;
     },
     async selectMunicipios(){
 
@@ -156,10 +156,11 @@ export default{
             tipo_escola : $('select[name="escola_tipo"]').val(), // pode ser Privada ou Publica
             escola : $('input[name="escola_nome"]').val(), // nome da escola
             nivel : $('select[name="escola_nivel"]').val(), // pode ser Fundamental, Medio ou Superior
-            // ano_frequencia : $('input[name="escola_ano_frequencia"]').val(), // ano/anos de frequencia escolar
-            // ano_termino : $('input[name="escola_ano_termino"]').val(), // ano que conclui, caso tenha
-            // ano_inicio : $('input[name="escola_ano_inicio"]').val(), // ano que inicio a estudar
-            // estado : $('select[name="escola_estado"]').val() // pode ser Estudando ou Concluido
+            ano_frequencia : $('input[name="escola_ano_frequencia"]').val(), // ano/anos de frequencia escolar
+            ano_termino : $('input[name="escola_ano_termino"]').val(), // ano que conclui, caso tenha
+            ano_inicio : $('input[name="escola_ano_inicio"]').val(), // ano que inicio a estudar
+            municipio : $('select[name="escola_municipio"]').val(), // Localizaçao Escola - Municipio
+            bairro : $('input[name="escola_bairro"]').val(), // nome da escola
         };
 
         //Identify Data
@@ -172,9 +173,10 @@ export default{
             tipo_documento : 21,
             descricao: "rueuroeurou",
         }
+
         //Default Data
         const defaultData = {
-            licenca_tipo : academic_detail.nivel, // pode ser: 'Medio' | 'Licenciatura'
+            carteira_tipo : academic_detail.nivel, // pode ser: 'Medio' | 'Licenciatura'
             local_inscricao : 'Offline',// pode ser: 'Offline' | 'Online'
             personal_datail : personal_datail,
             work_info : work_info,
@@ -184,7 +186,7 @@ export default{
 
         return defaultData;
     },
-    async submitFrmLicenca(e){
+    async submitFrmCarteira(e){
 
         e.preventDefault();
         
@@ -194,7 +196,6 @@ export default{
         //Disabled Some Buttons
         const data = await this.dataSubmitPrepare();
 
-
         const validateData = await this.validateDatas(data);
 
         if(validateData.status === 200){
@@ -203,28 +204,19 @@ export default{
             $("#addLicencaGifContainer").removeAttr("hidden");
             $("#submitLicencaGifContainer").hide();
 
-            const submit = await request.submitDados(data,token);
+            const submit = await request.submitDadosCarteira(data,token);
 
             if(submit.status != undefined && submit.status === "Ok"){
 
-                //Crianda Session Flash
-                const session = await request.sessionFlashAddLicenca();
-                if(session){
-
-                    //Registro Feito com Sucesso
-                    window.location.href = `/licencas/feito/${submit.candidato_id}`;
-                }
-                else{
-
-                    console.log(session);
-                }
+                //Registro Feito com Sucesso
+                window.location.href = `/carteiras/feito/${submit.candidato_id}`;
             }
             else{
 
                 //Erro to Added
                 alert("Houve algum erro inesperado. Tente mais tarde ou contacte o Suporte.");
                 console.log(submit);
-               // window.location.reload();
+                window.location.reload();
             }        
         }
         else{
@@ -310,6 +302,12 @@ export default{
 
             returnData.status = 400;
             returnData.messageError = "Selecione o Nível de Escola do Candidato deve ser ";
+        }
+
+        if((academic_detail.municipio == 0)){
+
+            returnData.status = 400;
+            returnData.messageError = "Selecione o Município onde a Escola esta Localizada";
         }
 
         return returnData;

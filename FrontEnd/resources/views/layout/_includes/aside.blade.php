@@ -53,16 +53,22 @@
 				</a>
 				<ul class="sub-menu">
 					<li>
-						<a href="#">
+						<a href="{{route('carteira.nova')}}">
 							Nova
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="{{route('carteira.lista')}}">
 							Lista
 						</a>
 					</li>
 				</ul>
+			</li>
+			<li class="">
+				<a href="{{route('pagamentos')}}">
+				    <i class="ion-ios-stats"></i>
+				    <span>Pagamentos</span>
+			    </a>
 			</li>
 			<li class="">
 				<a href="#" data-toggle="modal" data-target="#modalSuporte">
