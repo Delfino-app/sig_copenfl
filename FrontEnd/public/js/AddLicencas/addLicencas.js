@@ -172,7 +172,6 @@ export default{
             tipo_documento : 21,
             descricao: "rueuroeurou",
         }
-
         //Default Data
         const defaultData = {
             licenca_tipo : academic_detail.nivel, // pode ser: 'Medio' | 'Licenciatura'
