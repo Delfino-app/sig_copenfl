@@ -18,89 +18,6 @@ class CandidatoCtrl extends Controller
     public function __construct(){
         $this->middleware(["auth"]);
     }
-    /**
-     * Display a listing of the resource.
-     * @param String $estado  can be: Pendente | Inscrito | Anulado | Analisado | Aprovado
-     * @param String $tipo  can be: Licenca | Carteira
-     * @return \Illuminate\Http\Response
-     * 
-     */
-    public function index($estado = "Pendente", $tipo = null, $data_inicio = null, $data_fim = null)
-    {
-        $candidatos = [];
-        if($data_inicio != null && $data_fim != null){
-            $candidatos = candidatos::between("data_criada",[$data_inicio, $data_fim])->get();
-        }else {
-            $candidatos = candidatos::where("data_criada",date("Y-m-d"))->get();            
-        }
-        if(isset($candidatos[0])){
-            foreach($candidatos as $candidato){
-                if(isset($candidato->id)){
-                    $home_address_data = $candidato->endereco->where("tipo","=","Residencia")->first();
-                    $home_contact_data = $candidato->contacto->where("tipo","=","Residencia")->first();
-                    if(isset($home_address_data->tipo) || isset($home_contact_data->tipo))
-                        $residencia = [
-                            "municipio" => $home_address_data->municipio->nome??null,
-                            "bairro" => $home_address_data->bairro??null,
-                            "rua" => $home_address_data->rua??null,
-                            "casa" => $home_address_data->casa??null,
-                            "telefone" => $home_contact_data->telefone??null,
-                            "email" => $home_contact_data->email??null,
-                            "caixa_postal" => $home_contact_data->caixa_postal??null,
-                            "fax" => $home_contact_data->fax??null,
-                        ];
-                    else $residencia =  null;
-        
-                    $work_address_data = $candidato->endereco->where("tipo","=","Trabalho")->first();
-                    $work_contact_data = $candidato->contacto->where("tipo","=","Trabalho")->first();
-                    if(isset($work_address_data->tipo) || isset($work_contact_data->tipo) )
-                        $trabalho = [
-                            "municipio" => $work_address_data->municipio->nome??null,
-                            "bairro" => $work_address_data->bairro??null,
-                            "rua" => $work_address_data->rua??null,
-                            "casa" => $work_address_data->casa??null,
-                            "telefone" => $work_contact_data->telefone??null,
-                            "email" => $work_contact_data->email??null,
-                            "caixa_postal" => $work_contact_data->caixa_postal??null,
-                            "fax" => $work_contact_data->fax??null,
-                        ];
-                    else $trabalho =  null;
-                    if(isset($candidato->naturalidade->nome))
-                        $naturalidade = [
-                            "municipio" => $candidato->naturalidade->nome??null,
-                            "provincia" => $candidato->naturalidade->provincia->nome??null,
-                            "pais" => $candidato->naturalidade->provincia->pais->nome??null,
-                        ];
-                    else $naturalidade = null;
-                    $data[] = [
-                        "id" => $candidato->id,
-                        "nome" => $candidato->nome,
-                        "pai" => $candidato->pai,
-                        "mae" => $candidato->mae,
-                        "genero" => $candidato->genero,
-                        "estado_civil" => $candidato->estado_civil,
-                        "data_nascimento" => $candidato->data_nascimento,
-                        "naturalidade" => $naturalidade,
-                        "nacionalidade" => $candidato->nacionalidade->nome??null,
-                        "residencia" => $residencia,
-                        "trabalho" => $trabalho,
-                        "documentos" => [],
-                        "dados_academicos" => [],
-                        "licenca" => [],
-                        "carteira" => [],
-                    ];
-                }
-            }
-            return response()->json([
-                'status' => "Ok",
-                "candidatos" => $data
-            ], 200);
-        }
-        return response()->json([
-                'status' => "Info",
-                "message" => "Nenhum registo de candidato encontrado"
-        ], 200);
-    }
      /**
      * Display a listing of the resource.
      * @param String $tipo  can be: Licenca | Carteira 
@@ -134,23 +51,10 @@ class CandidatoCtrl extends Controller
                     $home_contact_data = $candidato->contacto->where("tipo","=","Residencia")->first();
                     $inscricao_data = $candidato->$tipo->first();
                     $inscricao = [];
-                    $documentation = [];
                     $academic = [];
                     if(isset($inscricao_data)){
 
-                        $academic_data = $inscricao_data->dados_academicos;      
-                        $document_data =  $inscricao_data->documentos;                          
-                        foreach($document_data as $doc){
-                            $documentation[] = [
-                                "id" => $doc->id,
-                                "tipo" => $doc->tipo->nome??null,
-                                "numero" => $doc->numero,
-                                "orgao_emissor" => $doc->orgao_emissor,
-                                "data_emissao" => $doc->data_emissao,
-                                "data_expiracao" => $doc->data_expiracao??null,
-                                "ficheiro" => $doc->ficheiro??null,
-                            ];
-                        }       
+                        $academic_data = $inscricao_data->dados_academicos;       
                         if(isset($academic_data[0]))
                         $academic = [
                             "id" => $academic_data[0]->id??null,
@@ -162,7 +66,7 @@ class CandidatoCtrl extends Controller
                             "ano_termino" => $academic_data[0]->ano_termino??null,
                             "ano_frequencia" => $academic_data[0]->ano_frequencia??null,
                         ];
-                    else $academic =  null;
+                        else $academic =  null;
                     
                     if(isset($inscricao_data->estado) && $inscricao_data->estado == $estado)
                         $inscricao = [
@@ -223,7 +127,10 @@ class CandidatoCtrl extends Controller
                         "inscricao" => $inscricao,
                         "residencia" => $residencia,
                         "trabalho" => $trabalho,
-                        "documentos" => $documentation,
+                        "documentos" => [                            
+                            "documentos_entregues" => lista_documentos("entregues", $tipo, $inscricao_data->id),
+                            "documento_nao_entregues" => lista_documentos("faltando", $tipo, $inscricao_data->id),
+                        ],
                         "dados_academicos" => $academic,
                     ];
                 }

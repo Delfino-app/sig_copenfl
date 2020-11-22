@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,12 +12,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::group([
-    'middleware' => 'api',
+    'middleware' => ['auth:api'],
     'namespace' => 'App\Http\Controllers\Inscricao',
 ], function ($router) { 
-
     /*
         tipo: licenca ou carteria
         inscricao_id: id da inscricao em funcao no modelo
@@ -31,12 +28,11 @@ Route::group([
      Route::get('/{tipo}/documentos-entregues/{inscricao_id}', 'DocumentosAcademicosCtrl@documentos_entregues');
 
      /*
-        tipo: Fundamental, Medio,    Medio_Estudando, Licenciatura_Estudando, Licenciatura
+        tipo: licenca ou carteria
      */
-    Route::get('/{tipo}/documentos', 'DocumentosAcademicosCtrl@index_documentos');
-
-    Route::post('documentos/upload', 'DocumentosAcademicosCtrl@store');
-    Route::put('update/{id}', 'DocumentosAcademicosCtrl@update');
+    Route::get('/{tipo}/todos-documentos/{inscricao_id}', 'DocumentosAcademicosCtrl@index_documentos');
+    Route::post('documentos/store', 'DocumentosAcademicosCtrl@store');
+    Route::post('documentos/update', 'DocumentosAcademicosCtrl@update');
     Route::delete('destroy/{id}', 'DocumentosAcademicosCtrl@destroy');
 });
 

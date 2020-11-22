@@ -16,7 +16,7 @@ class CreateDadosAcademicosTable extends Migration
         Schema::create('dados_academicos', function (Blueprint $table) {
             $table->id();
             $table->enum("tipo_escola",['Privada', 'Publica']);
-            $table->enum("nivel",['Fundamental', 'Medio','Superior','Especialidade']);
+            $table->enum("nivel",['Fundamental', 'Medio','Licenciado','Especialidade']);
             $table->enum("estado",['Estudando', 'Concluido']);
             $table->string("escola");
             $table->year("ano_inicio")->nullable();
