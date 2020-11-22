@@ -96,7 +96,7 @@ REQUEST BODY
          "municipio" : "", // municipio de localidade da escola
         "bairro" : "" // bairro de localidade da escola
     },
-    "identificao" : {
+    "identificacao" : {
         "file" : "",
         "orgao_emissor": "",
         "data_expiracao" : "",
@@ -299,12 +299,12 @@ POST URL
 {
     "inscricao_tipo":,  //  Carteira | Licenca
     "inscricao_id" : "",
-       "file" : "",
-        "orgao_emissor": "",
-        "data_expiracao" : "",
-        "data_emissao" : "",
-        "numero" : "",
-        "tipo_documento",
-        "descricao": "",
+    "file" : "",
+    "orgao_emissor": "",
+    "data_expiracao" : "",
+    "data_emissao" : "",
+    "numero" : "",
+    "tipo_documento",
+    "descricao": "",
 }
 </pre>

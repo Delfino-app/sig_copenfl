@@ -19,7 +19,22 @@ Route::group([
     'namespace' => 'App\Http\Controllers\Inscricao',
 ], function ($router) { 
 
+    /*
+        tipo: licenca ou carteria
+        inscricao_id: id da inscricao em funcao no modelo
+     */
+    Route::get('/{tipo}/documentos-faltando/{inscricao_id}', 'DocumentosAcademicosCtrl@documentos_faltando');
+  /*
+        tipo: licenca ou carteria
+        inscricao_id: id da inscricao em funcao no modelo
+     */
+     Route::get('/{tipo}/documentos-entregues/{inscricao_id}', 'DocumentosAcademicosCtrl@documentos_entregues');
+
+     /*
+        tipo: Fundamental, Medio,    Medio_Estudando, Licenciatura_Estudando, Licenciatura
+     */
     Route::get('/{tipo}/documentos', 'DocumentosAcademicosCtrl@index_documentos');
+
     Route::post('documentos/upload', 'DocumentosAcademicosCtrl@store');
     Route::put('update/{id}', 'DocumentosAcademicosCtrl@update');
     Route::delete('destroy/{id}', 'DocumentosAcademicosCtrl@destroy');

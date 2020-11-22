@@ -367,11 +367,11 @@ class CandidatoCtrl extends Controller
             "personal_datail.estado_civil" => "required",
             "personal_datail.genero" => "required",
             "personal_datail.naturalidade_id" => "required",
-            "identificacao" => "required",
+            // "identificacao.file" => "required",
+            "identificacao.tipo_documento" => "required",
             "licenca_tipo" => "required",
             "local_inscricao" => "required",
         ]);
-
         $candidato = new candidatos;
         $personal_datail = (object) $request->personal_datail;
         $candidato->data_criada = Date("Y-m-d");
@@ -442,6 +442,9 @@ class CandidatoCtrl extends Controller
                     "sequencia" => $sequencia,
                 ])->id;
                 $inscricao_type = licenca::class;
+
+                $identificacao_data = (object) $request->identificacao;
+                // if($identificacao_data)
 
             $academic_detail = (object) $request->academic_detail;
             if( isset($academic_detail) and isset($academic_detail->tipo_escola) and $inscricao_id != null){
