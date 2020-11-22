@@ -22,7 +22,7 @@ Route::group([
     // Route::get('index/{data_inicio?}/{data_fim?}', 'CandidatoCtrl@index');
     Route::post('store/licenca', 'CandidatoCtrl@store_licenca');
     Route::post('store/carteira', 'CandidatoCtrl@store_carteira');
-    Route::get('show/{id}', 'CandidatoCtrl@show');
+    Route::get('/{tipo}/show/{id}', 'CandidatoCtrl@show');
     Route::put('update/{id}', 'CandidatoCtrl@update');
     Route::delete('destroy/{id}', 'CandidatoCtrl@destroy')->middleware("role:Presidente");
 });
