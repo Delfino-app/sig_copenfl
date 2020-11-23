@@ -228,13 +228,15 @@ export default{
                     
                     //Upload Dados Idenficação
                     const submitIdentificaco = await request.submitIdentificacao(identificacaoDados,token);
+
+                    console.log(submitIdentificaco);
                 }
 
                 const session = await request.sessionFlashAddLicenca();
                 if(session){
 
                     //Registro Feito com Sucesso
-                    window.location.href = `/licencas/feito/${submit.candidato_id}`;
+                    //window.location.href = `/licencas/feito/${submit.candidato_id}`;
                 }
             }
             else{

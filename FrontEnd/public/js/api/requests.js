@@ -135,27 +135,30 @@ export default{
     //Post Dados Identificação
     async submitIdentificacao(data,token){
 
-      const myHeaders = new Headers();
-      myHeaders.append("accept","application/json");
-      myHeaders.append("Content-Type","application/json");
-      myHeaders.append("Authorization",`Bearer ${token}`);
+      const Url = await config.sumbmitDadosIdentificacao;
 
-      //const formData = new FormData();
+      const formData = new FormData();
+      formData.append("inscricao_tipo",data.inscricao_tipo);
+      formData.append("inscricao_id",data.inscricao_id);
+      formData.append("file",data.file);
+      formData.append("tipo_documento_id",data.tipo_documento_id);
 
-      //formData.append("inscricao_tipo",data.inscricao_tipo);
-      //formData.append("inscricao_id",data.inscricao_id);
-      //formData.append("file",data.file);
-      //formData.append("tipo_documento_id",data.tipo_documento);
-
-
-      const response = await fetch(config.sumbmitDadosIdentificacao, {
-        method: 'POST',
-        headers: myHeaders,
-        body: JSON.stringify(data),
+      $.ajax({
+        url:Url,
+        type:"POST",
+        processData: false,
+        contentType: false,
+        data: formData,
+        headers: {
+          'accept':'application/json',
+          'Content-Type':'application/json',
+          'Authorization':`Bearer ${token}`
+        },
+        enctype: 'multipart/form-data',
+        success:function(response){
+          console.log(response);
+        }
       });
-  
-      const resData = await response.json();
-      return resData;
     },
 
     //Session Flash Add Licença
