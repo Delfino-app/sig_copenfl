@@ -58,7 +58,7 @@ class ApiRequestController extends Controller
     }
 
     //Ver dados de Um Candidato
-    public static function verCandidato($id){
+    public static function verCandidato($tipo,$id){
 
         $token = Session::get('access_token');
 
@@ -84,7 +84,7 @@ class ApiRequestController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
         );
 
-        $ch = curl_init(DOMINIO_API."/api/v1/candidato/show/".$id);
+        $ch = curl_init(DOMINIO_API."/api/v1/candidato/{$tipo}/show/{$id}");
 
         curl_setopt_array($ch, $options);
 
