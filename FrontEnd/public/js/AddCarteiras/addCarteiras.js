@@ -170,8 +170,10 @@ export default{
             data_expiracao : $('input[name="data_expiracao_bi"]').val(),
             data_emissao: $('input[name="data_emissao_bi"]').val(),
             numero: $('input[name="numero_bi"]').val(),
-            tipo_documento : 21,
-            descricao: "rueuroeurou",
+            tipo_documento_id : "",
+            inscricao_id: "",
+            inscricao_tipo: "",
+            descricao: "",
         }
 
         //Default Data
@@ -207,6 +209,29 @@ export default{
             const submit = await request.submitDadosCarteira(data,token);
 
             if(submit.status != undefined && submit.status === "Ok"){
+
+                const id = submit.candidato_id;
+                const identificacaoDados = data.identificacao;
+                identificacaoDados.inscricao_id = id;
+
+                //Validar Tipo de Documento (Id Tipo Documento - Ganbiarra)
+                if(data.academic_detail.nivel == "Medio"){
+
+                    identificacaoDados.tipo_documento_id = 14;
+                }
+                else{
+
+                    identificacaoDados.tipo_documento_id = 28;
+                }
+
+                identificacaoDados.inscricao_tipo = "Carteira";
+
+                //Verificação Doc
+                if(identificacaoDados.file.name != undefined){
+                    
+                    //Upload Dados Idenficação
+                    const submitIdentificaco = await request.submitIdentificacao(identificacaoDados,token);
+                }
 
                 //Registro Feito com Sucesso
                 window.location.href = `/carteiras/feito/${submit.candidato_id}`;

@@ -396,7 +396,7 @@ class SessionContronller extends Controller
 
             $dados = ApiRequestController::verCandidato("carteira",$id);
 
-            if(!empty($dados) && isset($dados->candidatos)){
+            if(!empty($dados) && isset($dados->candidato)){
 
                 return view('carteira.RegistroFeito',['name' => $name,'token' => $token,'id' => $id]);
             }
@@ -426,8 +426,6 @@ class SessionContronller extends Controller
             //Request
             $dados = ApiRequestController::verCandidato("carteira",$id);
 
-            dd("Pendente -  API Error");
-
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 
                 //Criando Message Auth e Redir to Login
@@ -438,25 +436,11 @@ class SessionContronller extends Controller
             else{
 
                 //Validate Candidato
-                if(isset($dados->candidatos)){
+                if(isset($dados->candidato)){
 
-                    $candidato = $dados->candidatos;
+                    $candidato = $dados->candidato;
 
-                    $docs = [];
-
-                    //Validate Show Documentos
-                    if(isset($candidato->inscricao->licenca->academic_data)){
-
-                        $tipoDoc = $candidato->inscricao->licenca->academic_data->nivel;
-
-                        //View List Docs
-                        $doc = ApiRequestController::lisDocs($tipoDoc);
-
-                        $docs = isset($doc->documentos) ? $doc->documentos : [];
-
-                    }
-
-                    return view('carteira.ver',['name' => $name,'token' => $token, 'candidato' => $candidato, 'docs' => $docs]);
+                    return view('carteira.ver',['name' => $name,'token' => $token, 'candidato' => $candidato]);
                 }
                 else{
 
