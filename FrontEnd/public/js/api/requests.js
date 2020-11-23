@@ -147,7 +147,7 @@ export default{
         url:Url,
         type:"POST",
         processData: false,
-        data: formData,
+        data:formData,
         headers: {
           'accept':'application/json',
           'Content-Type':'multipart/form-data',
