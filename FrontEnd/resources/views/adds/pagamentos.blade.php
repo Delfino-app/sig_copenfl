@@ -82,13 +82,13 @@
                                             <li>
                                                 Tipo Inscrição:
                                                 <span class="dados_value">
-                                                    {{isset($candidato->inscricao->licenca->type)?$candidato->inscricao->licenca->type:$candidato->inscricao->carteira->type}}
+                                                    {{$candidato->inscricao->tipo}}
                                                 </span>
                                             </li>
                                             <li>
                                                 Estado Inscrição:
                                                 <span class="dados_value">
-                                                    {{isset($candidato->inscricao->licenca->estado)?$candidato->inscricao->licenca->estado:$candidato->inscricao->carteira->estado}}
+                                                    {{$candidato->inscricao->estado}}
                                                 </span>
                                             </li>
                                         </ul>

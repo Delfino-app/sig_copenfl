@@ -146,9 +146,7 @@ class SessionContronller extends Controller
             $name = Session::get('name');
             $token = Session::get('access_token');
 
-            $dados = ApiRequestController::vercandidato("licenca",$id);
-
-            dd($dados);
+            $dados = ApiRequestController::verCandidato("licenca",$id);
 
             if(!empty($dados) && isset($dados->candidatos)){
 
@@ -190,7 +188,7 @@ class SessionContronller extends Controller
             $name = Session::get('name');
             $token = Session::get('access_token');
 
-            $dados = ApiRequestController::vercandidato("licenca",$id);
+            $dados = ApiRequestController::verCandidato("licenca",$id);
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 //Criando Message Auth e Redir to Login
@@ -255,7 +253,7 @@ class SessionContronller extends Controller
             $token = Session::get('access_token');
 
             //Request
-            $dados = ApiRequestController::vercandidato("licenca",$id);
+            $dados = ApiRequestController::verCandidato("licenca",$id);
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 
@@ -443,7 +441,7 @@ class SessionContronller extends Controller
             $name = Session::get('name');
             $token = Session::get('access_token');
 
-            $dados = ApiRequestController::vercandidato("carteira",$id);
+            $dados = ApiRequestController::verCandidato("carteira",$id);
 
             if(!empty($dados) && isset($dados->candidatos)){
 
@@ -473,7 +471,7 @@ class SessionContronller extends Controller
             $token = Session::get('access_token');
 
             //Request
-            $dados = ApiRequestController::vercandidato("carteira",$id);
+            $dados = ApiRequestController::verCandidato("carteira",$id);
 
             dd("Pendente -  API Error");
 
@@ -592,7 +590,7 @@ class SessionContronller extends Controller
             $name = Session::get('name');
             $token = Session::get('access_token');
 
-            $dados = ApiRequestController::vercandidato("licenca",$id);
+            $dados = ApiRequestController::verCandidato("licenca",$id);
 
             if(isset($dados->candidatos)){
 
@@ -674,7 +672,9 @@ class SessionContronller extends Controller
 
         //Faker -  Pagamento Feito
         $id = $req["pagamento_candidato"];
+
         (new helper())->pagamentoFeito();
+
         return redirect()->route('pagamento.dados',$id);
     }
     public function pagamentosDadosCandidato($id){
@@ -685,8 +685,14 @@ class SessionContronller extends Controller
 
             $token = Session::get('access_token');
 
-            //Request
-            $dados = ApiRequestController::vercandidato("licenca",$id);
+            //Request - Licença
+            $dados = ApiRequestController::verCandidato("licenca",$id);
+
+            if(!isset($dados->candidato)){
+
+                //Request - Carteira
+                $dados = ApiRequestController::verCandidato("carteira",$id);
+            }
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 
@@ -698,9 +704,9 @@ class SessionContronller extends Controller
             else{
 
                 //Validate Candidato
-                if(isset($dados->candidatos)){
+                if(isset($dados->candidato)){
 
-                    $candidato = $dados->candidatos;
+                    $candidato = $dados->candidato;
 
                     //Faker Historico de Pagamentos
                     $pagamentos = [
