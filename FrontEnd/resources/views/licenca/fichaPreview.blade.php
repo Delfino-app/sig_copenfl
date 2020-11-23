@@ -132,11 +132,11 @@
 				<div class="col-lg-12 ficha-content-col-12">
                     <h3 class="ficha-text-container row">
                         <span class="col-lg-2">1. Tipo Escola</span>
-                        <p class="col-lg-2">{{$candidato->inscricao->licenca->academic_data->tipo_escola}}</p>
+                        <p class="col-lg-2">{{$candidato->inscricao->academic_data->tipo_escola}}</p>
                         <span class="col-lg-2">2. Nome da Escola</span>
-                        <p class="col-lg-6">{{$candidato->inscricao->licenca->academic_data->escola}}</p>
+                        <p class="col-lg-6">{{$candidato->inscricao->academic_data->escola}}</p>
                         <span class="col-lg-2">3. Nível</span>
-                        <p class="col-lg-2">{{$candidato->inscricao->licenca->academic_data->nivel}}</p>
+                        <p class="col-lg-2">{{$candidato->inscricao->academic_data->nivel}}</p>
                     </h3>
 				</div>
             </div>

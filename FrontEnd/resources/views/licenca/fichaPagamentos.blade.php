@@ -40,21 +40,21 @@
             <h3 class="semi-text-title">Pagamentos em falta</h3>
             <div class="row doc-container">
                 <div class="col-lg-12 content-doc-list-container">
-                    <div class="content-doc-list">
+                    <div class="content-doc-list content-doc-list-not-add">
                         <p class="doc-list-title">
                             Inscrição 2.000,00 kz
                        </p>
                     </div>
                 </div>
                 <div class="col-lg-12 content-doc-list-container">
-                    <div class="content-doc-list">
+                    <div class="content-doc-list content-doc-list-not-add">
                         <p class="doc-list-title">
                             Cota 4.500,00 Kz (Anual)
                        </p>
                     </div>
                 </div>
                 <div class="col-lg-12 content-doc-list-container">
-                    <div class="content-doc-list">
+                    <div class="content-doc-list content-doc-list-not-add">
                         <p class="doc-list-title">
                             Licença de Aprendizagem 2.500,00 Kz
                        </p>

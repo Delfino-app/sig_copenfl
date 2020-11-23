@@ -11,10 +11,10 @@
                         <div class="doc-em-falta-container">
                             <h3 class="semi-text-title">Documentos</h3>
                             <div class="row doc-container">
-                                @if(!empty($docs))
-                                    @foreach($docs as $doc)
+                                @if(!empty($candidato->inscricao->documentos->documento_nao_entregues))
+                                    @foreach($candidato->inscricao->documentos->documento_nao_entregues as $doc)
                                         <div class="col-lg-12 content-doc-list-container">
-                                            <div class="content-doc-list houver-destaque">
+                                            <div class="content-doc-list content-doc-list-not-add houver-destaque">
                                                 <p class="doc-list-title">
                                                     <label title="Clique para adicionar" class="lbl_addDoc" for="Declaracao_Frequencia">
                                                         {{$doc->nome}}

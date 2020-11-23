@@ -350,6 +350,10 @@
 	border-left:3px solid var(--distaque);
 	border-radius:2px;
 }
+.content-doc-list-not-add{
+	border-left:3px solid var(--dark);
+	border-radius:2px;
+}
 .col-form-label{
 
 	color:#1c1c1c !important;

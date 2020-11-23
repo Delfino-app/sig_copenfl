@@ -78,8 +78,6 @@ class SessionContronller extends Controller
             //Request
             $dados = ApiRequestController::licencas("licenca","Pendente");
 
-            dd($dados);
-
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 
                 //Criando Message Auth e Redir to Login
@@ -199,33 +197,11 @@ class SessionContronller extends Controller
             else{
 
                 //Validate Candidato
-                if(isset($dados->candidatos)){
+                if(isset($dados->candidato)){
 
-                    $candidato = $dados->candidatos;
-
-                    $docs = [];
-
-                    //Validate Show Documentos
-                    if(isset($candidato->inscricao->licenca->academic_data)){
-
-                        $tipoDoc = $candidato->inscricao->licenca->academic_data->nivel;
-
-                        if($tipoDoc == "Medio"){
-
-                            $tipoDoc = "Medio_Estudando";
-                        }
-                        elseif($tipoDoc == "Superior"){
-
-                            $tipoDoc = "Licenciatura_Estudando";
-                        }
-
-                        //View List Docs
-                        $doc = ApiRequestController::lisDocs($tipoDoc);
-
-                        $docs = isset($doc->documentos) ? $doc->documentos : [];
-                    }
-
-                    return view('licenca.addDoc',['name' => $name,'token' => $token,'docs' => $docs, 'candidato' => $candidato]);
+                    $candidato = $dados->candidato;
+                    
+                    return view('licenca.addDoc',['name' => $name,'token' => $token,'candidato' => $candidato]);
                 }
                 else{
 
@@ -265,34 +241,11 @@ class SessionContronller extends Controller
             else{
 
                 //Validate Candidato
-                if(isset($dados->candidatos)){
+                if(isset($dados->candidato)){
 
-                    $candidato = $dados->candidatos;
+                    $candidato = $dados->candidato;
 
-                    $docs = [];
-
-                    //Validate Show Documentos
-                    if(isset($candidato->inscricao->licenca->academic_data)){
-
-                        $tipoDoc = $candidato->inscricao->licenca->academic_data->nivel;
-
-                        if($tipoDoc == "Medio"){
-
-                            $tipoDoc = "Medio_Estudando";
-                        }
-                        elseif($tipoDoc == "Superior"){
-
-                            $tipoDoc = "Licenciatura_Estudando";
-                        }
-
-                        //View List Docs
-                        $doc = ApiRequestController::lisDocs($tipoDoc);
-
-                        $docs = isset($doc->documentos) ? $doc->documentos : [];
-
-                    }
-
-                    return view('licenca.ver',['name' => $name,'token' => $token, 'candidato' => $candidato, 'docs' => $docs]);
+                    return view('licenca.ver',['name' => $name,'token' => $token, 'candidato' => $candidato]);
                 }
                 else{
 
@@ -591,6 +544,11 @@ class SessionContronller extends Controller
             $token = Session::get('access_token');
 
             $dados = ApiRequestController::verCandidato("licenca",$id);
+
+            if(!isset($dados->candidatos)){
+
+                $dados = ApiRequestController::verCandidato("carteira",$id);
+            }
 
             if(isset($dados->candidatos)){
 
