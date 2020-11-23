@@ -15,10 +15,10 @@ class CreateDocumentosTable extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
-            $table->string('numero');
+            $table->string('numero')->nullable();
             $table->string('orgao_emissor')->nullable();
-            $table->string('data_emissao');
-            $table->string('data_expiracao');
+            $table->string('data_emissao')->nullable();
+            $table->string('data_expiracao')->nullable();
             $table->text('descricao')->nullable();
             $table->text('ficheiro');
             $table->morphs('model');

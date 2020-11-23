@@ -95,15 +95,6 @@ REQUEST BODY
         "nivel" : "", // pode ser Fundamental, Medio ou Superior
          "municipio" : "", // municipio de localidade da escola
         "bairro" : "" // bairro de localidade da escola
-    },
-    "identificao" : {
-        "file" : "",
-        "orgao_emissor": "",
-        "data_expiracao" : "",
-        "data_emissao" : "",
-        "numero" : "",
-        "tipo_documento",
-        "descricao": "",
     }
 }
 
@@ -117,7 +108,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJh.waVwvdjFcL2F1dGhcL2xvZ2luIiw.iaWF0Ijo
 
 REQUEST BODY
 {
-    "licenca_tipo" : "", // pode ser: 'Fundamental' | 'Medio' | 'Licenciatura'
+    "carteira_tipo" : "", // pode ser: 'Fundamental' | 'Medio' | 'Licenciatura'
     "local_inscricao" : // pode ser: 'Offline' | 'Online'
     "personal_datail" : {
         "nome" : "", // campo de preenchimento obrigatório
@@ -163,15 +154,6 @@ REQUEST BODY
         "ano_termino" : "", // ano que conclui, caso tenha
         "municipio" : "", // municipio de localidade da escola
         "bairro" : "" // bairro de localidade da escola
-    },
-    "identificacao" : {
-        "file" : "",
-        "orgao_emissor": "",
-        "data_expiracao" : "",
-        "data_emissao" : "",
-        "numero" : "",
-        "tipo_documento",
-        "descricao": "",
     }
 }
 
@@ -204,42 +186,99 @@ Authorization: Bearer eyJ0eXAOTAwMFwvdWVuZ2lcL2F.waVwvdjL2xvZ2luIiw.iaWF0IjozLCJ
 RESPONSE BODY
 {
     "status": "Ok",
-    "candidato": [{
-        "id": 1,
-        "nome": "Daniel Pedro",
-        "pai": "Jorge Daniel",
-        "mae": "Fineza Daniel",
-        "genero": "M",
-        "estado_civil": "Solteiro",
-        "data_nascimento": "2000-12-04",
-        "naturalidade": {
-            "municipio": "Dande",
-            "provincia": "Bengo",
-            "pais": "Angola"
-        },
-        "nacionalidade": "Angola",
-        "residencia": null,
-        "trabalho": {
-            "municipio": null,
-            "bairro": null,
-            "rua": null,
-            "casa": null,
-            "telefone": null,
-            "email": null,
-            "caixa_postal": null,
-            "fax": null
-        },
-        "documentos": [],
-        "dados_academicos": [],
-        "licenca": [],
-        "carteira": []
-    }]
+    "candidatos": [
+        {
+            "id": 1,
+            "nome": "Filipe Pedro Daniel",
+            "pai": "ggg Daniel",
+            "mae": "Carla Daniel",
+            "genero": "M",
+            "estado_civil": "Solteiro(a)",
+            "data_nascimento": "2020-11-22",
+            "naturalidade": {
+                "municipio": "Chitembo",
+                "provincia": "Bié",
+                "pais": "Angola"
+            },
+            "nacionalidade": "Bangladesh",
+            "inscricao": {
+                "id": 1,
+                "type": "licenca",
+                "estado": "Pendente",
+                "numero": "L/dRhr/2020"
+            },
+            "residencia": {
+                "id": 2,
+                "municipio": "Kuito",
+                "bairro": "Hoji Ya henda",
+                "rua": "rua carlos Infgles",
+                "casa": "122",
+                "telefone": "922222222",
+                "email": "app@app.com",
+                "caixa_postal": "322323",
+                "fax": "2323323"
+            },
+            "trabalho": {
+                "id": 1,
+                "municipio": "Cuembo",
+                "bairro": "Sergio martis CEO",
+                "rua": "Padre de Cruzeiro",
+                "casa": "33934",
+                "telefone": "9231245334",
+                "email": "app@work.com",
+                "caixa_postal": "32322",
+                "fax": "3e9023"
+            },
+            "documentos": {
+                "documentos_entregues": [
+                    {
+                        "tipo_documento_id": 8,
+                        "documento_id": 2,
+                        "nome": "Declaração de frequência",
+                        "numero": "0292302390",
+                        "orgao_emissor": "Identificacao de luanda de Angola",
+                        "data_emissao": null,
+                        "data_expiracao": null,
+                        "url": "http://localhost:8000/storage/licenca_doc1/declaracao_de_frequencia_1606074865.jpg"
+                    }
+                ],
+                "documento_nao_entregues": [
+                    {
+                        "tipo_documento_id": 9,
+                        "nome": "Cópia do Bilhete/Passporte"
+                    },
+                    {
+                        "tipo_documento_id": 10,
+                        "nome": "Ficha de inscrição (Fornecida pela ordem de enfermeiros)"
+                    },
+                    {
+                        "tipo_documento_id": 11,
+                        "nome": "Cópias do nº de cartão de contribuinte"
+                    },
+                    {
+                        "tipo_documento_id": 12,
+                        "nome": "Talão de pagamento de emuluntos"
+                    }
+                ]
+            },
+            "dados_academicos": {
+                "id": 1,
+                "tipo_escola": "Publica",
+                "escola": "Semba Carlos Jacinto Chipenda",
+                "nivel": "Medio",
+                "estado": "Estudando",
+                "ano_inicio": null,
+                "ano_termino": null,
+                "ano_frequencia": null
+            }
+        }
+    ]
 }
 
 
 
 # Update de Candidatos
-PUT URL
+POST URL
 "http://localhost:8000/api/v1/candidato/update/{candidato_id}"
 {
     "personal_datail" : {
@@ -257,7 +296,8 @@ PUT URL
 # get especific Candidato
 
 GET URL
-"http://localhost:8000/api/v1/candidato/show/{candidato_id}"
+tipo : carteira | licenca
+"http://localhost:8000/api/v1/candidato/{tipo}/show/{candidato_id}"
 
 
 # Destroy de Candidatos
@@ -289,22 +329,40 @@ Authorization: Bearer eyJ0eXAOTAwMFwvdWVuZ2lcL2F.waVwvdjL2xvZ2luIiw.iaWF0IjozLCJ
 RESPONSE BODY
 
 GET URL
-tipo : 'Fundamental' | 'Medio_Estudando' | 'Medio' | 'Licenciatura_Estudando' | 'Licenciatura'
-"http://localhost:8000/api/v1/inscricao/{tipo}/documentos"
+tipo : 'licenca | carteira'
+inscricao_id : atribuido em funcao do tipo acima
+"http://localhost:8000/api/v1/inscricao/{tipo}/todos-documentos/{inscricao_id}"
+
+'http://localhost:8000/api/v1/inscricao/{tipo}/documentos-faltando/{inscricao_id}'
+
+'http://localhost:8000/api/v1/inscricao/{tipo}/documentos-entregues/{inscricao_id}'
 
 # Upload de documentos
 POST URL
 
-"http://localhost:8000/api/v1/inscricao/documentos/upload"
+"http://localhost:8000/api/v1/inscricao/documentos/store"
 {
     "inscricao_tipo":,  //  Carteira | Licenca
     "inscricao_id" : "",
-       "file" : "",
-        "orgao_emissor": "",
-        "data_expiracao" : "",
-        "data_emissao" : "",
-        "numero" : "",
-        "tipo_documento",
-        "descricao": "",
+    "tipo_documento_id" : ""
+    "file" : "",
+    "orgao_emissor": "",
+    "data_expiracao" : "",
+    "data_emissao" : "",
+    "numero" : "",
+    "descricao": "",
+}
+# Update de Upload de documentos
+POST URL
+
+"http://localhost:8000/api/v1/inscricao/documentos/update"
+{
+    "documento_id" : ""
+    "file" : "",
+    "orgao_emissor": "",
+    "data_expiracao" : "",
+    "data_emissao" : "",
+    "numero" : "",
+    "descricao": "",
 }
 </pre>
