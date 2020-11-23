@@ -169,8 +169,10 @@ export default{
             data_expiracao : $('input[name="data_expiracao_bi"]').val(),
             data_emissao: $('input[name="data_emissao_bi"]').val(),
             numero: $('input[name="numero_bi"]').val(),
-            tipo_documento : 21,
-            descricao: "rueuroeurou",
+            inscricao_id:"",
+            inscricao_tipo:"",
+            tipo_documento_id : "",
+            descricao: "",
         }
         //Default Data
         const defaultData = {
@@ -193,8 +195,6 @@ export default{
 
         //Disabled Some Buttons
         const data = await this.dataSubmitPrepare();
-
-
         const validateData = await this.validateDatas(data);
 
         if(validateData.status === 200){
@@ -207,16 +207,34 @@ export default{
 
             if(submit.status != undefined && submit.status === "Ok"){
 
-                //Crianda Session Flash
+                const id = submit.candidato_id;
+                const identificacaoDados = data.identificacao;
+                identificacaoDados.inscricao_id = id;
+
+                //Validar Tipo de Documento (Id Tipo Documento - Ganbiarra)
+                if(data.academic_detail.nivel == "Medio"){
+
+                    identificacaoDados.tipo_documento_id = 14;
+                    identificacaoDados.inscricao_tipo = "Medio";
+                }
+                else{
+
+                    identificacaoDados.tipo_documento_id = 21;
+                    identificacaoDados.inscricao_tipo = "Licenciatura";
+
+                }
+                //Verificação Doc
+                if(identificacaoDados.file.name != undefined){
+                    
+                    //Upload Dados Idenficação
+                    const submitIdentificaco = await request.submitIdentificacao(identificacaoDados,token);
+                }
+
                 const session = await request.sessionFlashAddLicenca();
                 if(session){
 
                     //Registro Feito com Sucesso
                     window.location.href = `/licencas/feito/${submit.candidato_id}`;
-                }
-                else{
-
-                    console.log(session);
                 }
             }
             else{

@@ -146,7 +146,7 @@ class SessionContronller extends Controller
 
             $dados = ApiRequestController::verCandidato("licenca",$id);
 
-            if(!empty($dados) && isset($dados->candidatos)){
+            if(!empty($dados) && isset($dados->candidato)){
 
                 $info = "";
 
@@ -200,7 +200,7 @@ class SessionContronller extends Controller
                 if(isset($dados->candidato)){
 
                     $candidato = $dados->candidato;
-                    
+
                     return view('licenca.addDoc',['name' => $name,'token' => $token,'candidato' => $candidato]);
                 }
                 else{
