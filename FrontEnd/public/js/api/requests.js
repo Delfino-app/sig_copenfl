@@ -147,14 +147,13 @@ export default{
         url:Url,
         type:"POST",
         processData: false,
-        contentType: false,
         data: formData,
         headers: {
           'accept':'application/json',
-          'Content-Type':'application/json',
+          'Content-Type':'multipart/form-data',
           'Authorization':`Bearer ${token}`
         },
-        enctype: 'multipart/form-data',
+        enctype:'multipart/form-data',
         success:function(response){
           console.log(response);
         }
