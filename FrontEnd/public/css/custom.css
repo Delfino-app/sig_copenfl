@@ -140,8 +140,8 @@
 }
 .doc-container{
 	padding:20px 10px;
-	min-height:100% !important;
-	overflow-y: auto;
+	/*min-height:100% !important;
+	overflow-y: auto;*/
 }
 .content-doc-list-container{
 	padding:unset !important;
@@ -356,6 +356,11 @@
 .content-doc-list-not-add{
 	border-left:3px solid var(--dark);
 	border-radius:2px;
+}
+.content-doc-list-error{
+
+	border-left:3px solid #FF3B30 !important;
+	border-radius:2px !important;
 }
 .col-form-label{
 
