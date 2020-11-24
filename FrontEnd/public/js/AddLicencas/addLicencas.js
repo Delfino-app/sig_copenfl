@@ -214,14 +214,16 @@ export default{
                 //Validar Tipo de Documento (Id Tipo Documento - Ganbiarra)
                 if(data.academic_detail.nivel === "Medio"){
 
-                    identificacaoDados.tipo_documento_id = 9;
+                    identificacaoDados.tipo_documento_id = 8;
                 }
                 else{
 
-                    identificacaoDados.tipo_documento_id = 21;
+                    identificacaoDados.tipo_documento_id = 18;
                 }
 
                 identificacaoDados.inscricao_tipo = "licenca";
+
+                console.log(data.academic_detail.nivel);
 
                 //Verificação Doc
                 if(identificacaoDados.file.name != undefined){

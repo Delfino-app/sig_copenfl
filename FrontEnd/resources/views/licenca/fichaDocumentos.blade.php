@@ -2,7 +2,7 @@
     <div class="col-lg-6">
         <div class="doc-carregados-container">
             <h3 class="semi-text-title">Documentos carregados</h3>
-            @if(empty($candidato->inscricao->documentos->documento_entregues))
+            @if(empty($candidato->inscricao->documentos->documentos_entregues))
                 <div class="row doc-container justify-content-center">
                     <div class="col-lg-5 text-center">
                         <p class="title-doc-em-falta">
@@ -14,11 +14,16 @@
                 </div>
             @else
             <div class="row doc-container">
-                @foreach($candidato->inscricao->documentos->documento_nao_entregues as $doc)
+                @foreach($candidato->inscricao->documentos->documentos_entregues as $doc)
                     <div class="col-lg-12 content-doc-list-container">
                         <div class="content-doc-list">
                             <p class="doc-list-title">
                                 {{$doc->nome}}
+                                <span class="float-right icon-hover">
+                                    <a target="_blank" href="{{$doc->url}}" style="color:#2fab8e;">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </span>
                             </p>
                         </div>
                     </div>
