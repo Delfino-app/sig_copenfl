@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="doc-em-falta-container">
-                            <h3 class="semi-text-title">Lista de Documentos</h3>
+                            <h3 class="semi-text-title">Documentos a adicionar</h3>
                             <div class="row doc-container">
                                 @if(!empty($candidato->inscricao->documentos->documento_nao_entregues))
                                     @foreach($candidato->inscricao->documentos->documento_nao_entregues as $doc)
