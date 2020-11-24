@@ -39,6 +39,6 @@
 	</div>
 	<div class="form-group col-lg-4 col-sm-6">
 		<label class="text-lg-right col-form-label">Bairro</label>
-		<input type="text" name="escola_bairro" placeholder="Nome da Escola" data-parsley-group="step-5" data-parsley-required="false" class="form-control"/>
+		<input type="text" name="escola_bairro" placeholder="Bairro" data-parsley-group="step-5" data-parsley-required="false" class="form-control"/>
 	</div>
 </div>

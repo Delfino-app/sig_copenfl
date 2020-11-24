@@ -228,6 +228,8 @@ export default{
                     
                     //Upload Dados Idenficação
                     await request.submitIdentificacao(identificacaoDados,token);
+
+                    console.log(identificacaoDados);
                 }
 
                 const session = await request.sessionFlashAddLicenca();
