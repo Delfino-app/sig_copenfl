@@ -221,7 +221,7 @@ export default{
                     identificacaoDados.tipo_documento_id = 21;
                 }
 
-                identificacaoDados.inscricao_tipo = "Licenca";
+                identificacaoDados.inscricao_tipo = "licenca";
 
                 //Verificação Doc
                 if(identificacaoDados.file.name != undefined){

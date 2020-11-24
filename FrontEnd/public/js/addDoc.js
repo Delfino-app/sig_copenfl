@@ -1,6 +1,5 @@
 $('.file_docs').change(function(e){
 
-
     //Propriedades
     const defaultName = $(this).attr("defaultName");
     const nome = $(this).attr("name");

@@ -143,7 +143,13 @@ export default{
       formData.append("file",data.file);
       formData.append("tipo_documento_id",data.tipo_documento_id);
 
-      $.ajax({
+      var xhr = new XMLHttpRequest();
+
+      xhr.open("POST",Url);
+      xhr.onreadystatechange = function(response){console.log(response)};
+      xhr.send(formData);
+
+     /* $.ajax({
         url:Url,
         type:"POST",
         processData: false,
@@ -157,7 +163,7 @@ export default{
         success:function(response){
           console.log(response);
         }
-      });
+      });*/
     },
 
     //Session Flash Add Licença
