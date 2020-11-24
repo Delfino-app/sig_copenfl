@@ -34,11 +34,6 @@ class TipoDocumentosSeeder extends Seeder
 				//ddd
 			],
 			[
-				"nome" => "Ficha de inscrição (Fornecida pela ordem de enfermeiros)" ,
-				"para" => "Fundamental",
-				//ddd
-			],
-			[
 				"nome" => "Cópias do nº de cartão de contribuinte" ,
 				"para" => "Fundamental",
 				//ddd
@@ -60,11 +55,6 @@ class TipoDocumentosSeeder extends Seeder
 				//MEMEMEME
 			],
 			[
-				"nome" => "Ficha de inscrição (Fornecida pela ordem de enfermeiros)" ,
-				"para" => "Medio_Estudando",
-				//MEMEMEME
-			],
-			[
 				"nome" => "Cópias do nº de cartão de contribuinte" ,
 				"para" => "Medio_Estudando",
 				//MEMEMEME
@@ -82,11 +72,6 @@ class TipoDocumentosSeeder extends Seeder
 			],
 			[
 				"nome" => "Cópia do Bilhete/Passporte" ,
-				"para" => "Medio",
-				//mmmedio
-			],
-			[
-				"nome" => "Ficha de inscrição (Fornecida pela ordem de enfermeiros)" ,
 				"para" => "Medio",
 				//mmmedio
 			],
@@ -119,11 +104,6 @@ class TipoDocumentosSeeder extends Seeder
 			],
 			[
 				"nome" => "Cópia do Bilhete/Passporte" ,
-				"para" => "Licenciatura_Estudando",
-				//LELELE
-			],
-			[
-				"nome" => "Ficha de inscrição (Fornecida pela ordem de enfermeiros)" ,
 				"para" => "Licenciatura_Estudando",
 				//LELELE
 			],
@@ -172,11 +152,6 @@ class TipoDocumentosSeeder extends Seeder
 			[
 				"nome" => "Cópia do documento militar" ,
 				"para" => "Licenciatura",
-				//LLLLLL
-			],
-			[
-				"nome" => "Ficha de inscrição (Fornecida pela ordem de enfermeiros)" ,
-				"para" => "Licenciatura_Estudando",
 				//LLLLLL
 			],
 			[
