@@ -52,7 +52,7 @@
                 <div class="row" style="padding-left:10px;padding-right:10px;margin-top:10px">
                     <div class="col-lg-12 fotter_ver-container">
                         <div class="float-right p-0" style="margin-right:-10px">
-                            <a href="#" class="btn btn-destaque">
+                            <a href="{{route('licenca.ver',$candidato->id)}}" class="btn btn-destaque">
                                 Anexar <i class="ion-md-attach" style="font-size:14px;padding-left:5px"></i>
                             </a>
                         </div>

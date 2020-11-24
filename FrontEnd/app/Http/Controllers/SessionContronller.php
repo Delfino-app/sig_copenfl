@@ -236,6 +236,11 @@ class SessionContronller extends Controller
             //Request
             $dados = ApiRequestController::verCandidato("licenca",$id);
 
+            if(!isset($dados->candidato)){
+
+                return redirect()->route('carteira.ver',$id);
+            }
+
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 
                 //Criando Message Auth e Redir to Login
