@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row" style="padding-bottom:40px">
     <div class="col-lg-6">
         <div class="doc-carregados-container">
             <h3 class="semi-text-title">Documentos carregados</h3>
             @if(empty($candidato->inscricao->documentos->documento_entregues))
-                <div class="row justify-content-center">
+                <div class="row doc-container justify-content-center">
                     <div class="col-lg-5 text-center">
                         <p class="title-doc-em-falta">
                             <i class="fa fa-file-pdf-o icon-doc-not-add"></i>

@@ -11,7 +11,7 @@
 						@if($statusPage)
 							@include('adds.paginaIndisponivel')
 						@else
-						<div class=" text-center" style="padding:20px;">
+						<div class="text-center" style="padding:20px;">
 							<i class="ion-ios-checkmark-circle-outline" style="font-size:70px;color:#4CD964"></i>
 							<h3 style="color:#444">{{$info}}</h3>
 							<p style="font-size:15px;">

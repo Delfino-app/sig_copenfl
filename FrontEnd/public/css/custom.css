@@ -117,13 +117,15 @@
 .doc-carregados-container{
 	background-color: var(--semiWhite);
 	padding:10px;
-	min-height:320px;
+	min-height:100% !important;
+	overflow-y: auto;
 }
 
 .doc-em-falta-container{
 	background-color: var(--semiWhite);
 	padding:10px;
-	min-height:320px;
+	min-height:100% !important;
+	overflow-y: auto;
 }
 .semi-text-title{
 	font-size:13px;	
@@ -137,8 +139,9 @@
 	padding-bottom:10px;
 }
 .doc-container{
-
 	padding:20px 10px;
+	min-height:100% !important;
+	overflow-y: auto;
 }
 .content-doc-list-container{
 	padding:unset !important;
