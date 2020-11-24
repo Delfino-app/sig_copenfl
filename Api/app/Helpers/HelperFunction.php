@@ -69,7 +69,7 @@ function verifica_nivel_academico($inscricao_tipo, $inscricao_id){
     $nivel = false;
     $tipo = false;
     $tipo1 = false;
-    if($inscricao_tipo == "licenca" || $inscricao_tipo == PathModel::licenca)
+    if(($inscricao_tipo == "licenca" || $inscricao_tipo == "Licenca") || $inscricao_tipo == PathModel::licenca)
         {
             $tipo = PathModel::licenca;
             $tipo1 = "licenca";
@@ -81,7 +81,7 @@ function verifica_nivel_academico($inscricao_tipo, $inscricao_id){
                     $nivel = "Licenciatura_Estudando";
         }
         else
-            if($inscricao_tipo == "carteira" || $inscricao_tipo == PathModel::carteira)
+            if(($inscricao_tipo == "carteira" || $inscricao_tipo == "Carteira") || $inscricao_tipo == PathModel::carteira)
             {
                 $tipo = PathModel::carteira;
                 $tipo1 = "carteira";

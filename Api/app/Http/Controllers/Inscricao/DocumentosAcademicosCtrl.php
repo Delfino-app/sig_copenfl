@@ -78,11 +78,12 @@ class DocumentosAcademicosCtrl extends Controller
         ]);
 
         if ($request->hasFile("file")){
-            $verificado = verifica_nivel_academico($request->inscricao_tipo, $request->inscricao_id);
+                $verificado = verifica_nivel_academico($request->inscricao_tipo, $request->inscricao_id);
             $tipo = $verificado[2];
             $path = false;
             $model_type = false;
             $model_id = false;
+            
 
             if($tipo == 'licenca'){
                 $inscricao = PathModel::licenca;
