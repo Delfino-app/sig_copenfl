@@ -534,14 +534,14 @@ class SessionContronller extends Controller
 
             $dados = ApiRequestController::verCandidato("licenca",$id);
 
-            if(!isset($dados->candidatos)){
+            if(!isset($dados->candidato)){
 
                 $dados = ApiRequestController::verCandidato("carteira",$id);
             }
 
-            if(isset($dados->candidatos)){
+            if(isset($dados->candidato)){
 
-                $candidato = $dados->candidatos;
+                $candidato = $dados->candidato;
 
                 return view('licenca.fichaRecibo',['name' => $name, 'token' => $token, 'candidato' => $candidato]);
 

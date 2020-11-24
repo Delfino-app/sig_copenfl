@@ -138,6 +138,11 @@ export default{
       const Url = await config.sumbmitDadosIdentificacao;
 
       const formData = new FormData();
+      formData.append("orgao_emissor",data.orgao_emissor);
+      formData.append("data_expiracao",data.data_expiracao);
+      formData.append("data_emissao",data.data_emissao);
+      formData.append("numero",data.numero);
+      formData.append("descricao",data.descricao);
       formData.append("inscricao_tipo",data.inscricao_tipo);
       formData.append("inscricao_id",data.inscricao_id);
       formData.append("file",data.file);
@@ -145,8 +150,10 @@ export default{
 
       var xhr = new XMLHttpRequest();
 
-      xhr.open("POST",Url);
-      xhr.onreadystatechange = function(response){console.log(response)};
+      xhr.open('POST',Url);
+      xhr.setRequestHeader("accept","application/json");
+      xhr.setRequestHeader("Authorization",`Bearer ${token}`);
+      xhr.onload = function(response){console.log(response.target.response)};
       xhr.send(formData);
 
      /* $.ajax({

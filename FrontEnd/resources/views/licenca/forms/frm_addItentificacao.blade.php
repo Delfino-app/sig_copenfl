@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="form-group col-lg-6 col-sm-6">
 		<label class="text-lg-right col-form-label">Bilhete de Itentidade</label>
-		<input type="file" id="bi_file" name="bi_file" placeholder="Carregar arquivo" accept=".pdf" data-parsley-group="step-2" data-parsley-required="false" class="form-control" />
+		<input type="file" id="bi_file" name="bi_file" placeholder="Carregar arquivo" accept=".pdf,.jpg,,png,.jeg" data-parsley-group="step-2" data-parsley-required="false" class="form-control" />
 	</div>
     <div class="form-group col-lg-6 col-sm-6">
 		<label class="text-lg-right col-form-label">Nº do Bilhete de Itentidade</label>
