@@ -38,7 +38,7 @@
     <div class="col-lg-6">
         <div class="doc-em-falta-container">
             <h3 class="semi-text-title">Pagamentos em falta</h3>
-            <div class="row doc-container">
+            <div class="row p-10">
                 <div class="col-lg-12 content-doc-list-container">
                     <div class="content-doc-list content-doc-list-not-add">
                         <p class="doc-list-title">

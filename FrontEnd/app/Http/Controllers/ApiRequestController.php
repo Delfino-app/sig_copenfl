@@ -35,11 +35,13 @@ class ApiRequestController extends Controller
         );
 
         //Datas
-        $dataInicio = date('d/m/Y', strtotime('-5 days'));
+        $dataInicio = date('Y-m-d', strtotime('-5 days'));
 
-        $dataFim = date('d/m/Y');
+        $dataFim = date('Y-m-d');
 
-        $ch = curl_init(DOMINIO_API."/api/v1/candidato/index/".$entidade."/".$estado);
+        #dd($dataInicio,$dataFim);
+
+        $ch = curl_init(DOMINIO_API."/api/v1/candidato/index/{$entidade}/{$estado}/{$dataInicio}/{$dataFim}");
 
         curl_setopt_array($ch, $options);
 

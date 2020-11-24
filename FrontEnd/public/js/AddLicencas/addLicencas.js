@@ -212,7 +212,7 @@ export default{
                 identificacaoDados.inscricao_id = id;
 
                 //Validar Tipo de Documento (Id Tipo Documento - Ganbiarra)
-                if(data.academic_detail.nivel == "Medio"){
+                if(data.academic_detail.nivel === "Medio"){
 
                     identificacaoDados.tipo_documento_id = 9;
                 }
@@ -221,22 +221,21 @@ export default{
                     identificacaoDados.tipo_documento_id = 21;
                 }
 
-                identificacaoDados.inscricao_tipo = "Licenca";
+                identificacaoDados.inscricao_tipo = "licenca";
 
                 //Verificação Doc
                 if(identificacaoDados.file.name != undefined){
                     
                     //Upload Dados Idenficação
-                    const submitIdentificaco = await request.submitIdentificacao(identificacaoDados,token);
-
-                    console.log(submitIdentificaco);
+                    await request.submitIdentificacao(identificacaoDados,token);
                 }
 
                 const session = await request.sessionFlashAddLicenca();
+
                 if(session){
 
                     //Registro Feito com Sucesso
-                    //window.location.href = `/licencas/feito/${submit.candidato_id}`;
+                    window.location.href = `/licencas/feito/${submit.candidato_id}`;
                 }
             }
             else{
