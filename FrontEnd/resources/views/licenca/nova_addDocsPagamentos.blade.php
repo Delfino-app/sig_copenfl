@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{asset('assets-login/css/customNovoProcesso.css')}}" type="text/css">
 @section('conteudo')
 	<div id="content" class="content content-form">
-		<form action="" enctype='multipart/form-data' id="frmPostLicenca" method="POST" name="form-wizard" class="form-control-with-bg">
+		<form action="" enctype='multipart/form-data' id="frmFinalizarRegistro" method="POST" name="form-wizard" class="form-control-with-bg">
 			<input type="hidden" name="recividToken"  id="recividToken" value="{{$token}}">
 			{{ csrf_field() }}
 			<!-- begin wizard -->

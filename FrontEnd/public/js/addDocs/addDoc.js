@@ -4,6 +4,12 @@ import validade from "../utils/validatefiles.js";
 
 let infoDocs = [];
 
+const frmAnexarDocs = document.getElementById("frmAnexarDocs");
+const frmFinalizarRegistro = document.getElementById("frmFinalizarRegistro");
+
+(frmAnexarDocs != null) ? frmAnexarDocs.onsubmit = (e) => submeterDocs(e,"inside"): null;
+(frmFinalizarRegistro != null) ? frmFinalizarRegistro.onsubmit = (e) => submeterDocs(e,"out") : null;
+
 $('.file_docs').change(function(e){
 
     //Propriedades
@@ -80,7 +86,9 @@ $('.file_docs').change(function(e){
     }
 });
 
-$("#frmAnexarDocs").submit(function(e){
+
+//Anexar Documentos - Ao Finalizar Etapa de Registro
+function submeterDocs(e,from){
 
     e.preventDefault();
 
@@ -90,27 +98,12 @@ $("#frmAnexarDocs").submit(function(e){
 
         for (let i = 0; i < infoDocs.length; i++) {
           
-            api.submitDocumentos(infoDocs[i],token);
+            api.submitDocumentos(infoDocs[i],token,from);
         }
     }
     else{
 
-        console.log("No file Selectd");
-    }
-});
-
-function submeterDocs(){
-
-    if(infoDocs.length > 0){
-
-        for (let i = 0; i < infoDocs.length; i++) {
-          
-            console.log(infoDocs);
-        }
-    }
-    else{
-
-        console.log("No file Selectd");
+        alert("Adicione os documentos");
     }
 }
 

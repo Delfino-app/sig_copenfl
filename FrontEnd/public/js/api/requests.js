@@ -1,4 +1,5 @@
 import config from "./config.js";
+import retorno from "../addDocs/utils.js"
 
 export default{
 
@@ -172,7 +173,7 @@ export default{
     },
 
     //Submit Documentos
-    async submitDocumentos(data,token){
+    async submitDocumentos(data,token,from){
 
       const Url = await config.sumbmitDocumentos;
 
@@ -188,7 +189,21 @@ export default{
       xhr.open('POST',Url);
       xhr.setRequestHeader("accept","application/json");
       xhr.setRequestHeader("Authorization",`Bearer ${token}`);
-      xhr.onload = function(response){console.log(response.target.response)};
+      xhr.onload = function(response){
+
+        //Retornando Mensagens
+        if(from === "inside"){
+
+          console.log(response.target.response);
+
+          retorno.retornoInside(response);
+        }
+        else if(from === "out"){
+
+          retorno.retornoOut(response.target.response);
+
+        }
+      };
       xhr.send(formData);
     },
 
