@@ -217,11 +217,11 @@ export default{
                 //Validar Tipo de Documento (Id Tipo Documento - Ganbiarra)
                 if(data.academic_detail.nivel === "Medio"){
 
-                    identificacaoDados.tipo_documento_id = 14;
+                    identificacaoDados.tipo_documento_id = 12;
                 }
                 else{
 
-                    identificacaoDados.tipo_documento_id = 28;
+                    identificacaoDados.tipo_documento_id = 24;
                 }
 
                 identificacaoDados.inscricao_tipo = "carteira";

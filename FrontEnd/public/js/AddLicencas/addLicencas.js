@@ -223,6 +223,8 @@ export default{
 
                 identificacaoDados.inscricao_tipo = "licenca";
 
+                console.log(data.academic_detail.nivel);
+
                 //Verificação Doc
                 if(identificacaoDados.file.name != undefined){
                     
