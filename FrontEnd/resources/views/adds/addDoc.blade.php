@@ -5,7 +5,8 @@
 <div id="content" class="content" style="margin-top:40px;">
     <div class="row">
         <div class="col-lg-12" style="background-color:white;padding-to:20px">
-            <form method="Post" style="margin-top:20px">
+            <form id="frmAnexarDocs" method="Post" style="margin-top:20px">
+                <input type="hidden" name="recividToken"  id="recividToken" value="{{$token}}">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="doc-em-falta-container">
@@ -18,7 +19,7 @@
                                             <p class="doc-list-title">
                                                 <label title="Clique para adicionar" class="lbl_addDoc" for="{{str_replace(' ','-',$doc->nome)}}">
                                                     {{$doc->nome}}
-                                                    <input class="file_docs" type="file" id="{{str_replace(' ','-',$doc->nome)}}" defaultName="{{$doc->nome}}" name="file" hidden required>
+                                                    <input class="file_docs" type="file" id="{{str_replace(' ','-',$doc->nome)}}" defaultName="{{$doc->nome}}" tipo_documento_id="{{$doc->tipo_documento_id}}" inscricao_id="{{$candidato->id}}" inscricao_tipo="{{$candidato->inscricao->tipo}}" name="file" hidden>
                                                     <span class="float-right icon-hover">
                                                         <i class="fa fa-plus-circle"></i>
                                                     </span>
@@ -52,9 +53,9 @@
                 <div class="row" style="padding-left:10px;padding-right:10px;margin-top:10px">
                     <div class="col-lg-12 fotter_ver-container">
                         <div class="float-right p-0" style="margin-right:-10px">
-                            <a href="{{route('licenca.ver',$candidato->id)}}" class="btn btn-destaque">
+                            <button id="anexarDocs" class="btn btn-destaque">
                                 Anexar <i class="ion-md-attach" style="font-size:14px;padding-left:5px"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -64,5 +65,5 @@
 </div>
 @endsection
 @section('add-js')
-<script src="{{asset('js/addDoc.js')}}" type="module"></script>
+<script src="{{asset('js/addDocs/addDoc.js')}}" type="module"></script>
 @endsection

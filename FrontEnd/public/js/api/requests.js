@@ -135,7 +135,7 @@ export default{
     //Post Dados Identificação
     async submitIdentificacao(data,token){
 
-      const Url = await config.sumbmitDadosIdentificacao;
+      const Url = await config.sumbmitDocumentos;
 
       const formData = new FormData();
       formData.append("orgao_emissor",data.orgao_emissor);
@@ -169,6 +169,27 @@ export default{
           console.log(response);
         }
       });*/
+    },
+
+    //Submit Documentos
+    async submitDocumentos(data,token){
+
+      const Url = await config.sumbmitDocumentos;
+
+      const formData = new FormData();
+
+      formData.append("inscricao_tipo",data.inscricao_tipo);
+      formData.append("inscricao_id",data.inscricao_id);
+      formData.append("file",data.file);
+      formData.append("tipo_documento_id",data.tipo_documento_id);
+
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('POST',Url);
+      xhr.setRequestHeader("accept","application/json");
+      xhr.setRequestHeader("Authorization",`Bearer ${token}`);
+      xhr.onload = function(response){console.log(response.target.response)};
+      xhr.send(formData);
     },
 
     //Session Flash Add Licença

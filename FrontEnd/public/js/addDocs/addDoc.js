@@ -1,5 +1,6 @@
-
+import api from "../api/requests.js";
 import validade from "../utils/validatefiles.js";
+
 
 let infoDocs = [];
 
@@ -40,16 +41,15 @@ $('.file_docs').change(function(e){
             const newElemet = `
                 <div class="col-lg-12 content-doc-list-container fadeInLeft animated">
                     <div class="content-doc-list  houver-destaque">
-                            <p class="doc-list-title">
-                                ${defaultName}
-                                <input class="file_docs_add" type="file" id="${nome}" defaultName="${defaultName}" name="file" hidden required>
-                                <span class="float-right icon-hover">
-                                    <i class="fa fa-eye"></i>
-                                </span>
-                            </p>
+                        <p class="doc-list-title">
+                            ${defaultName}
+                            <span class="float-right icon-hover">
+                                <i class="fa fa-eye"></i>
+                            </span>
+                        </p>
                     </div>
                 </div>
-        `;
+            `;
 
             ocultarDosNotAdd.hide();
             
@@ -66,9 +66,6 @@ $('.file_docs').change(function(e){
             };
 
             infoDocs.push(doc);
-
-            console.log(infoDocs);
-            
         }
         else{
 
@@ -81,6 +78,39 @@ $('.file_docs').change(function(e){
 
         alert("Selecione o primeiro");
     }
+});
 
-})
+$("#frmAnexarDocs").submit(function(e){
+
+    e.preventDefault();
+
+    const token = $('input[name="recividToken"]').val();
+
+    if(infoDocs.length > 0){
+
+        for (let i = 0; i < infoDocs.length; i++) {
+          
+            api.submitDocumentos(infoDocs[i],token);
+        }
+    }
+    else{
+
+        console.log("No file Selectd");
+    }
+});
+
+function submeterDocs(){
+
+    if(infoDocs.length > 0){
+
+        for (let i = 0; i < infoDocs.length; i++) {
+          
+            console.log(infoDocs);
+        }
+    }
+    else{
+
+        console.log("No file Selectd");
+    }
+}
 

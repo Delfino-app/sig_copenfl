@@ -13,7 +13,7 @@ export default{
     sumbmitDadosRouteLicenca:"http://localhost:8000/api/v1/candidato/store/licenca",
     sumbmitDadosRouteCarteira:"http://localhost:8000/api/v1/candidato/store/carteira",
     //Store Dados Identificação
-    sumbmitDadosIdentificacao:"http://localhost:8000/api/v1/inscricao/documentos/store",
+    sumbmitDocumentos:"http://localhost:8000/api/v1/inscricao/documentos/store",
     //Session Add
     sessionAddLicenca:`/sessionAddLicenca`
 }
