@@ -207,18 +207,18 @@ export default{
 
             if(submit.status != undefined && submit.status === "Ok"){
 
-                const id = submit.candidato_id;
+                const id = submit.inscricao_id;
                 const identificacaoDados = data.identificacao;
                 identificacaoDados.inscricao_id = id;
 
                 //Validar Tipo de Documento (Id Tipo Documento - Ganbiarra)
                 if(data.academic_detail.nivel === "Medio"){
 
-                    identificacaoDados.tipo_documento_id = 9;
+                    identificacaoDados.tipo_documento_id = 8;
                 }
                 else{
 
-                    identificacaoDados.tipo_documento_id = 21;
+                    identificacaoDados.tipo_documento_id = 18;
                 }
 
                 identificacaoDados.inscricao_tipo = "licenca";
@@ -237,7 +237,7 @@ export default{
                 if(session){
 
                     //Registro Feito com Sucesso
-                    window.location.href = `/licencas/feito/${submit.candidato_id}`;
+                   window.location.href = `/licencas/feito/${submit.candidato_id}`;
                 }
             }
             else{
