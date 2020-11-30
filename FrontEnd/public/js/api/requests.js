@@ -189,21 +189,23 @@ export default{
       xhr.open('POST',Url);
       xhr.setRequestHeader("accept","application/json");
       xhr.setRequestHeader("Authorization",`Bearer ${token}`);
-      xhr.onload = function(response){
-
+      xhr.onreadystatechange  = function(){
         //Retornando Mensagens
-        if(from === "inside"){
+        if (xhr.readyState === 4) {
 
-          console.log(response.target.response);
+          const res = JSON.parse(xhr.response);
 
-          retorno.retornoInside(response);
-        }
-        else if(from === "out"){
+          if(from === "inside"){
+            
+            retorno.retornoInside(res);
+          }
+          else if(from === "out"){
 
-          retorno.retornoOut(response.target.response);
-
+            retorno.retornoOut(res);
+          }
         }
       };
+      
       xhr.send(formData);
     },
 
