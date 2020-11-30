@@ -253,6 +253,7 @@ class CandidatoCtrl extends Controller
                     return response()->json([
                         'status' => "Ok",
                         "candidato_id" => $candidato->id,
+                        "inscricao_id" => $inscricao_id,
                         "message" => "Candidato cadastrado com sucesso"
                     ], 200);
                 }
@@ -365,6 +366,7 @@ class CandidatoCtrl extends Controller
                     return response()->json([
                         'status' => "Ok",
                         "candidato_id" => $candidato->id,
+                        "inscricao_id" => $inscricao_id,
                         "message" => "Candidato cadastrado com sucesso"
                     ], 200);
                 }
