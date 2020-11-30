@@ -18,17 +18,13 @@
 								A primeira etapa do registro foi concluída com sucesso, faltando apenas anexar os documentos e fazer os pagamentos.
 							</p>
 							<hr>
-							<a class="btn btn-destaque" style="color:white" href="{{route('add.documentos',$id)}}">
-								<i class="ion-md-attach" style="font-size:14px;padding-right:5px"></i>
-								Anexar Documentos
-							</a>
-							<a target="_blank" href="{{route('recibo',$id)}}" class="btn btn-primary" style="color:white">
-								<i class="ion-ios-list" style="font-size:14px;padding-right:5px"></i>
+							<a target="_blank" href="{{route('recibo',$id)}}" class="btn btn-destaque" style="color:white">
 								Gerar Pré-Recibo
+								<i class="ion-ios-list" style="font-size:14px;padding-left:5px"></i>
 							</a>
-							<a class="btn btn-dark" style="color:white" href="{{route('licenca.nova')}}">
-								<i class="ion-ios-add-circle-outline" style="font-size:14px;padding-right:5px"></i>
-								Novo Registro
+							<a class="btn btn-primary" style="color:white" href="{{route('registro.etapa.final',$id)}}">
+								Próxima Etapa
+								<i class=" fa fa-angle-right" style="font-size:14px;padding-left:5px"></i>
 							</a>
 						</div>
 						@endif
