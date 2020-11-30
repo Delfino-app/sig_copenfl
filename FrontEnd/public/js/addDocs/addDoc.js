@@ -1,10 +1,18 @@
-import validade from "./utils/validatefiles.js";
+
+import validade from "../utils/validatefiles.js";
+
+let infoDocs = [];
 
 $('.file_docs').change(function(e){
 
     //Propriedades
     const defaultName = $(this).attr("defaultName");
     const nome = $(this).attr("name");
+    
+    //Dados Docs
+    const tipo_documento_id = $(this).attr("tipo_documento_id");
+    const inscricao_id = $(this).attr("inscricao_id");
+    const inscricao_tipo = $(this).attr("inscricao_tipo");
     const file = document.querySelector(`input[name="${nome}"]`).files[0];
 
     if(file != undefined){
@@ -47,6 +55,19 @@ $('.file_docs').change(function(e){
             
             //Alimentando Novo elemento
             displayDocs.append(newElemet);
+
+            //Criando Objecto com os dados do Documento
+            const doc = {
+                nome:defaultName,
+                inscricao_id,
+                inscricao_tipo,
+                tipo_documento_id,
+                file
+            };
+
+            infoDocs.push(doc);
+
+            console.log(infoDocs);
             
         }
         else{
@@ -62,3 +83,4 @@ $('.file_docs').change(function(e){
     }
 
 })
+

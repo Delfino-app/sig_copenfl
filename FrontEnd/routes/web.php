@@ -54,5 +54,4 @@ Route::group([
     Route::post('/pagamentos', ['as' =>'pagamento.find','uses' => 'PagamentosController@pagamentosCandidato']);
     Route::post('/pagamentos/add', ['as' =>'pagamento.post','uses' => 'PagamentosController@pagamentosPost']);
     Route::get('/pagamentos/{id}', ['as' =>'pagamento.dados','uses' => 'PagamentosController@pagamentosDadosCandidato']);
-
 });

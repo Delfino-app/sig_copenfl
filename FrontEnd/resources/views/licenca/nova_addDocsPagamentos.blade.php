@@ -30,29 +30,19 @@
 					</li>
 					<li>
 						<a href="#step-3">
-							<span class="number">6</span> 
+							<span class="number">3</span> 
 							<span class="info" style="font-size:12px !important">
 								Conclusão
 							</span>
 						</a>
 					</li>
 				</ul>
-				<!-- end wizard-step -->
-				<!-- begin wizard-content -->
 				<div>
 					<!-- begin step-1 -->
 					<div id="step-1">
 						<!-- begin fieldset -->
-						<fieldset style="padding-bottom:5px">
-							<!-- begin row -->
-							<div class="row">
-								<!-- begin col-8 -->
-								<div class="col-xl-12">
-									<legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Dados pessoais do Solicitante</legend>
-									<!-- begin form-group -->
-									@include('licenca.forms.frm_addDocs')
-								</div>
-							</div>
+						<fieldset>
+							@include('licenca.forms.frm_addDocs')
 						</fieldset>
 					</div>
 					<!-- end step-1 -->
@@ -60,13 +50,7 @@
 					<div id="step-2">
 						<!-- begin fieldset -->
 						<fieldset>
-							<!-- begin row -->
-							<div class="row">
-								<!-- begin col-8 -->
-								<div class="col-xl-12">
-									@include('licenca.forms.frm_addPagamentos')
-								</div>
-							</div>
+							@include('licenca.forms.frm_addPagamentos')
 						</fieldset>
 					</div>
 					<div id="step-3">
@@ -95,5 +79,5 @@
 <script src="{{asset('assets-login/plugins/parsleyjs/dist/parsley.js')}}"></script>
 <script src="{{asset('assets-login/plugins/smartwizard/dist/js/jquery.smartWizard.js')}}"></script>
 <script src="{{asset('assets-login/js/demo/form-wizards-validation.demo.js')}}"></script>
-<script src="{{asset('js/AddLicencas/index.js')}}" type="module"></script>
+<script src="{{asset('js/addDocs/addDoc.js')}}" type="module"></script>
 @endsection

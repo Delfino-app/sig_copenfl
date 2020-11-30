@@ -164,7 +164,7 @@ class LicencaController extends Controller
     }
 
     //Adicionar Documentos e Pagamentos
-    public function licencaDocsPagamentos(){
+    public function licencaDocsPagamentos($id){
 
         if(Session::has(['name','email','access_token'])){
 
@@ -172,7 +172,38 @@ class LicencaController extends Controller
 
             $token = Session::get('access_token');
 
-            return view('licenca.nova_addDocsPagamentos',['name' => $name,'token' => $token]);
+            //Request
+            $dados = ApiRequestController::verCandidato("licenca",$id);
+
+            if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
+                
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+
+                return redirect()->route('login');
+            }
+            else{
+
+                //Validate Candidato
+                if(isset($dados->candidato)){
+
+                    $candidato = $dados->candidato;
+
+                    return view('licenca.nova_addDocsPagamentos',['name' => $name,'token' => $token, 'candidato' => $candidato]);
+                }
+                else{
+
+                    //404 Not Found
+                    return redirect('/404');
+                }
+            }       
+        }
+        else{
+
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
         }
     }
 
