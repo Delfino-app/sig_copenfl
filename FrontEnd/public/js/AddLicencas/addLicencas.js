@@ -207,7 +207,7 @@ export default{
 
             if(submit.status != undefined && submit.status === "Ok"){
 
-                const id = submit.candidato_id;
+                const id = submit.inscricao_id;
                 const identificacaoDados = data.identificacao;
                 identificacaoDados.inscricao_id = id;
 
@@ -239,7 +239,7 @@ export default{
                 if(session){
 
                     //Registro Feito com Sucesso
-                    window.location.href = `/licencas/feito/${submit.candidato_id}`;
+                   window.location.href = `/licencas/feito/${submit.candidato_id}`;
                 }
             }
             else{
