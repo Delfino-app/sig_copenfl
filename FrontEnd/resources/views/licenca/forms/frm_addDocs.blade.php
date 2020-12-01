@@ -10,7 +10,7 @@
                             <p class="doc-list-title">
                                 <label title="Clique para adicionar" class="lbl_addDoc" for="{{str_replace(' ','-',$doc->nome)}}">
                                     {{$doc->nome}}
-                                    <input class="file_docs" type="file" id="{{str_replace(' ','-',$doc->nome)}}" defaultName="{{$doc->nome}}" tipo_documento_id="{{$doc->tipo_documento_id}}" inscricao_id="{{$candidato->id}}" inscricao_tipo="{{$candidato->inscricao->tipo}}" name="file" hidden data-parsley-group="step-1" data-parsley-required="true" required>
+                                    <input class="file_docs" type="file" id="{{str_replace(' ','-',$doc->nome)}}" defaultName="{{$doc->nome}}" tipo_documento_id="{{$doc->tipo_documento_id}}" inscricao_id="{{$candidato->inscricao->id}}" inscricao_tipo="{{$candidato->inscricao->tipo}}" name="file" hidden data-parsley-group="step-1" data-parsley-required="true" required>
                                     <span class="float-right icon-hover">
                                         <i class="fa fa-plus-circle"></i>
                                     </span>

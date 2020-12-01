@@ -1,6 +1,7 @@
 import ui from "./ui.js";
 import request from "../api/requests.js";
 export default{
+    candidato_id:0,
     async start(){
        await ui.getDefaultElements.call(this);
 
@@ -186,6 +187,31 @@ export default{
 
         return defaultData;
     },
+    async postDocIdentificacao(data,token){
+
+        await request.submitIdentificacao(data,token);
+    },
+    async headerLocationPostDoc(response){
+
+        if(response.status != undefined){
+
+            const session = await request.sessionFlashAddLicenca();
+
+            if(session){
+                //Registro Feito com Sucesso
+                window.location.href = `/licencas/feito/${this.candidato_id}`;
+            }
+        }
+    },
+    async headerLocation(){
+
+        const session = await request.sessionFlashAddLicenca();
+
+        if(session){
+            //Registro Feito com Sucesso
+            window.location.href = `/licencas/feito/${this.candidato_id}`;
+        }
+    },
     async submitFrmLicenca(e){
 
         e.preventDefault();
@@ -207,8 +233,12 @@ export default{
 
             if(submit.status != undefined && submit.status === "Ok"){
 
+                //Set Candidato Id 
+                this.candidato_id = submit.candidato_id;
+
                 const id = submit.inscricao_id;
                 const identificacaoDados = data.identificacao;
+
                 identificacaoDados.inscricao_id = id;
 
                 //Validar Tipo de Documento (Id Tipo Documento - Ganbiarra)
@@ -223,23 +253,16 @@ export default{
 
                 identificacaoDados.inscricao_tipo = "licenca";
 
-                console.log(data.academic_detail.nivel);
-
                 //Verificação Doc
                 if(identificacaoDados.file.name != undefined){
-                    
+
                     //Upload Dados Idenficação
-                    await request.submitIdentificacao(identificacaoDados,token);
-
-                    console.log(identificacaoDados);
+                    await this.postDocIdentificacao(identificacaoDados,token);
                 }
+                else{
 
-                const session = await request.sessionFlashAddLicenca();
-
-                if(session){
-
-                    //Registro Feito com Sucesso
-                   window.location.href = `/licencas/feito/${submit.candidato_id}`;
+                    //Registro Feito
+                    this.headerLocation();
                 }
             }
             else{

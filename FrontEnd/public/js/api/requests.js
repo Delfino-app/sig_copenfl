@@ -1,5 +1,6 @@
 import config from "./config.js";
-import retorno from "../addDocs/utils.js"
+import retorno from "../addDocs/utils.js";
+import registroFeito from "../AddLicencas/addLicencas.js";
 
 export default{
 
@@ -133,110 +134,102 @@ export default{
       return resData;
     },
 
-    //Post Dados Identificação
-    async submitIdentificacao(data,token){
+  //Post Dados Identificação
+  async submitIdentificacao(data,token){
 
-      const Url = await config.sumbmitDocumentos;
+    const Url = await config.sumbmitDocumentos;
 
-      const formData = new FormData();
-      formData.append("orgao_emissor",data.orgao_emissor);
-      formData.append("data_expiracao",data.data_expiracao);
-      formData.append("data_emissao",data.data_emissao);
-      formData.append("numero",data.numero);
-      formData.append("descricao",data.descricao);
-      formData.append("inscricao_tipo",data.inscricao_tipo);
-      formData.append("inscricao_id",data.inscricao_id);
-      formData.append("file",data.file);
-      formData.append("tipo_documento_id",data.tipo_documento_id);
+    const formData = new FormData();
 
-      var xhr = new XMLHttpRequest();
+    formData.append("orgao_emissor",data.orgao_emissor);
+    formData.append("data_expiracao",data.data_expiracao);
+    formData.append("data_emissao",data.data_emissao);
+    formData.append("numero",data.numero);
+    formData.append("descricao",data.descricao);
+    formData.append("inscricao_tipo",data.inscricao_tipo);
+    formData.append("inscricao_id",data.inscricao_id);
+    formData.append("file",data.file);
+    formData.append("tipo_documento_id",data.tipo_documento_id);
 
-      xhr.open('POST',Url);
-      xhr.setRequestHeader("accept","application/json");
-      xhr.setRequestHeader("Authorization",`Bearer ${token}`);
-      xhr.onload = function(response){console.log(response.target.response)};
-      xhr.send(formData);
+    var xhr = new XMLHttpRequest();
 
-     /* $.ajax({
-        url:Url,
-        type:"POST",
-        processData: false,
-        data:formData,
-        headers: {
-          'accept':'application/json',
-          'Authorization':`Bearer ${token}`
-        },
-        success:function(response){
-          console.log(response);
+    xhr.open('POST',Url);
+    xhr.setRequestHeader("accept","application/json");
+    xhr.setRequestHeader("Authorization",`Bearer ${token}`);
+    xhr.onreadystatechange  = function(){
+      if (xhr.readyState === 4) {
+
+        const res = JSON.parse(xhr.response);
+
+        registroFeito.headerLocationPostDoc(res);
+      }
+    };
+    xhr.send(formData);
+  },
+
+  //Submit Documentos
+  async submitDocumentos(data,token,from){
+
+    const Url = await config.sumbmitDocumentos;
+
+    const formData = new FormData();
+
+    formData.append("inscricao_tipo",data.inscricao_tipo);
+    formData.append("inscricao_id",data.inscricao_id);
+    formData.append("file",data.file);
+    formData.append("tipo_documento_id",data.tipo_documento_id);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST',Url);
+    xhr.setRequestHeader("accept","application/json");
+    xhr.setRequestHeader("Authorization",`Bearer ${token}`);
+    xhr.onreadystatechange  = function(){
+      //Retornando Mensagens
+      if (xhr.readyState === 4) {
+
+        const res = JSON.parse(xhr.response);
+
+        if(from === "inside"){
+          
+          retorno.retornoInside(res);
         }
-      });*/
-    },
+        else if(from === "out"){
 
-    //Submit Documentos
-    async submitDocumentos(data,token,from){
-
-      const Url = await config.sumbmitDocumentos;
-
-      const formData = new FormData();
-
-      formData.append("inscricao_tipo",data.inscricao_tipo);
-      formData.append("inscricao_id",data.inscricao_id);
-      formData.append("file",data.file);
-      formData.append("tipo_documento_id",data.tipo_documento_id);
-
-      var xhr = new XMLHttpRequest();
-
-      xhr.open('POST',Url);
-      xhr.setRequestHeader("accept","application/json");
-      xhr.setRequestHeader("Authorization",`Bearer ${token}`);
-      xhr.onreadystatechange  = function(){
-        //Retornando Mensagens
-        if (xhr.readyState === 4) {
-
-          const res = JSON.parse(xhr.response);
-
-          if(from === "inside"){
-            
-            retorno.retornoInside(res);
-          }
-          else if(from === "out"){
-
-            retorno.retornoOut(res);
-          }
+          retorno.retornoOut(res);
         }
-      };
-      
-      xhr.send(formData);
-    },
+      }
+    };
+
+    xhr.send(formData);
+  },
 
     //Session Flash Add Licença
-    async sessionFlashAddLicenca(){
+  async sessionFlashAddLicenca(){
 
-      const response = await fetch(config.sessionAddLicenca, {
-        method: 'GET',
-      });
-  
-      const resData = await response.json();
-      return resData;
-    },
+    const response = await fetch(config.sessionAddLicenca, {
+      method: 'GET',
+    });
 
-    //Submit Dados Carteira
-    async submitDadosCarteira(data,token){
+    const resData = await response.json();
+    return resData;
+  },
 
-      const myHeaders = new Headers();
-      myHeaders.append("accept","application/json");
-      myHeaders.append("Content-Type","application/json");
-      myHeaders.append("Authorization",`Bearer ${token}`);
+  //Submit Dados Carteira
+  async submitDadosCarteira(data,token){
 
-      const response = await fetch(config.sumbmitDadosRouteCarteira, {
-        method: 'POST',
-        headers: myHeaders,
-        body: JSON.stringify(data),
-      });
-  
-      const resData = await response.json();
-      return resData;
-    }
+    const myHeaders = new Headers();
+    myHeaders.append("accept","application/json");
+    myHeaders.append("Content-Type","application/json");
+    myHeaders.append("Authorization",`Bearer ${token}`);
 
+    const response = await fetch(config.sumbmitDadosRouteCarteira, {
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify(data),
+    });
 
+    const resData = await response.json();
+    return resData;
+  }
 }
