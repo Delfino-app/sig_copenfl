@@ -115,6 +115,49 @@ class CarteiraController extends Controller
         }
     }
 
+    public function carteiraDocsPagamentos($id){
+
+        if(Session::has(['name','email','access_token'])){
+
+            $name = Session::get('name');
+
+            $token = Session::get('access_token');
+
+            //Request
+            $dados = ApiRequestController::verCandidato("carteira",$id);
+
+            if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
+                
+                //Criando Message Auth e Redir to Login
+                (new helper())->expireToken();
+
+                return redirect()->route('login');
+            }
+            else{
+
+                //Validate Candidato
+                if(isset($dados->candidato)){
+
+                    $candidato = $dados->candidato;
+
+                    return view('carteira.nova_addDocsPagamentos',['name' => $name,'token' => $token, 'candidato' => $candidato]);
+                }
+                else{
+
+                    //404 Not Found
+                    return redirect('/404');
+                }
+            }       
+        }
+        else{
+
+            //Criando Message Auth e Redir to Login
+            (new helper())->expireToken();
+
+            return redirect()->route('login');
+        }
+    }
+
     public function carteiraVer($id){
         
         if(Session::has(['name','email','access_token'])){

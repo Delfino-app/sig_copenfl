@@ -22,7 +22,7 @@
 								Gerar Pré-Recibo
 								<i class="ion-ios-list" style="font-size:14px;padding-left:5px"></i>
 							</a>
-							<a class="btn btn-primary" style="color:white" href="{{route('registro.etapa.final',$id)}}">
+							<a class="btn btn-primary" style="color:white" href="{{route('registro.etapa.final.licenca',$id)}}">
 								Próxima Etapa
 								<i class=" fa fa-angle-right" style="font-size:14px;padding-left:5px"></i>
 							</a>

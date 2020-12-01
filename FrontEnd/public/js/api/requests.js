@@ -1,6 +1,7 @@
 import config from "./config.js";
 import retorno from "../addDocs/utils.js";
-import registroFeito from "../AddLicencas/addLicencas.js";
+import registroFeitoLicenca from "../AddLicencas/addLicencas.js";
+import registroFeitoCarteira from "../AddCarteiras/addCarteiras.js";
 
 export default{
 
@@ -161,7 +162,14 @@ export default{
 
         const res = JSON.parse(xhr.response);
 
-        registroFeito.headerLocationPostDoc(res);
+        if(data.inscricao_tipo === "licenca"){
+
+          registroFeitoLicenca.headerLocationPostDoc(res);
+        }
+        else if(data.inscricao_tipo === "carteira"){
+
+          registroFeitoCarteira.headerLocationPostDoc(res);
+        }
       }
     };
     xhr.send(formData);

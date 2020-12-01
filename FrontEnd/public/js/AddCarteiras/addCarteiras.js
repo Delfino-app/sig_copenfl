@@ -1,6 +1,7 @@
 import ui from "./ui.js";
 import request from "../api/requests.js";
 export default{
+    candidato_id:0,
     async start(){
        await ui.getDefaultElements.call(this);
 
@@ -188,6 +189,31 @@ export default{
 
         return defaultData;
     },
+    async postDocIdentificacao(data,token){
+
+        await request.submitIdentificacao(data,token);
+    },
+    async headerLocationPostDoc(response){
+
+        if(response.status != undefined){
+
+            const session = await request.sessionFlashAddLicenca();
+
+            if(session){
+                //Registro Feito com Sucesso
+                window.location.href = `/carteiras/feito/${this.candidato_id}`;
+            }
+        }
+    },
+    async headerLocation(){
+
+        const session = await request.sessionFlashAddLicenca();
+
+        if(session){
+            //Registro Feito com Sucesso
+            window.location.href = `/carteiras/feito/${this.candidato_id}`;
+        }
+    },
     async submitFrmCarteira(e){
 
         e.preventDefault();
@@ -210,9 +236,11 @@ export default{
 
             if(submit.status != undefined && submit.status === "Ok"){
 
-                const id = submit.candidato_id;
+                //Set Candidato Id 
+                this.candidato_id = submit.candidato_id;
+
                 const identificacaoDados = data.identificacao;
-                identificacaoDados.inscricao_id = id;
+                identificacaoDados.inscricao_id = submit.inscricao_id;
 
                 //Validar Tipo de Documento (Id Tipo Documento - Ganbiarra)
                 if(data.academic_detail.nivel === "Medio"){
@@ -229,18 +257,22 @@ export default{
                 //Verificação Doc
                 if(identificacaoDados.file.name != undefined){
                     
-                    //Upload Dados Idenficação
-                    const submitIdentificaco = await request.submitIdentificacao(identificacaoDados,token);
+                   //Upload Dados Idenficação
+                   await this.postDocIdentificacao(identificacaoDados,token);
                 }
+                else{
 
-                //Registro Feito com Sucesso
-                window.location.href = `/carteiras/feito/${submit.candidato_id}`;
+                    //Registro Feito com Sucesso
+                    this.headerLocation();
+                }
             }
             else{
 
                 //Erro to Added
                 alert("Houve algum erro inesperado. Tente mais tarde ou contacte o Suporte.");
+
                 console.log(submit);
+                
                 window.location.reload();
             }        
         }

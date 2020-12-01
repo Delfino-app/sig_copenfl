@@ -8,24 +8,20 @@
 			<div class="col-lg-12  bg-white">
 				<div class="row justify-content-center">
 					<div class="col-lg-7" style="padding-bottom:50px">
-						<div class=" text-center" style="padding:20px;">
+						<div class="text-center" style="padding:20px;">
 							<i class="ion-ios-checkmark-circle-outline" style="font-size:70px;color:#4CD964"></i>
-							<h3 style="color:#444">Registro de carteira conluído com sucesso!</h3>
+							<h3 style="color:#444">Registro de carteira concluído com sucesso!</h3>
 							<p style="font-size:15px;">
-								A primeira etapa do registro foi concluída com sucesso, faltando apenas anexar os documentos.
+								A primeira etapa do registro foi concluída com sucesso, faltando apenas anexar os documentos e fazer os pagamentos.
 							</p>
 							<hr>
-							<a class="btn btn-destaque" style="color:white" href="{{route('add.documentos',$id)}}">
-								<i class="ion-md-attach" style="font-size:14px;padding-right:5px"></i>
-								Anexar Documentos
-							</a>
-							<a target="_blank" href="{{route('recibo',$id)}}" class="btn btn-primary" style="color:white">
-								<i class="ion-ios-list" style="font-size:14px;padding-right:5px"></i>
+							<a target="_blank" href="{{route('recibo',$id)}}" class="btn btn-destaque" style="color:white">
 								Gerar Pré-Recibo
+								<i class="ion-ios-list" style="font-size:14px;padding-left:5px"></i>
 							</a>
-							<a class="btn btn-dark" style="color:white" href="{{route('carteira.nova')}}">
-								<i class="ion-ios-add-circle-outline" style="font-size:14px;padding-right:5px"></i>
-								Novo Registro
+							<a class="btn btn-primary" style="color:white" href="{{route('registro.etapa.final.carteira',$id)}}">
+								Próxima Etapa
+								<i class=" fa fa-angle-right" style="font-size:14px;padding-left:5px"></i>
 							</a>
 						</div>
 					</div>

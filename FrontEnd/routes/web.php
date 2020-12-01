@@ -40,7 +40,7 @@ Route::group([
     Route::get('/licencas/ver/{id}', ['as' =>'licenca.ver','uses' => 'LicencaController@licencaVer']);
     Route::get('/licencas/editar/{id}', ['as' =>'licenca.editar','uses' => 'LicencaController@editLicenca']);
     Route::get('/licencas/eliminar/{id}', ['as' =>'licenca.eliminar','uses' => 'LicencaController@deleteLicenca']);
-    Route::get('/licenca/nova/adds/{id}', ['as' =>'registro.etapa.final','uses' => 'LicencaController@licencaDocsPagamentos']);
+    Route::get('/licencas/nova/adds/{id}', ['as' =>'registro.etapa.final.licenca','uses' => 'LicencaController@licencaDocsPagamentos']);
 
     #=======CarteiraController========#
     Route::get('/carteiras', ['as' =>'carteira.lista','uses' => 'CarteiraController@index']);
@@ -48,6 +48,7 @@ Route::group([
     Route::get('/carteiras/ver/{id}', ['as' =>'carteira.ver','uses' => 'CarteiraController@carteiraVer']);
     Route::get('/carteiras/eliminar/{id}', ['as' =>'carteira.eliminar','uses' => 'CarteiraController@deleteCarteira']);
     Route::get('/carteiras/feito/{id}', ['as' =>'carteira.feito','uses' => 'CarteiraController@carteiraAdded']);
+    Route::get('/carteiras/nova/adds/{id}', ['as' =>'registro.etapa.final.carteira','uses' => 'CarteiraController@carteiraDocsPagamentos']);
     
     #=======PagamentosController========#
     Route::get('/pagamentos', ['as' =>'pagamentos','uses' => 'PagamentosController@pagamentos']);
