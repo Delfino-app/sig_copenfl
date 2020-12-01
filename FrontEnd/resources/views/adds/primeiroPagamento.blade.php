@@ -36,7 +36,7 @@
             <div class="bg-gray" style="margin-top:50px">
                 <h3 class="p-10 text-white" style="height:50px">
                     <span class="float-left">Total</span>  
-                    <span class="float-right text-white">9.000,00 <small class="text-white">kz<small></span>
+                    <span class="float-right text-white">9.000,00 <small class="text-white">kz</small></span>
                 </h3>
             </div>
         </div>

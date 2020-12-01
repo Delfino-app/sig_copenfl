@@ -59,10 +59,10 @@
 							<p>Aguarde...</p>
 						</div>
 						<div class="jumbotron m-b-0 text-center" id="submitLicencaGifContainer" style="background-color:white">
-							<h2 class="display-4" style="font-size:18px;font-weight:500">
+							<h2 class="display-4" style="font-size:18px;font-weight:500;color:#1c1c1c">
 								Concluir registro
 							</h2>
-							<p class="lead mb-4" style="font-size:16px;">
+							<p class="lead mb-4" style="font-size:16px;color:#1c1c1c">
 								Clique em Salvar registro para concluir o registro
 							</p>
 							<button class="btn btn-primary" type="submit">
