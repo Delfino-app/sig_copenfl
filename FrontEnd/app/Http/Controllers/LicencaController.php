@@ -19,6 +19,8 @@ class LicencaController extends Controller
             //Request
             $dados = ApiRequestController::licencas("licenca","Pendente");
 
+            dd($dados);
+
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 
                 //Criando Message Auth e Redir to Login
