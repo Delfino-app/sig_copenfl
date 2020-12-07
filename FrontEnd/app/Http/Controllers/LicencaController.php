@@ -58,13 +58,11 @@ class LicencaController extends Controller
     public function index(){
 
         $estadoDefault = "Pendente";
-        $dataInicioDefault = date('Y-m-d', strtotime('-10 days'));
-        $dataFim = date('Y-m-d');
+        $dataInicioDefault = date('Y-m-d');
         
         $this->setFiltroEstado($estadoDefault);
         $this->setFiltroDataInicio($dataInicioDefault);
-        $this->setFiltroDataFim($dataFim);
-
+    
         return $this->show();
     }
 
@@ -102,9 +100,13 @@ class LicencaController extends Controller
                     $infoDelete = Session::get('deleteRegistro');
                 }
 
+                //Return Values
+                $estadosFiltro = $this->listaEstados($this->getFiltroEstado());
+                $dataInicio = date('Y/m/d', strtotime($this->filtroDataInicio));
+
                 $candidatos = isset($dados->candidatos) ? $dados->candidatos : [];
 
-                return view('licenca.lista',['name' => $name,'token' => $token, 'candidatos' => $candidatos, 'infoAuth' => $infoAuth , 'infoDelete' => $infoDelete]);
+                return view('licenca.lista',['name' => $name,'token' => $token, 'candidatos' => $candidatos, 'infoAuth' => $infoAuth , 'infoDelete' => $infoDelete, 'estadosFiltro' =>$estadosFiltro, 'dataInicioFiltro' => $dataInicio]);
             }
         }
         else{
@@ -311,7 +313,50 @@ class LicencaController extends Controller
         }     
     }
 
-    //Filtro (Estado ou Data)
+    //Lista Fake(?) de Estados
+    public function listaEstados($estado){
+
+        if($estado == "Pendente"){
+
+            return [
+                "Pendente",
+                "Inscrito",
+                "Analisado",
+                "Aprovado"
+            ];
+        }
+        else if($estado == "Inscrito"){
+
+            return [
+                "Inscrito",
+                "Pendente",
+                "Analisado",
+                "Aprovado"
+            ];
+        }
+
+        else if($estado == "Analisado"){
+
+            return [
+                "Analisado",
+                "Pendente",
+                "Inscrito",
+                "Aprovado"
+            ];
+        }
+
+        else if($estado == "Aprovado"){
+
+            return [
+                "Aprovado",
+                "Pendente",
+                "Inscrito",
+                "Analisado"
+            ];
+        }
+    }
+
+    //Filtro (Estado ou Data) - Method Get
     public function filtro($estado,$dataInicio = null,$dataFim = null){
 
         //Tipos Permetidos -> estado e data
@@ -328,5 +373,39 @@ class LicencaController extends Controller
         }
 
         return $this->show();
+    }
+
+    //Filtro - Method Post
+    public function filtroPost(Request $req){
+
+        $dados = (object)[
+
+           "estado" => $req["estado"],
+           "dataInicio" => $req["dataInicio"],
+           "dataFim" => $req["dataFim"]
+        ];
+
+        //Apenas o estado
+        if(empty($dados->dataInicio) && empty($dados->dataFim)){
+
+           return redirect()->route('licenca.filtro.get',$dados->estado);
+        }
+        //Data Inicio
+        elseif(empty($dados->dataFim)){
+
+           $dados->dataInicio = date("d-m-Y", strtotime($dados->dataInicio));
+
+
+           return redirect()->route('licenca.filtro.get',["estado" => $dados->estado,"dataInicio" => $dados->dataInicio]);
+        }
+        //All
+        else{
+
+           $dados->dataInicio = date("d-m-Y", strtotime($dados->dataInicio));
+        
+           $dados->dataFim = date("d-m-Y", strtotime($dados->dataFim));
+           
+           return redirect()->route('licenca.filtro.get',["estado" => $dados->estado,"dataInicio" => $dados->dataInicio, "dataFim" => $dados->dataFim]);
+        }
     }
 }

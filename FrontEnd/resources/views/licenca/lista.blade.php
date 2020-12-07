@@ -20,13 +20,36 @@
 						</div>
 					@endif
 					<div class="panel panel-inverse">
-						<div class="panel-heading">
-							<h4 class="panel-title">Licenças - Lista de Incrições</h4>
-							<div class="panel-heading-btn">
-								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+						<div class="panel-heading" style="background-color:#f7f7f7">
+							<div class="w-100 row">
+								<div class="col-lg-4">
+									<h3 style="color:#1c1c1c">Registro de Licenças</h3>
+								</div>
+								<div class="col-lg-8">
+									<div class="w-100">
+										<form method="post" class="float-right form-inline" action="{{route('licenca.filtro.post')}}">
+											{{ csrf_field() }}
+											<div class="form group mr-1">
+												<select class="form-control" name="estado" required>
+													@for($i = 0; $i < count($estadosFiltro); $i++)
+													<option value="{{$estadosFiltro[$i]}}">{{$estadosFiltro[$i]}}</option>
+													@endfor
+												</select>
+											</div>
+											<div class="form group mr-1">
+												<input type="date" name="dataInicio"  class="form-control">
+											</div>
+											<div class="form group mr-1">
+												<input type="date" name="dataFim" class="form-control">
+											</div>
+											<div class="form group mr-1 mt-1">
+												<button class="btn btn-primary btn-destaque" type="submit">
+													Filtrar <i class="fa fa-filter"></i>
+												</button>
+											</div>
+										</form>
+									</div>
+								</div>
 							</div>
 						</div>
 						<!-- begin panel-body -->
