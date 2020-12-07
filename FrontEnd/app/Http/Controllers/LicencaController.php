@@ -8,16 +8,23 @@ use PDF;
 
 class LicencaController extends Controller
 {
+
     
-    public function index(){
+    public function index($estado = null){
 
         if(Session::has(['name','email','access_token'])){
 
             $name = Session::get('name');
             $token = Session::get('access_token');
 
+            //Estado
+            empty($estado) ? $estado = "Pendente" : $estado;
+
+            $estado = ucfirst($estado);
+           
             //Request
-            $dados = ApiRequestController::licencas("licenca","Pendente");
+            $dados = ApiRequestController::licencas("licenca",$estado);
+
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 
@@ -251,5 +258,23 @@ class LicencaController extends Controller
 
             return redirect()->route('login');
         }     
+    }
+
+    //Filtro (Estado ou Data)
+    public function filtro($tipo,$filtro){
+
+        //Tipos Permetidos -> estado e data
+        if($tipo == "estado"){
+
+            return $this->index($filtro);
+        }
+        elseif($tipo == "data"){
+
+            $this->filtroData();
+        }
+        else{
+
+            return redirect('/404');
+        }
     }
 }

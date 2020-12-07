@@ -39,6 +39,8 @@ Route::group([
     Route::get('/licencas/feito/{id}', ['as' =>'licenca.feito','uses' => 'LicencaController@licencaAdded']);
     Route::get('/licencas/ver/{id}', ['as' =>'licenca.ver','uses' => 'LicencaController@licencaVer']);
     Route::get('/licencas/editar/{id}', ['as' =>'licenca.editar','uses' => 'LicencaController@editLicenca']);
+    Route::get('/licencas/filtro/{tipo}/{filtro}', ['as' =>'licenca.filtro','uses' => 'LicencaController@filtro']);
+
     Route::get('/licencas/eliminar/{id}', ['as' =>'licenca.eliminar','uses' => 'LicencaController@deleteLicenca']);
     Route::get('/licencas/nova/adds/{id}', ['as' =>'registro.etapa.final.licenca','uses' => 'LicencaController@licencaDocsPagamentos']);
 
