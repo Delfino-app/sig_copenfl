@@ -8,8 +8,63 @@ use PDF;
 
 class CarteiraController extends Controller
 {
-    //
+    private $filtroEstado;
+    private $filtroDataInicio;
+    private $filtroDataFim;
+
+
+    /*
+    *   Get Methods
+    */
+
+    public function getFiltroEstado(){
+
+        return $this->filtroEstado;
+    }
+
+    public function getFiltroDataInicio(){
+
+        return $this->filtroDataInicio;
+    }
+
+    public function getFiltroDataFim(){
+
+        return $this->filtroDataFim;
+    }
+
+    /*
+    *   Set Methods
+    */
+
+    public function setFiltroEstado($filtroEstado){
+
+       $this->filtroEstado = ucfirst($filtroEstado);
+    }
+
+    public function setFiltroDataInicio($filtroDataInicio){
+
+       $this->filtroDataInicio = date("Y-m-d", strtotime($filtroDataInicio));
+    }
+
+    public function setFiltroDataFim($filtroDataFim){
+
+        $this->filtroDataFim = date("Y-m-d", strtotime($filtroDataFim));
+    }
+
+    /*
+    * Controllers
+    */
     public function index(){
+
+        $estadoDefault = "Pendente";
+        $dataInicioDefault = date('Y-m-d');
+        
+        $this->setFiltroEstado($estadoDefault);
+        $this->setFiltroDataInicio($dataInicioDefault);
+    
+        return $this->show();
+    }
+    public function show(){
 
         if(Session::has(['name','email','access_token'])){
 
@@ -17,7 +72,7 @@ class CarteiraController extends Controller
             $token = Session::get('access_token');
 
             //Request
-            $dados = ApiRequestController::licencas("carteira","Pendente");
+            $dados = ApiRequestController::registros("carteira",$this->getFiltroEstado(),$this->getFiltroDataInicio(),$this->getFiltroDataFim());
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 
@@ -44,9 +99,13 @@ class CarteiraController extends Controller
                     $infoDelete = Session::get('deleteRegistro');
                 }
 
+                //Return Values
+                $estadosFiltro = $this->listaEstados($this->getFiltroEstado());
+                $dataInicio = date('Y/m/d', strtotime($this->filtroDataInicio));
+
 
                 $candidatos = isset($dados->candidatos) ? $dados->candidatos : [];
-                return view('carteira.lista',['name' => $name,'token' => $token, 'candidatos' => $candidatos, 'infoAuth' => $infoAuth, 'infoDelete' => $infoDelete]);
+                return view('carteira.lista',['name' => $name,'token' => $token, 'candidatos' => $candidatos, 'infoAuth' => $infoAuth, 'infoDelete' => $infoDelete, 'estadosFiltro' =>$estadosFiltro, 'dataInicioFiltro' => $dataInicio]);
             }
         }
         else{
@@ -238,5 +297,101 @@ class CarteiraController extends Controller
             (new helper())->expireToken();
             return redirect()->route('login');
         }  
+    }
+
+    //Lista Fake(?) de Estados
+    public function listaEstados($estado){
+
+        if($estado == "Pendente"){
+
+            return [
+                "Pendente",
+                "Inscrito",
+                "Analisado",
+                "Aprovado"
+            ];
+        }
+        else if($estado == "Inscrito"){
+
+            return [
+                "Inscrito",
+                "Pendente",
+                "Analisado",
+                "Aprovado"
+            ];
+        }
+
+        else if($estado == "Analisado"){
+
+            return [
+                "Analisado",
+                "Pendente",
+                "Inscrito",
+                "Aprovado"
+            ];
+        }
+
+        else if($estado == "Aprovado"){
+
+            return [
+                "Aprovado",
+                "Pendente",
+                "Inscrito",
+                "Analisado"
+            ];
+        }
+    }
+
+    //Filtro (Estado ou Data) - Method Get
+    public function filtro($estado,$dataInicio = null,$dataFim = null){
+
+        //Tipos Permetidos -> estado e data
+        $this->setFiltroEstado($estado);
+
+        if(!empty($dataInicio)){
+
+            $this->setFiltroDataInicio($dataInicio);
+        }
+
+        if(!empty($dataFim)){
+
+            $this->setFiltroDataFim($dataFim);
+        }
+
+        return $this->show();
+    }
+
+    //Filtro - Method Post
+    public function filtroPost(Request $req){
+
+        $dados = (object)[
+
+           "estado" => $req["estado"],
+           "dataInicio" => $req["dataInicio"],
+           "dataFim" => $req["dataFim"]
+        ];
+
+        //Apenas o estado
+        if(empty($dados->dataInicio) && empty($dados->dataFim)){
+
+           return redirect()->route('carteira.filtro.get',$dados->estado);
+        }
+        //Data Inicio
+        elseif(empty($dados->dataFim)){
+
+           $dados->dataInicio = date("d-m-Y", strtotime($dados->dataInicio));
+
+
+           return redirect()->route('carteira.filtro.get',["estado" => $dados->estado,"dataInicio" => $dados->dataInicio]);
+        }
+        //All
+        else{
+
+           $dados->dataInicio = date("d-m-Y", strtotime($dados->dataInicio));
+        
+           $dados->dataFim = date("d-m-Y", strtotime($dados->dataFim));
+           
+           return redirect()->route('carteira.filtro.get',["estado" => $dados->estado,"dataInicio" => $dados->dataInicio, "dataFim" => $dados->dataFim]);
+        }
     }
 }

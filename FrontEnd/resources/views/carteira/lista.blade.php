@@ -23,11 +23,11 @@
 					<div class="panel-heading" style="background-color:#f7f7f7">
 						<div class="w-100 row">
 							<div class="col-lg-4">
-								<h3 style="color:#1c1c1c">Registro de Licenças</h3>
+								<h3 style="color:#1c1c1c">Registro de Carteiras</h3>
 							</div>
 							<div class="col-lg-8">
 								<div class="w-100">
-									<form method="post" class="float-right form-inline" action="{{route('licenca.filtro.post')}}">
+									<form method="post" class="float-right form-inline" action="{{route('carteira.filtro.post')}}">
 										{{ csrf_field() }}
 										<div class="form group mr-1">
 											<select class="form-control" name="estado" required>

@@ -52,6 +52,8 @@ Route::group([
     Route::get('/carteiras/eliminar/{id}', ['as' =>'carteira.eliminar','uses' => 'CarteiraController@deleteCarteira']);
     Route::get('/carteiras/feito/{id}', ['as' =>'carteira.feito','uses' => 'CarteiraController@carteiraAdded']);
     Route::get('/carteiras/nova/adds/{id}', ['as' =>'registro.etapa.final.carteira','uses' => 'CarteiraController@carteiraDocsPagamentos']);
+    Route::get('/carteiras/filtro/{estado}/{dataInicio?}/{dataFim?}', ['as' =>'carteira.filtro.get','uses' => 'CarteiraController@filtro']);
+    Route::post('/carteiras/filtro/', ['as' =>'carteira.filtro.post','uses' => 'CarteiraController@filtroPost']);
     
     #=======PagamentosController========#
     Route::get('/pagamentos', ['as' =>'pagamentos','uses' => 'PagamentosController@pagamentos']);

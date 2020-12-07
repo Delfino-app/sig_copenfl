@@ -73,7 +73,7 @@ class LicencaController extends Controller
             $name = Session::get('name');
             $token = Session::get('access_token');
 
-            $dados = ApiRequestController::licencas("licenca",$this->getFiltroEstado(),$this->getFiltroDataInicio(),$this->getFiltroDataFim());
+            $dados = ApiRequestController::registros("licenca",$this->getFiltroEstado(),$this->getFiltroDataInicio(),$this->getFiltroDataFim());
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 class ApiRequestController extends Controller
 {
     //Lista Licencas ou Carteiras
-    public static function licencas($entidade,$estado,$dataInicio,$dataFim){
+    public static function registros($entidade,$estado,$dataInicio,$dataFim){
 
 
        # dd($dataInicio."...".$dataFim);
