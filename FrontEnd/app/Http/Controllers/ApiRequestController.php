@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Session;
 class ApiRequestController extends Controller
 {
     //Lista Licencas ou Carteiras
-    public static function licencas($entidade,$estado){
+    public static function licencas($entidade,$estado,$dataInicio,$dataFim){
 
+
+       # dd($dataInicio."...".$dataFim);
         $token = Session::get('access_token');
 
         $headers = [
@@ -34,12 +36,6 @@ class ApiRequestController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
         );
 
-        //Datas
-        $dataInicio = date('Y-m-d', strtotime('-5 days'));
-
-        $dataFim = date('Y-m-d');
-
-        #dd($dataInicio,$dataFim);
 
         $ch = curl_init(DOMINIO_API."/api/v1/candidato/index/{$entidade}/{$estado}/{$dataInicio}/{$dataFim}");
 

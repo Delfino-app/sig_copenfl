@@ -9,22 +9,73 @@ use PDF;
 class LicencaController extends Controller
 {
 
-    
-    public function index($estado = null){
+    private $filtroEstado;
+    private $filtroDataInicio;
+    private $filtroDataFim;
+
+
+    /*
+    *   Get Methods
+    */
+
+    public function getFiltroEstado(){
+
+        return $this->filtroEstado;
+    }
+
+    public function getFiltroDataInicio(){
+
+        return $this->filtroDataInicio;
+    }
+
+    public function getFiltroDataFim(){
+
+        return $this->filtroDataFim;
+    }
+
+    /*
+    *   Set Methods
+    */
+
+    public function setFiltroEstado($filtroEstado){
+
+       $this->filtroEstado = ucfirst($filtroEstado);
+    }
+
+    public function setFiltroDataInicio($filtroDataInicio){
+
+       $this->filtroDataInicio = date("Y-m-d", strtotime($filtroDataInicio));
+    }
+
+    public function setFiltroDataFim($filtroDataFim){
+
+        $this->filtroDataFim = date("Y-m-d", strtotime($filtroDataFim));
+    }
+
+    /*
+    * Controllers
+    */
+    public function index(){
+
+        $estadoDefault = "Pendente";
+        $dataInicioDefault = date('Y-m-d', strtotime('-10 days'));
+        $dataFim = date('Y-m-d');
+        
+        $this->setFiltroEstado($estadoDefault);
+        $this->setFiltroDataInicio($dataInicioDefault);
+        $this->setFiltroDataFim($dataFim);
+
+        return $this->show();
+    }
+
+    public function show(){
 
         if(Session::has(['name','email','access_token'])){
 
             $name = Session::get('name');
             $token = Session::get('access_token');
 
-            //Estado
-            empty($estado) ? $estado = "Pendente" : $estado;
-
-            $estado = ucfirst($estado);
-           
-            //Request
-            $dados = ApiRequestController::licencas("licenca",$estado);
-
+            $dados = ApiRequestController::licencas("licenca",$this->getFiltroEstado(),$this->getFiltroDataInicio(),$this->getFiltroDataFim());
 
             if(isset($dados->message) && $dados->message == 'Unauthenticated.'){
                 
@@ -261,20 +312,21 @@ class LicencaController extends Controller
     }
 
     //Filtro (Estado ou Data)
-    public function filtro($tipo,$filtro){
+    public function filtro($estado,$dataInicio = null,$dataFim = null){
 
         //Tipos Permetidos -> estado e data
-        if($tipo == "estado"){
+        $this->setFiltroEstado($estado);
 
-            return $this->index($filtro);
-        }
-        elseif($tipo == "data"){
+        if(!empty($dataInicio)){
 
-            $this->filtroData();
+            $this->setFiltroDataInicio($dataInicio);
         }
-        else{
 
-            return redirect('/404');
+        if(!empty($dataFim)){
+
+            $this->setFiltroDataFim($dataFim);
         }
+
+        return $this->show();
     }
 }
