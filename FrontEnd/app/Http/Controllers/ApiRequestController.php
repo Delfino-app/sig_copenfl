@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 class ApiRequestController extends Controller
 {
     //Lista Licencas ou Carteiras
-    public static function registros($entidade,$estado,$dataInicio,$dataFim){
+    public static function registros($entidade,$estado,$dataInicio,$dataFim = null){
 
 
        # dd($dataInicio."...".$dataFim);
@@ -36,8 +36,15 @@ class ApiRequestController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
         );
 
+        if(empty($dataFim)){
 
-        $ch = curl_init(DOMINIO_API."/api/v1/candidato/index/{$entidade}/{$estado}/{$dataInicio}/{$dataFim}");
+            $ch = curl_init(DOMINIO_API."/api/v1/candidato/index/{$entidade}/{$estado}/{$dataInicio}");
+
+        }
+        else{
+
+            $ch = curl_init(DOMINIO_API."/api/v1/candidato/index/{$entidade}/{$estado}/{$dataInicio}/{$dataFim}");
+        }
 
         curl_setopt_array($ch, $options);
 

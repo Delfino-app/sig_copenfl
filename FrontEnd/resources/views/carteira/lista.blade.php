@@ -25,9 +25,9 @@
 							<div class="col-lg-4">
 								<h3 style="color:#1c1c1c">Registro de Carteiras</h3>
 							</div>
-							<div class="col-lg-8">
+							<div class="col-lg-8 pr-0">
 								<div class="w-100">
-									<form method="post" class="float-right form-inline" action="{{route('carteira.filtro.post')}}">
+									<form method="post" class="float-right form-inline" action="{{route('carteira.filtro.post')}}" style="margin-right:-20px">
 										{{ csrf_field() }}
 										<div class="form group mr-1">
 											<select class="form-control" name="estado" required>
@@ -42,7 +42,7 @@
 										<div class="form group mr-1">
 											<input type="date" name="dataFim" class="form-control">
 										</div>
-										<div class="form group mr-1 mt-1">
+										<div class="form group mr-1">
 											<button class="btn btn-primary btn-destaque" type="submit">
 												Filtrar <i class="fa fa-filter"></i>
 											</button>

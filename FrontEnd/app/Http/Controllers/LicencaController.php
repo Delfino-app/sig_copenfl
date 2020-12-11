@@ -395,13 +395,12 @@ class LicencaController extends Controller
 
            $dados->dataInicio = date("d-m-Y", strtotime($dados->dataInicio));
 
-
            return redirect()->route('licenca.filtro.get',["estado" => $dados->estado,"dataInicio" => $dados->dataInicio]);
         }
         //All
         else{
 
-           $dados->dataInicio = date("d-m-Y", strtotime($dados->dataInicio));
+            $dados->dataInicio = !empty($dados->dataInicio) ? date("d-m-Y", strtotime($dados->dataInicio)) : date("d-m-Y");
         
            $dados->dataFim = date("d-m-Y", strtotime($dados->dataFim));
            
